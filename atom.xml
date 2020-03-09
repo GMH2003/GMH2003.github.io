@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://GMH2003.github.io</id>
     <title>G_M_H博客</title>
-    <updated>2020-03-09T03:34:24.267Z</updated>
+    <updated>2020-03-09T04:15:57.196Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://GMH2003.github.io"/>
     <link rel="self" href="https://GMH2003.github.io/atom.xml"/>
@@ -17,6 +17,756 @@
         </link>
         <updated>2020-03-09T01:37:15.000Z</updated>
         <content type="html"><![CDATA[<p>原来那个博客被我扔了，逃</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 洛谷 P2365 任务安排&&斜率优化学习]]></title>
+        <id>https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/</id>
+        <link href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">
+        </link>
+        <updated>2019-08-28T22:22:34.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="题目链接"><a href="https://www.luogu.org/problem/P2365">题目链接</a></h2>
+<h2 id="题目描述">题目描述</h2>
+<p>N个任务排成一个序列在一台机器上等待完成（顺序不得改变），这N个任务被分成若干批，每批包含相邻的若干任务。从时刻0开始，这些任务被分批加工，第i个任务单独完成所需的时间是Ti。在每批任务开始前，机器需要启动时间S，而完成这批任务所需的时间是各个任务需要时间的总和（同一批任务将在同一时刻完成）。每个任务的费用是它的完成时刻乘以一个费用系数Fi。请确定一个分组方案，使得总费用最小。</p>
+<p>例如：S=1；T={1,3,4,2,1}；F={3,2,3,3,4}。如果分组方案是{1,2}、{3}、{4,5}，则完成时间分别为{5,5,10,14,14}，费用C={15,10,30,42,56}，总费用就是153。</p>
+<h2 id="输入格式">输入格式</h2>
+<p>第一行是N(1&lt;=N&lt;=5000)。</p>
+<p>第二行是S(0&lt;=S&lt;=50)。</p>
+<p>下面N行每行有一对数，分别为Ti和Fi，均为不大于100的正整数，表示第i个任务单独完成所需的时间是Ti及其费用系数Fi。</p>
+<h2 id="输出格式">输出格式</h2>
+<p>一个数，最小的总费用。</p>
+<h2 id="输入输出样例">输入输出样例</h2>
+<h3 id="输入">输入</h3>
+<pre><code>5
+1
+1 3
+3 2
+4 3
+2 3
+1 4
+</code></pre>
+<h3 id="输出">输出</h3>
+<pre><code>153
+</code></pre>
+<h2 id="code">code</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#define LL long long
+#define ULL unsigned LL
+using namespace std;
+template&lt;class T&gt;
+inline void read(T&amp; p) {
+	char c;
+	p=0;
+	bool f=0;
+	for(c=getchar(); c&lt;'0'||c&gt;'9'; c=getchar())if(c=='-')f=true;
+	for(; c&gt;='0'&amp;&amp;c&lt;='9'; c=getchar()) p=(p&lt;&lt;3)+(p&lt;&lt;1)+c-'0';
+	if(f)p=-p;
+}
+template&lt;class T,class... Args&gt;
+inline void read(T&amp; x,Args&amp;... args) {
+	read(x);
+	read(args...);
+}
+template&lt;class T&gt;
+inline void write(T x) {
+	if(x&lt;0) putchar('-'),x=-x;
+	if(x&gt;9) write(x/10);
+	putchar('0'+x%10);
+}
+template&lt;class T,class... Args&gt;
+inline void write(T x,Args... args) {
+	write(x);
+	putchar(' ');
+	write(args...);
+}
+template&lt;class... Args&gt;
+inline void writeln(Args... args) {
+	write(args...);
+	putchar('\n');
+}
+template&lt;class T&gt;
+inline T my_min(T a,T b){
+	return (a&lt;b)? a:b;
+}
+const int N=5001;
+LL dp[N],sumt[N],sumc[N];
+int n,s;
+int main(){
+	read(n,s);
+	for(register int i=1,t,c;i&lt;=n;i++){
+		read(t,c);
+		sumt[i]=sumt[i-1]+t;
+		sumc[i]=sumc[i-1]+c;
+		dp[i]=0x3f3f3f3f;
+	}
+	dp[0]=0;
+	for(register int i=1;i&lt;=n;i++){
+		for(register int j=0;j&lt;i;j++){
+			dp[i]=my_min(dp[i],dp[j]+sumt[i]*(sumc[i]-sumc[j])+s*(sumc[n]-sumc[j]));
+		}
+	}
+	write(dp[n]);
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 codeforces CF1200C Round Corridor]]></title>
+        <id>https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/</id>
+        <link href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/">
+        </link>
+        <updated>2019-08-14T20:02:04.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="题目链接"><a href="http://codeforces.com/problemset/problem/1200/C">题目链接</a></h2>
+<h2 id="题目">题目</h2>
+<h2 id="c-round-corridor">C. Round Corridor</h2>
+<ul>
+<li>time limit per test1 second</li>
+<li>memory limit per test256 megabytes</li>
+<li>inputstandard input</li>
+<li>outputstandard output</li>
+</ul>
+<p>Amugae is in a very large round corridor. The corridor consists of two areas. The inner area is equally divided by n sectors, and the outer area is equally divided by m sectors. A wall exists between each pair of sectors of same area (inner or outer), but there is no wall between the inner area and the outer area. A wall always exists at the 12 o'clock position.</p>
+<figure data-type="image" tabindex="1"><img src="http://codeforces.com/predownloaded/9e/12/9e12655e7ea9e6bff7c9bb3bb0e768a502ecba75.png" alt="" loading="lazy"></figure>
+<p>The inner area's sectors are denoted as (1,1),(1,2),…,(1,n) in clockwise direction. The outer area's sectors are denoted as (2,1),(2,2),…,(2,m) in the same manner. For a clear understanding, see the example image above.</p>
+<p>Amugae wants to know if he can move from one sector to another sector. He has q questions.</p>
+<p>For each question, check if he can move between two given sectors.</p>
+<h3 id="input">Input</h3>
+<p>The first line contains three integers n, m and q (1≤n,m≤1018, 1≤q≤104) — the number of sectors in the inner area, the number of sectors in the outer area and the number of questions.</p>
+<p>Each of the next q lines contains four integers sx, sy, ex, ey (1≤sx,ex≤2; if sx=1, then 1≤sy≤n, otherwise 1≤sy≤m; constraints on ey are similar). Amague wants to know if it is possible to move from sector (sx,sy) to sector (ex,ey).</p>
+<h3 id="output">Output</h3>
+<p>For each question, print &quot;YES&quot; if Amugae can move from (sx,sy) to (ex,ey), and &quot;NO&quot; otherwise.</p>
+<p>You can print each letter in any case (upper or lower).</p>
+<h3 id="example">Example</h3>
+<h4 id="input-2">input</h4>
+<pre><code>4 6 3
+1 1 2 3
+2 6 1 2
+2 6 2 4
+</code></pre>
+<h4 id="output-2">output</h4>
+<pre><code>YES
+NO
+YES
+</code></pre>
+<h3 id="note">Note</h3>
+<p>Example is shown on the picture in the statement.</p>
+<h2 id="做题经历">做题经历</h2>
+<p>我太蒟了，纯属瞎搞。</p>
+<h2 id="思路分析">思路分析</h2>
+<p>这是一道数学题；</p>
+<p>用gcd求出有几个联通的区间，在求出起点和终点所在的区间。<br>
+判断起点和终点是否在同一个区间。</p>
+<h2 id="ac代码">AC代码</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#define LL long long
+using namespace std;
+LL m,n,q;
+LL gcd(LL a,LL b) {
+	LL r;
+	while(b) {r=a%b;a=b;b=r;}
+	return a;
+}
+int main() {
+	scanf(&quot;%lld%lld%lld&quot;,&amp;m,&amp;n,&amp;q);
+	LL br=gcd(m,n);
+	while(q--) {
+		LL f1,f2,t1,t2,q1,q2;
+		scanf(&quot;%lld%lld%lld%lld&quot;,&amp;f1,&amp;f2,&amp;t1,&amp;t2);
+		q1=(f1==1)? ((f2-1)/(m/br)):((f2-1)/(n/br));
+		q2=(t1==1)? ((t2-1)/(m/br)):((t2-1)/(n/br));
+		if(q1==q2)printf(&quot;YES\n&quot;);
+		else printf(&quot;NO\n&quot;);
+	}
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 洛谷 P2596 [ZJOI2006]书架]]></title>
+        <id>https://GMH2003.github.io/post/2019-08-11-题解-洛谷-P2596-[ZJOI2006]书架.markd/</id>
+        <link href="https://GMH2003.github.io/post/2019-08-11-题解-洛谷-P2596-[ZJOI2006]书架.markd/">
+        </link>
+        <updated>2019-08-11T23:52:34.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="用vectoro2水过">用vector+O2水过。。。</h2>
+<pre><code class="language-cpp">// luogu-judger-enable-o2
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+vector&lt;int&gt; v;
+template&lt;typename T&gt;
+inline void read(T&amp; p) {
+	char c;
+	p=0;
+	bool f=0;
+	for(c=getchar(); c&lt;'0'||c&gt;'9'; c=getchar())if(c=='-')f=true;
+	for(; c&gt;='0'&amp;&amp;c&lt;='9'; c=getchar()) p=(p&lt;&lt;3)+(p&lt;&lt;1)+c-'0';
+	if(f)p=-p;
+}
+template&lt;typename T,typename... Args&gt;
+inline void read(T&amp; x,Args&amp;... args) {
+	read(x);
+	read(args...);
+}
+int n,m;
+int main() {
+	read(n,m);
+	for(register int i=1,mid; i&lt;=n; i++) {
+		read(mid);
+		v.push_back(mid);
+	}
+	char op[100];
+	for(register int i=1,x,y,tmp; i&lt;=m; i++) {
+		scanf(&quot;%s&quot;,op);
+		if(op[0]=='T') {
+			read(x);
+			v.erase(find(v.begin(),v.end(),x));
+			v.insert(v.begin(),x);
+		} else if(op[0]=='B') {
+			read(x);
+			v.erase(find(v.begin(),v.end(),x));
+			v.insert(v.end(),x);
+		} else if(op[0]=='I') {
+			read(x,y);
+			if(y!=0) {
+				tmp=find(v.begin(),v.end(),x)-v.begin();
+				v.erase(tmp+v.begin());
+				tmp+=y;
+				v.insert(v.begin()+tmp,x);
+			}
+		} else if(op[0]=='A') {
+			read(x);
+			tmp=find(v.begin(),v.end(),x)-v.begin();
+			printf(&quot;%d\n&quot;,tmp);
+		} else if(op[0]=='Q') {
+			read(x);
+			printf(&quot;%d\n&quot;,v[x-1]);
+		}
+	}
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 codeforces CF1196B Odd Sum Segments]]></title>
+        <id>https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196B.markd/</id>
+        <link href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196B.markd/">
+        </link>
+        <updated>2019-07-25T22:02:04.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="题目链接"><a href="http://codeforces.com/problemset/problem/1196/B">题目链接</a></h2>
+<h2 id="题目">题目</h2>
+<h2 id="b-odd-sum-segments">B. Odd Sum Segments</h2>
+<ul>
+<li>time limit per test3 seconds</li>
+<li>memory limit per test256 megabytes</li>
+<li>inputstandard input</li>
+<li>outputstandard output</li>
+</ul>
+<p>You are given an array a consisting of n integers a1,a2,…,an. You want to split it into exactly k non-empty non-intersecting subsegments such that each subsegment has odd sum (i. e. for each subsegment, the sum of all elements that belong to this subsegment is odd). It is impossible to rearrange (shuffle) the elements of a given array. Each of the n elements of the array a must belong to exactly one of the k subsegments.</p>
+<p>Let's see some examples of dividing the array of length 5 into 3 subsegments (not necessarily with odd sums): [1,2,3,4,5] is the initial array, then all possible ways to divide it into 3 non-empty non-intersecting subsegments are described below:</p>
+<p>[1],[2],[3,4,5];<br>
+[1],[2,3],[4,5];<br>
+[1],[2,3,4],[5];<br>
+[1,2],[3],[4,5];<br>
+[1,2],[3,4],[5];<br>
+[1,2,3],[4],[5].<br>
+Of course, it can be impossible to divide the initial array into exactly k subsegments in such a way that each of them will have odd sum of elements. In this case print &quot;NO&quot;. Otherwise, print &quot;YES&quot; and any possible division of the array. See the output format for the detailed explanation.</p>
+<p>You have to answer q independent queries.</p>
+<h3 id="input">Input</h3>
+<p>The first line contains one integer q (1≤q≤2⋅105) — the number of queries. Then q queries follow.</p>
+<p>The first line of the query contains two integers n and k (1≤k≤n≤2⋅105) — the number of elements in the array and the number of subsegments, respectively.</p>
+<p>The second line of the query contains n integers a1,a2,…,an (1≤ai≤109), where ai is the i-th element of a.</p>
+<p>It is guaranteed that the sum of n over all queries does not exceed 2⋅105 (∑n≤2⋅105).</p>
+<h3 id="output">Output</h3>
+<p>For each query, print the answer to it. If it is impossible to divide the initial array into exactly k subsegments in such a way that each of them will have odd sum of elements, print &quot;NO&quot; in the first line. Otherwise, print &quot;YES&quot; in the first line and any possible division of the array in the second line. The division can be represented as k integers r1, r2, ..., rk such that 1≤r1&lt;r2&lt;⋯&lt;rk=n, where rj is the right border of the j-th segment (the index of the last element that belongs to the j-th segment), so the array is divided into subsegments [1;r1],[r1+1;r2],[r2+1,r3],…,[rk−1+1,n]. Note that rk is always n but you should print it anyway.</p>
+<h3 id="example">Example</h3>
+<h4 id="input-2">input</h4>
+<pre><code>3
+5 3
+7 18 3 14 1
+5 4
+1 2 3 4 5
+6 2
+1 2 8 4 10 2
+</code></pre>
+<h4 id="output-2">output</h4>
+<pre><code>YES
+1 3 5
+NO
+NO
+</code></pre>
+<h2 id="分析及题解">分析及题解</h2>
+<h3 id="做题经历">做题经历</h3>
+<p>第一眼看到题目，爆搜？？？！！！<br>
+第二眼看到题目，这是到大水题。</p>
+<h3 id="题目分析">题目分析</h3>
+<p>奇数+奇数=偶数；<br>
+奇数+偶数=奇数；</p>
+<p>既然是分组，使每组的和为奇数，那么就和偶数没什么关系了，只要统计奇数就行了。</p>
+<p>先统计奇数的个数，如果奇数的个数小于k，那么直接输出NO。<br>
+如果奇数的个数大于k，不妨把最后两个奇数合并成偶数（在同一组里）直到奇数的个数等于k，输出YES和解，否则也输出NO。</p>
+<p>关于输出解，输出前k-1个奇数的位置，和n。</p>
+<h3 id="代码附上">代码附上</h3>
+<pre><code class="language-cpp">/*by G_M_H*/
+#include&lt;cmath&gt;
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+#include&lt;cstring&gt;
+#include&lt;utility&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#define LL long long
+using namespace std;
+int line[200005];
+int n,k;
+int main() {
+	int q;
+	scanf(&quot;%d&quot;,&amp;q);
+	while(q--){
+		scanf(&quot;%d%d&quot;,&amp;n,&amp;k);
+		int ans=0;
+		for(register int i=1;i&lt;=n;i++){
+			scanf(&quot;%d&quot;,&amp;line[i]);
+			if(line[i]%2) ans++;
+		}
+		if((ans&lt;k)||(ans-k)%2){
+			printf(&quot;NO\n&quot;);
+		}else{
+			printf(&quot;YES\n&quot;);
+			int pos=1;
+			while(k&gt;1){
+				if(line[pos]%2){
+					printf(&quot;%d &quot;,pos);
+					k--;
+				}
+				pos++;
+			}
+			printf(&quot;%d\n&quot;,n);
+		}
+	}
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 codeforces CF1196A Three Piles of Candies]]></title>
+        <id>https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/</id>
+        <link href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/">
+        </link>
+        <updated>2019-07-25T22:02:03.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="题目链接"><a href="http://codeforces.com/problemset/problem/1196/A">题目链接</a></h2>
+<h2 id="题目">题目</h2>
+<h2 id="a-three-piles-of-candies">A. Three Piles of Candies</h2>
+<ul>
+<li>time limit per test1 second</li>
+<li>memory limit per test256 megabytes</li>
+<li>inputstandard input</li>
+<li>outputstandard output</li>
+</ul>
+<p>Alice and Bob have received three big piles of candies as a gift. Now they want to divide these candies as fair as possible. To do this, Alice takes one pile of candies, then Bob takes one of the other two piles. The last pile is split between Alice and Bob as they want: for example, it is possible that Alice takes the whole pile, and Bob gets nothing from it.</p>
+<p>After taking the candies from the piles, if Alice has more candies than Bob, she discards some candies so that the number of candies she has is equal to the number of candies Bob has. Of course, Bob does the same if he has more candies.</p>
+<p>Alice and Bob want to have as many candies as possible, and they plan the process of dividing candies accordingly. Please calculate the maximum number of candies Alice can have after this division process (of course, Bob will have the same number of candies).</p>
+<p>You have to answer q independent queries.</p>
+<p>Let's see the following example: [1,3,4]. Then Alice can choose the third pile, Bob can take the second pile, and then the only candy from the first pile goes to Bob — then Alice has 4 candies, and Bob has 4 candies.</p>
+<p>Another example is [1,10,100]. Then Alice can choose the second pile, Bob can choose the first pile, and candies from the third pile can be divided in such a way that Bob takes 54 candies, and Alice takes 46 candies. Now Bob has 55 candies, and Alice has 56 candies, so she has to discard one candy — and after that, she has 55 candies too.</p>
+<h3 id="input">Input</h3>
+<p>The first line of the input contains one integer q (1≤q≤1000) — the number of queries. Then q queries follow.</p>
+<p>The only line of the query contains three integers a,b and c (1≤a,b,c≤1016) — the number of candies in the first, second and third piles correspondingly.</p>
+<h3 id="output">Output</h3>
+<p>Print q lines. The i-th line should contain the answer for the i-th query — the maximum number of candies Alice can have after the division, if both Alice and Bob act optimally (of course, Bob will have the same number of candies).</p>
+<h3 id="example">Example</h3>
+<h4 id="input-2">input</h4>
+<pre><code>4
+1 3 4
+1 10 100
+10000000000000000 10000000000000000 10000000000000000
+23 34 45
+</code></pre>
+<h4 id="output-2">output</h4>
+<pre><code>4
+55
+15000000000000000
+51
+</code></pre>
+<h2 id="分析及题解">分析及题解</h2>
+<h3 id="做题经历">做题经历</h3>
+<p>大半夜的看到Alice and Bob，我顿时就懵了。。。。<br>
+读完题发现这是一道<s>毒瘤</s>水题。</p>
+<h3 id="题目分析">题目分析</h3>
+<p>Alice和Bob先把较小的两堆取走，然后去取第三堆，使两人尽可能相等。</p>
+<p>综上所述，当三堆加起来为偶数时，除以2输出。当三堆加起来为奇数时，多拿的的那个人(可以是Alice也可以是Bob)要丢掉1，因此也是除以2，输出。</p>
+<h3 id="代码附上">代码附上</h3>
+<pre><code class="language-cpp">/*by G_M_H*/
+#include&lt;cmath&gt;
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+#include&lt;cstring&gt;
+#include&lt;utility&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#define LL long long
+using namespace std;
+int n;
+int main(){
+	scanf(&quot;%d&quot;,&amp;n);
+	while(n--){
+		LL a,b,c;
+		scanf(&quot;%lld%lld%lld&quot;,&amp;a,&amp;b,&amp;c);
+		printf(&quot;%lld\n&quot;,(a+b+c)/2);
+	}
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 洛谷 P1134 阶乘问题]]></title>
+        <id>https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/</id>
+        <link href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/">
+        </link>
+        <updated>2019-05-29T20:28:04.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="题目链接"><a href="https://www.luogu.org/problemnew/show/P1134">题目链接</a></h2>
+<h2 id="题目描述">题目描述</h2>
+<p>也许你早就知道阶乘的含义，N阶乘是由1到N相乘而产生，如：</p>
+<p>12!= 1×2×3×4×5×6×7×8×9×10×11×12=479001600<br>
+12的阶乘最右边的非零位为66。</p>
+<p>写一个程序，计算N(1≤N≤50000000)阶乘的最右边的非零位的值。</p>
+<p>注意:10000000!有2499999个零。</p>
+<h2 id="输入输出格式">输入输出格式</h2>
+<h3 id="输入格式">输入格式：</h3>
+<p>仅一行包含一个正整数N。</p>
+<h3 id="输出格式">输出格式：</h3>
+<p>一个整数，表示最右边的非零位的值。</p>
+<h2 id="输入输出样例">输入输出样例</h2>
+<h3 id="输入样例1">输入样例#1：</h3>
+<p>12</p>
+<h3 id="输出样例1">输出样例#1：</h3>
+<p>6</p>
+<h2 id="说明">说明</h2>
+<p>USACO Training Section 3.2</p>
+<h2 id="思路">思路</h2>
+<p>实话说，这道题<s>很水</s>还是有点思维含量的，首先，暴力算法（边乘边去末尾零再某10||100||1000······这一定会WA，因为乘的时候会发现最后只剩下一个0，不信你自己试试），正解是把2和5与其他数分开来考虑。</p>
+<h2 id="code">Code</h2>
+<pre><code class="language-cpp">#include&lt;iostream&gt;
+using namespace std;
+long long p;
+long long n;
+int main(){
+	long long f=0,t=0;
+	long long mid;
+	cin&gt;&gt;n;
+	p=1;
+	for(register long long i=1;i&lt;=n;i++){
+		mid=i;
+		while(mid%5==0){
+			mid/=5;
+			f++;
+		}
+		while(mid%2==0){
+			mid/=2;
+			t++;
+		}
+		if(f&gt;t){
+			f=f-t;
+			t=0;
+		}else{
+			t=t-f;
+			f=0;
+		}
+		p*=mid;
+		p%=10;
+	}
+	if(t==f){
+		cout&lt;&lt;p;
+	}else{
+		if(t&gt;f){
+			switch(t%4){
+				case 0: cout&lt;&lt;(p*6)%10;break;
+				case 1: cout&lt;&lt;(p*2)%10;break;
+				case 2: cout&lt;&lt;(p*4)%10;break;
+				case 3: cout&lt;&lt;(p*8)%10;break;
+			}
+		}else{
+			cout&lt;&lt;(p*5)%10;
+		}
+	}
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 洛谷 P1439 【模板】最长公共子序列]]></title>
+        <id>https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1439-模板-最长公共子序列.markd/</id>
+        <link href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1439-模板-最长公共子序列.markd/">
+        </link>
+        <updated>2019-05-29T15:35:04.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="题目链接"><a href="https://www.luogu.org/problemnew/show/P1439">题目链接</a></h2>
+<h2 id="题目描述">题目描述</h2>
+<p>给出1-n的两个排列P1和P2，求它们的最长公共子序列。</p>
+<h2 id="输入输出格式">输入输出格式</h2>
+<h3 id="输入格式">输入格式：</h3>
+<p>第一行是一个数n，</p>
+<p>接下来两行，每行为n个数，为自然数1-n的一个排列。</p>
+<h3 id="输出格式">输出格式：</h3>
+<p>一个数，即最长公共子序列的长度</p>
+<h2 id="输入输出样例">输入输出样例</h2>
+<h3 id="输入样例1">输入样例#1：</h3>
+<pre><code>5 
+3 2 1 4 5
+1 2 3 4 5
+</code></pre>
+<h3 id="输出样例1">输出样例#1：</h3>
+<pre><code>3
+</code></pre>
+<h2 id="说明">说明</h2>
+<p>【数据规模】</p>
+<p>对于50%的数据，n≤1000</p>
+<p>对于100%的数据，n≤100000</p>
+<h2 id="code">code</h2>
+<pre><code class="language-cpp">#include&lt;cmath&gt;
+#include&lt;cstdio&gt;
+#include&lt;cctype&gt;
+#include&lt;vector&gt;
+#include&lt;bitset&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+template&lt;class T&gt; inline void read(T &amp;p) {
+	p=0;
+	T f=1;
+	char c;
+	for(c=getchar(); !isdigit(c); c=getchar())
+		if(c=='-')
+			f=-1;
+	for(; isdigit(c); c=getchar())
+		p=(p&lt;&lt;3)+(p&lt;&lt;1)+(c-'0');
+	p*=f;
+	return ;
+}
+template&lt;class T&gt; inline void write(T x) {
+	T k = 0,lx = x;
+	char put[40];
+	if (lx ==0) putchar('0');
+	if (lx &lt; 0) putchar('-'),lx = -lx;
+	while (lx)  put[++k] = (lx % 10) + '0',lx /= 10;
+	while (k)   putchar( put[ k-- ] );
+	return ;
+}
+int n;
+int a[100001];
+int b[100001];
+int mapp[100001];
+int s[100001];
+int dp[100001];
+int len,pos;
+int find(int d) {
+	int l=1,r=len,mid,index=0x7ffffff;
+	while(l&lt;=r) {
+		mid=(l+r)&gt;&gt;1;
+		if(dp[mid]&gt;=d) {
+			index=(index&lt;mid)? index:mid;
+			r=mid-1;
+		} else l=mid+1;
+	}
+	if(index==0x7ffffff)
+		return len+1;
+	return index;
+}
+int main() {
+	read(n);
+	for(register int i=1; i&lt;=n; i++) {
+		read(a[i]);
+		mapp[a[i]]=i;
+	}
+	for(register int i=1; i&lt;=n; i++) {
+		read(b[i]);
+		s[i]=mapp[b[i]];
+	}
+	len=1;
+	dp[1]=s[1];
+	for(register int i=2; i&lt;=n; i++) {
+		if(s[i]&gt;dp[len])
+			dp[++len]=s[i];
+		else {
+			pos=find(s[i]);
+			dp[pos]=s[i];
+		}
+	}
+	write(len);
+	return 0;
+}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 XJOI 3287 离散化]]></title>
+        <id>https://GMH2003.github.io/post/2019-05-18-题解-XJOI-3287-离散化.markd/</id>
+        <link href="https://GMH2003.github.io/post/2019-05-18-题解-XJOI-3287-离散化.markd/">
+        </link>
+        <updated>2019-05-12T15:23:34.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="时间05s-空间32m">时间：0.5s   空间：32M</h2>
+<h2 id="题目描述">题目描述：</h2>
+<p>给你n个数，输出这n个数离散化后的结果</p>
+<p>比如</p>
+<p><code>4 100 80 10000</code> 离散化后为<br>
+<code>1 3 2 4</code><br>
+每个数的值为在原先数组中大小的排名,相同排名输出相同。<br>
+如<code>1 1000 100 100</code><br>
+输出<code>1 4 2 2</code></p>
+<h2 id="输入格式">输入格式：</h2>
+<p>第一行输入一个整数n<br>
+第二行输入n个整数ai</p>
+<h2 id="输出格式">输出格式：</h2>
+<p>输出一行，包含n个正整数</p>
+<h2 id="样例输入">样例输入：</h2>
+<pre><code>4
+4 100 80 10000
+</code></pre>
+<h2 id="样例输出">样例输出：</h2>
+<pre><code>1 3 2 4
+</code></pre>
+<h2 id="约定">约定：</h2>
+<p>1&lt;=n&lt;=100000,1&lt;=ai&lt;=10^9</p>
+<p>今天，心情不是很好，于是决定恶搞代码。<br>
+此题难度不大，sort两边就可以了。</p>
+<h2 id="code">code</h2>
+<pre><code class="language-cpp">#include &lt;ios&gt;
+#include &lt;map&gt;
+#include &lt;set&gt;
+#include &lt;list&gt;
+#include &lt;stack&gt;
+#include &lt;deque&gt;
+#include &lt;cmath&gt;
+#include &lt;queue&gt;
+#include &lt;cstdio&gt;
+#include &lt;cctype&gt;
+#include &lt;iosfwd&gt;
+#include &lt;bitset&gt;
+#include &lt;limits&gt;
+#include &lt;vector&gt;
+#include &lt;cwchar&gt;
+#include &lt;string&gt;
+#include &lt;cerrno&gt;
+#include &lt;utility&gt;
+#include &lt;clocale&gt;
+#include &lt;iomanip&gt;
+#include &lt;complex&gt;
+#include &lt;fstream&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;ostream&gt;
+#include &lt;istream&gt;
+#include &lt;sstream&gt;
+#include &lt;cwctype&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;stdexcept&gt;
+#include &lt;streambuf&gt;
+#include &lt;exception&gt;　
+#include &lt;functional&gt;
+#define LL long long
+#define reg register
+using namespace std;
+template&lt;class T&gt; inline void read(T &amp;p) {p=0;T f=1;char c;for(c=getchar(); !(c&lt;='9'&amp;&amp;c&gt;='0'); c=getchar()) {if(c=='-') f=-1;}for(; c&lt;='9'&amp;&amp;c&gt;='0'; c=getchar()) {p=(p&lt;&lt;3)+(p&lt;&lt;1)+c-'0';}p*=f;}
+template&lt;class T&gt; inline void write(T p) {if(p&lt;0){putchar('-');p=-p;}if(p/10){write(p/10);putchar(p%10+'0');}else{putchar(p%10+'0');}}
+struct br {LL a,b,c;};
+struct cmp1 {bool operator () (const br &amp;x,const br &amp;y) {return x.a&lt;y.a;}};
+struct cmp2 {bool operator () (const br &amp;x,const br &amp;y) {return x.b&lt;y.b;}};
+br myt[100001];LL n;
+int main() {read(n);for(reg LL i=1;i&lt;=n;i++){read(myt[i].a);myt[i].b=i;}sort(myt+1,myt+1+n,cmp1());for(reg LL i=1;i&lt;=n;i++){if(myt[i].a==myt[i-1].a){myt[i].c=myt[i-1].c;}else{myt[i].c=i;}}sort(myt+1,myt+1+n,cmp2());for(reg LL i=1;i&lt;=n;i++){write(myt[i].c);putchar(' ');}return 0;}
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[题解 洛谷 P2068 统计和]]></title>
+        <id>https://GMH2003.github.io/post/2019-05-06-题解-洛谷-P2068-统计和.markd/</id>
+        <link href="https://GMH2003.github.io/post/2019-05-06-题解-洛谷-P2068-统计和.markd/">
+        </link>
+        <updated>2019-05-06T21:50:34.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="code">code:</h1>
+<pre><code class="language-cpp">#include&lt;cmath&gt;
+#include&lt;cstdio&gt;
+#include&lt;cctype&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdlib&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#define LL long long
+using namespace std;
+template&lt;class T&gt; inline void read(T &amp;p) {
+	p=0;
+	T f=1;
+	char c;
+	for(c=getchar(); !isdigit(c); c=getchar())
+		if(c=='-')
+			f=-1;
+	for(; isdigit(c); c=getchar())
+		p=(p&lt;&lt;3)+(p&lt;&lt;1)+(c-'0');
+	p*=f;
+	return ;
+}
+template&lt;class T&gt; inline void write(T x) {
+	T k = 0,lx = x;
+	char put[40];
+	if (lx ==0) putchar('0');
+	if (lx &lt; 0) putchar('-'),lx = -lx;
+	while (lx)  put[++k] = (lx % 10) + '0',lx /= 10;
+	while (k)   putchar( put[ k-- ] );
+	return ;
+}
+int N,W;
+LL a[100001];
+LL b[100001];
+LL low_bit(LL shichi) {
+	return shichi&amp;(-shichi);
+}
+void add_num(LL poster,LL num) {
+	LL pos=poster;
+	while(pos&lt;=N) {
+		b[pos]+=num;
+		pos+=low_bit(pos);
+	}
+	a[poster]+=num;
+}
+LL sum_num(LL pos) {
+	if(pos&lt;=0) return 0;
+	LL ans=0;
+	while(pos&gt;0) {
+		ans+=b[pos];
+		pos-=low_bit(pos);
+	}
+	return ans;
+}
+int main(){
+	read(N);
+	read(W);
+	register char c[3];
+	register LL x,y;
+	for(register LL i=1;i&lt;=W;i++){
+		scanf(&quot;%s&quot;,c)/*神坑之处，不要读入单个字符！！！！*/;
+		read(x);
+		read(y);
+		if(c[0]=='x'){
+			add_num(x,y);
+		}else if(c[0]=='y'){
+			write(sum_num(y)-sum_num(x-1));
+			putchar('\n');
+		}
+	}
+	return 0;
+}
+
+</code></pre>
 ]]></content>
     </entry>
 </feed>

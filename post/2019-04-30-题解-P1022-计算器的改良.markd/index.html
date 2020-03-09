@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>新博客通知 | G_M_H博客</title>
+<title>题解 P1022 计算器的改良 | G_M_H博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1583727318341">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="新博客通知" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="题解 P1022 计算器的改良" />
+    <meta name="keywords" content="题解" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -146,7 +146,8 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://GMH2003.github.io/images/avatar.png"/>
@@ -197,6 +198,196 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E9%93%BE%E6%8E%A5">题目链接</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE%E8%83%8C%E6%99%AF">题目背景</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述</a></li>
+<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输入输出格式</a>
+<ul>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F">输入格式：</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输出格式：</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B">输入输出样例</a>
+<ul>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1">输入样例#1：</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1">输出样例#1：</a></li>
+</ul>
+</li>
+<li><a href="#code">Code</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -284,8 +475,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">
-      新博客通知
+    <a class="post-title-link" href="https://GMH2003.github.io/post/2019-04-30-题解-P1022-计算器的改良.markd/">
+      题解 P1022 计算器的改良
     </a>
   </h1>
   <div class="post-meta">
@@ -293,24 +484,137 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-09</span>
+      <span>2019-04-30</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/">
+              <span>题解</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
+    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>11<span class="pc-show">字数</span></span>
+      <span>596<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p>原来那个博客被我扔了，逃</p>
+                <h2 id="题目链接"><a href="https://www.luogu.org/problemnew/show/P1022">题目链接</a></h2>
+<h2 id="题目背景">题目背景</h2>
+<p>NCL是一家专门从事计算器改良与升级的实验室，最近该实验室收到了某公司所委托的一个任务：需要在该公司某型号的计算器上加上解一元一次方程的功能。实验室将这个任务交给了一个刚进入的新手ZL先生。</p>
+<h2 id="题目描述">题目描述</h2>
+<p>为了很好的完成这个任务，ZL先生首先研究了一些一元一次方程的实例：</p>
+<pre><code>4+3x=84+3x=84+3x=8
+
+6a−5+1=2−2a6a-5+1=2-2a6a−5+1=2−2a
+
+−5+12y=0-5+12y=0−5+12y=0
+</code></pre>
+<p>ZL先生被主管告之，在计算器上键入的一个一元一次方程中，只包含整数、小写字母及+、-、=这三个数学符号（当然，符号“-”既可作减号，也可作负号）。方程中并没有括号，也没有除号，方程中的字母表示未知数。</p>
+<p>你可假设对键入的方程的正确性的判断是由另一个程序员在做，或者说可认为键入的一元一次方程均为合法的，且有唯一实数解。</p>
+<h2 id="输入输出格式">输入输出格式</h2>
+<h3 id="输入格式">输入格式：</h3>
+<p>一个一元一次方程。</p>
+<h3 id="输出格式">输出格式：</h3>
+<p>解方程的结果(精确至小数点后三位)。</p>
+<h2 id="输入输出样例">输入输出样例</h2>
+<h3 id="输入样例1">输入样例#1：</h3>
+<pre><code>6a-5+1=2-2a
+</code></pre>
+<h3 id="输出样例1">输出样例#1：</h3>
+<pre><code>a=0.750
+</code></pre>
+<h2 id="code">Code</h2>
+<pre><code class="language-cpp">#include&lt;cmath&gt;
+#include&lt;cstdio&gt;
+#include&lt;cctype&gt;
+#include&lt;cstring&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#define ll long long
+using namespace std;
+
+char c,p;
+char line[1001];
+int point=0;
+ll f;
+ll a,b,mid;
+bool flag;
+
+
+int main() {
+    cin&gt;&gt;line;
+    c=line[point++];
+    while(c!='=') {
+        f=1;
+        mid=0;
+        flag=false;
+        for(; c=='+'||c=='-'; c=line[point++]) {
+            if(c=='-') f=-1;
+        }
+        for(; c&gt;='0'&amp;&amp;c&lt;='9'; c=line[point++]) {
+            mid=(mid&lt;&lt;3)+(mid&lt;&lt;1)+c-'0';
+        }
+        for(; c&gt;='a'&amp;&amp;c&lt;='z'; c=line[point++]) {
+            if(mid==0) {
+                b+=f;
+            } else {
+                b+=f*mid;
+            }
+            p=c;
+            flag=true;
+        }
+        if(!flag) {
+            a+=f*mid;
+        }
+    }
+    c=line[point++];
+    while(c!='\n'&amp;&amp;c!=' '&amp;&amp;c!=EOF&amp;&amp;c!='\0') {
+        f=1;
+        mid=0;
+        flag=false;
+        for(; c=='+'||c=='-'; c=line[point++]) {
+            if(c=='-') f=-1;
+        }
+        for(; c&gt;='0'&amp;&amp;c&lt;='9'; c=line[point++]) {
+            mid=(mid&lt;&lt;3)+(mid&lt;&lt;1)+c-'0';
+        }
+        for(; c&gt;='a'&amp;&amp;c&lt;='z'; c=line[point++]) {
+            if(mid==0) {
+                b-=f;
+            } else {
+                b-=f*mid;
+            }
+            p=c;
+            flag=true;
+        }
+        if(!flag) {
+            a-=f*mid;
+        }
+    }
+    if(!(-1.0*a/b))
+        printf(&quot;%c=0.000&quot;,p);
+    else
+        printf(&quot;%c=%.3lf&quot;,p,-1.0*a/b);//输出
+    return 0;
+}
+
+</code></pre>
 
               </div>
               <div class="post-footer">
@@ -321,7 +625,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/" title="新博客通知">新博客通知</a>
+      <a href="https://GMH2003.github.io/post/2019-04-30-题解-P1022-计算器的改良.markd/" title="题解 P1022 计算器的改良">题解 P1022 计算器的改良</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -330,15 +634,21 @@
   </ul>
   <div class="tags">
     
+      <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/"># 题解</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="题解 洛谷 P1908 逆序对" href="https://GMH2003.github.io/post/2019-05-03-题解-洛谷-P1908-逆序对.markd/">题解 洛谷 P1908 逆序对</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="题解 洛谷 P1908 逆序对" href="https://GMH2003.github.io/post/2019-05-03-题解-洛谷-P1908-逆序对.markd/">上一篇</a>
+      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习</a>
-        <a class="nav-mobile-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">下一篇</a>
+        <a class="nav-pc-next" title="题解 洛谷 P1604 B进制星球" href="https://GMH2003.github.io/post/2019-04-21-题解-P1604-B进制星球.markd/">题解 洛谷 P1604 B进制星球</a>
+        <a class="nav-mobile-next" title="题解 洛谷 P1604 B进制星球" href="https://GMH2003.github.io/post/2019-04-21-题解-P1604-B进制星球.markd/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

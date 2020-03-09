@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>新博客通知 | G_M_H博客</title>
+<title>题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习 | G_M_H博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1583727318341">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="新博客通知" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="题解 洛谷 P2365 任务安排&&斜率优化学习" />
+    <meta name="keywords" content="题解" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -146,7 +146,8 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://GMH2003.github.io/images/avatar.png"/>
@@ -197,6 +198,191 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E9%93%BE%E6%8E%A5">题目链接</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述</a></li>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F">输入格式</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输出格式</a></li>
+<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B">输入输出样例</a>
+<ul>
+<li><a href="#%E8%BE%93%E5%85%A5">输入</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA">输出</a></li>
+</ul>
+</li>
+<li><a href="#code">code</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -284,8 +470,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">
-      新博客通知
+    <a class="post-title-link" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">
+      题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习
     </a>
   </h1>
   <div class="post-meta">
@@ -293,24 +479,121 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-09</span>
+      <span>2019-08-29</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/">
+              <span>题解</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
+    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>4分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>11<span class="pc-show">字数</span></span>
+      <span>612<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p>原来那个博客被我扔了，逃</p>
+                <h2 id="题目链接"><a href="https://www.luogu.org/problem/P2365">题目链接</a></h2>
+<h2 id="题目描述">题目描述</h2>
+<p>N个任务排成一个序列在一台机器上等待完成（顺序不得改变），这N个任务被分成若干批，每批包含相邻的若干任务。从时刻0开始，这些任务被分批加工，第i个任务单独完成所需的时间是Ti。在每批任务开始前，机器需要启动时间S，而完成这批任务所需的时间是各个任务需要时间的总和（同一批任务将在同一时刻完成）。每个任务的费用是它的完成时刻乘以一个费用系数Fi。请确定一个分组方案，使得总费用最小。</p>
+<p>例如：S=1；T={1,3,4,2,1}；F={3,2,3,3,4}。如果分组方案是{1,2}、{3}、{4,5}，则完成时间分别为{5,5,10,14,14}，费用C={15,10,30,42,56}，总费用就是153。</p>
+<h2 id="输入格式">输入格式</h2>
+<p>第一行是N(1&lt;=N&lt;=5000)。</p>
+<p>第二行是S(0&lt;=S&lt;=50)。</p>
+<p>下面N行每行有一对数，分别为Ti和Fi，均为不大于100的正整数，表示第i个任务单独完成所需的时间是Ti及其费用系数Fi。</p>
+<h2 id="输出格式">输出格式</h2>
+<p>一个数，最小的总费用。</p>
+<h2 id="输入输出样例">输入输出样例</h2>
+<h3 id="输入">输入</h3>
+<pre><code>5
+1
+1 3
+3 2
+4 3
+2 3
+1 4
+</code></pre>
+<h3 id="输出">输出</h3>
+<pre><code>153
+</code></pre>
+<h2 id="code">code</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#define LL long long
+#define ULL unsigned LL
+using namespace std;
+template&lt;class T&gt;
+inline void read(T&amp; p) {
+	char c;
+	p=0;
+	bool f=0;
+	for(c=getchar(); c&lt;'0'||c&gt;'9'; c=getchar())if(c=='-')f=true;
+	for(; c&gt;='0'&amp;&amp;c&lt;='9'; c=getchar()) p=(p&lt;&lt;3)+(p&lt;&lt;1)+c-'0';
+	if(f)p=-p;
+}
+template&lt;class T,class... Args&gt;
+inline void read(T&amp; x,Args&amp;... args) {
+	read(x);
+	read(args...);
+}
+template&lt;class T&gt;
+inline void write(T x) {
+	if(x&lt;0) putchar('-'),x=-x;
+	if(x&gt;9) write(x/10);
+	putchar('0'+x%10);
+}
+template&lt;class T,class... Args&gt;
+inline void write(T x,Args... args) {
+	write(x);
+	putchar(' ');
+	write(args...);
+}
+template&lt;class... Args&gt;
+inline void writeln(Args... args) {
+	write(args...);
+	putchar('\n');
+}
+template&lt;class T&gt;
+inline T my_min(T a,T b){
+	return (a&lt;b)? a:b;
+}
+const int N=5001;
+LL dp[N],sumt[N],sumc[N];
+int n,s;
+int main(){
+	read(n,s);
+	for(register int i=1,t,c;i&lt;=n;i++){
+		read(t,c);
+		sumt[i]=sumt[i-1]+t;
+		sumc[i]=sumc[i-1]+c;
+		dp[i]=0x3f3f3f3f;
+	}
+	dp[0]=0;
+	for(register int i=1;i&lt;=n;i++){
+		for(register int j=0;j&lt;i;j++){
+			dp[i]=my_min(dp[i],dp[j]+sumt[i]*(sumc[i]-sumc[j])+s*(sumc[n]-sumc[j]));
+		}
+	}
+	write(dp[n]);
+	return 0;
+}
+</code></pre>
 
               </div>
               <div class="post-footer">
@@ -321,7 +604,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/" title="新博客通知">新博客通知</a>
+      <a href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习">题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -330,15 +613,21 @@
   </ul>
   <div class="tags">
     
+      <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/"># 题解</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="新博客通知" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">新博客通知</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="新博客通知" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">上一篇</a>
+      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习</a>
-        <a class="nav-mobile-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">下一篇</a>
+        <a class="nav-pc-next" title="题解 codeforces CF1200C Round Corridor" href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/">题解 codeforces CF1200C Round Corridor</a>
+        <a class="nav-mobile-next" title="题解 codeforces CF1200C Round Corridor" href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

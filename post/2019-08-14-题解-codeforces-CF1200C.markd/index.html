@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>新博客通知 | G_M_H博客</title>
+<title>题解 codeforces CF1200C Round Corridor | G_M_H博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1583727318341">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="新博客通知" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="题解 codeforces CF1200C Round Corridor" />
+    <meta name="keywords" content="题解" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -146,7 +146,8 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://GMH2003.github.io/images/avatar.png"/>
@@ -197,6 +198,198 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E9%93%BE%E6%8E%A5">题目链接</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#c-round-corridor">C. Round Corridor</a>
+<ul>
+<li><a href="#input">Input</a></li>
+<li><a href="#output">Output</a></li>
+<li><a href="#example">Example</a>
+<ul>
+<li><a href="#input-2">input</a></li>
+<li><a href="#output-2">output</a></li>
+</ul>
+</li>
+<li><a href="#note">Note</a></li>
+</ul>
+</li>
+<li><a href="#%E5%81%9A%E9%A2%98%E7%BB%8F%E5%8E%86">做题经历</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90">思路分析</a></li>
+<li><a href="#ac%E4%BB%A3%E7%A0%81">AC代码</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -284,8 +477,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">
-      新博客通知
+    <a class="post-title-link" href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/">
+      题解 codeforces CF1200C Round Corridor
     </a>
   </h1>
   <div class="post-meta">
@@ -293,24 +486,101 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-09</span>
+      <span>2019-08-15</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/">
+              <span>题解</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
+    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>11<span class="pc-show">字数</span></span>
+      <span>507<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p>原来那个博客被我扔了，逃</p>
+                <h2 id="题目链接"><a href="http://codeforces.com/problemset/problem/1200/C">题目链接</a></h2>
+<h2 id="题目">题目</h2>
+<h2 id="c-round-corridor">C. Round Corridor</h2>
+<ul>
+<li>time limit per test1 second</li>
+<li>memory limit per test256 megabytes</li>
+<li>inputstandard input</li>
+<li>outputstandard output</li>
+</ul>
+<p>Amugae is in a very large round corridor. The corridor consists of two areas. The inner area is equally divided by n sectors, and the outer area is equally divided by m sectors. A wall exists between each pair of sectors of same area (inner or outer), but there is no wall between the inner area and the outer area. A wall always exists at the 12 o'clock position.</p>
+<figure data-type="image" tabindex="1"><img src="http://codeforces.com/predownloaded/9e/12/9e12655e7ea9e6bff7c9bb3bb0e768a502ecba75.png" alt="" loading="lazy"></figure>
+<p>The inner area's sectors are denoted as (1,1),(1,2),…,(1,n) in clockwise direction. The outer area's sectors are denoted as (2,1),(2,2),…,(2,m) in the same manner. For a clear understanding, see the example image above.</p>
+<p>Amugae wants to know if he can move from one sector to another sector. He has q questions.</p>
+<p>For each question, check if he can move between two given sectors.</p>
+<h3 id="input">Input</h3>
+<p>The first line contains three integers n, m and q (1≤n,m≤1018, 1≤q≤104) — the number of sectors in the inner area, the number of sectors in the outer area and the number of questions.</p>
+<p>Each of the next q lines contains four integers sx, sy, ex, ey (1≤sx,ex≤2; if sx=1, then 1≤sy≤n, otherwise 1≤sy≤m; constraints on ey are similar). Amague wants to know if it is possible to move from sector (sx,sy) to sector (ex,ey).</p>
+<h3 id="output">Output</h3>
+<p>For each question, print &quot;YES&quot; if Amugae can move from (sx,sy) to (ex,ey), and &quot;NO&quot; otherwise.</p>
+<p>You can print each letter in any case (upper or lower).</p>
+<h3 id="example">Example</h3>
+<h4 id="input-2">input</h4>
+<pre><code>4 6 3
+1 1 2 3
+2 6 1 2
+2 6 2 4
+</code></pre>
+<h4 id="output-2">output</h4>
+<pre><code>YES
+NO
+YES
+</code></pre>
+<h3 id="note">Note</h3>
+<p>Example is shown on the picture in the statement.</p>
+<h2 id="做题经历">做题经历</h2>
+<p>我太蒟了，纯属瞎搞。</p>
+<h2 id="思路分析">思路分析</h2>
+<p>这是一道数学题；</p>
+<p>用gcd求出有几个联通的区间，在求出起点和终点所在的区间。<br>
+判断起点和终点是否在同一个区间。</p>
+<h2 id="ac代码">AC代码</h2>
+<pre><code class="language-cpp">#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#define LL long long
+using namespace std;
+LL m,n,q;
+LL gcd(LL a,LL b) {
+	LL r;
+	while(b) {r=a%b;a=b;b=r;}
+	return a;
+}
+int main() {
+	scanf(&quot;%lld%lld%lld&quot;,&amp;m,&amp;n,&amp;q);
+	LL br=gcd(m,n);
+	while(q--) {
+		LL f1,f2,t1,t2,q1,q2;
+		scanf(&quot;%lld%lld%lld%lld&quot;,&amp;f1,&amp;f2,&amp;t1,&amp;t2);
+		q1=(f1==1)? ((f2-1)/(m/br)):((f2-1)/(n/br));
+		q2=(t1==1)? ((t2-1)/(m/br)):((t2-1)/(n/br));
+		if(q1==q2)printf(&quot;YES\n&quot;);
+		else printf(&quot;NO\n&quot;);
+	}
+	return 0;
+}
+</code></pre>
 
               </div>
               <div class="post-footer">
@@ -321,7 +591,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/" title="新博客通知">新博客通知</a>
+      <a href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/" title="题解 codeforces CF1200C Round Corridor">题解 codeforces CF1200C Round Corridor</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -330,15 +600,21 @@
   </ul>
   <div class="tags">
     
+      <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/"># 题解</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">上一篇</a>
+      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习</a>
-        <a class="nav-mobile-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">下一篇</a>
+        <a class="nav-pc-next" title="题解 洛谷 P2596 [ZJOI2006]书架" href="https://GMH2003.github.io/post/2019-08-11-题解-洛谷-P2596-[ZJOI2006]书架.markd/">题解 洛谷 P2596 [ZJOI2006]书架</a>
+        <a class="nav-mobile-next" title="题解 洛谷 P2596 [ZJOI2006]书架" href="https://GMH2003.github.io/post/2019-08-11-题解-洛谷-P2596-[ZJOI2006]书架.markd/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

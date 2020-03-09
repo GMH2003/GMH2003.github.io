@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>新博客通知 | G_M_H博客</title>
+<title>题解 洛谷 P2085 最小函数值 | G_M_H博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1583727318341">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="新博客通知" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="题解 洛谷 P2085 最小函数值" />
+    <meta name="keywords" content="题解" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -146,7 +146,8 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://GMH2003.github.io/images/avatar.png"/>
@@ -197,6 +198,197 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E9%93%BE%E6%8E%A5">题目链接</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述</a></li>
+<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输入输出格式</a>
+<ul>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F">输入格式：</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输出格式：</a></li>
+</ul>
+</li>
+<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B">输入输出样例</a>
+<ul>
+<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1">输入样例#1：</a></li>
+<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B1">输出样例#1：</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AF%B4%E6%98%8E">说明</a></li>
+<li><a href="#%E6%80%9D%E8%B7%AF">思路</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E9%99%84%E4%B8%8A">代码附上</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -284,8 +476,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">
-      新博客通知
+    <a class="post-title-link" href="https://GMH2003.github.io/post/2019-04-19-题解-洛谷-P2085最小函数值.markd/">
+      题解 洛谷 P2085 最小函数值
     </a>
   </h1>
   <div class="post-meta">
@@ -293,24 +485,121 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-09</span>
+      <span>2019-04-15</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/">
+              <span>题解</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
+    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>3分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>11<span class="pc-show">字数</span></span>
+      <span>524<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p>原来那个博客被我扔了，逃</p>
+                <h2 id="题目链接"><a href="https://www.luogu.org/problemnew/show/P2085">题目链接</a></h2>
+<h2 id="题目描述">题目描述</h2>
+<p>有n个函数，分别为F1,F2,...,Fn。定义Fi(x)=Ai<em>x^2+Bi</em>x+Ci (x∈N*)。给定这些Ai、Bi和Ci，请求出所有函数的所有函数值中最小的m个（如有重复的要输出多个）。</p>
+<h2 id="输入输出格式">输入输出格式</h2>
+<h3 id="输入格式">输入格式：</h3>
+<p>输入数据：第一行输入两个正整数n和m。以下n行每行三个正整数，其中第i行的三个数分别位Ai、Bi和Ci。Ai&lt;=10，Bi&lt;=100，Ci&lt;=10 000。</p>
+<h3 id="输出格式">输出格式：</h3>
+<p>输出数据：输出将这n个函数所有可以生成的函数值排序后的前m个元素。这m个数应该输出到一行，用空格隔开。</p>
+<h2 id="输入输出样例">输入输出样例</h2>
+<h3 id="输入样例1">输入样例#1：</h3>
+<pre><code>3 10
+4 5 3
+3 4 5
+1 7 1
+</code></pre>
+<h3 id="输出样例1">输出样例#1：</h3>
+<pre><code>9 12 12 19 25 29 31 44 45 54
+</code></pre>
+<h2 id="说明">说明</h2>
+<p>数据规模：n,m&lt;=10000</p>
+<h2 id="思路">思路</h2>
+<p>这是一道很典型的堆操作题，Ai,Bi,Ci均大于零，则Fi一定是单调的。</p>
+<h2 id="代码附上">代码附上</h2>
+<pre><code class="language-cpp">#include&lt;cmath&gt;
+#include&lt;queue&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+template&lt;class T&gt; inline void read(T &amp;p) {
+	p=0;
+	T f=1;
+	char c;
+	for(c=getchar(); !isdigit(c); c=getchar())
+		if(c=='-')
+			f=-1;
+	for(; isdigit(c); c=getchar())
+		p=(p&lt;&lt;3)+(p&lt;&lt;1)+(c-'0');
+	p*=f;
+	return ;
+}
+template&lt;class T&gt; inline void write(T x) {
+	T k = 0,lx = x;
+	char put[40];
+	if (lx ==0) putchar('0');
+	if (lx &lt; 0) putchar('-'),lx = -lx;
+	while (lx)  put[++k] = (lx % 10) + '0',lx /= 10;
+	while (k)   putchar( put[ k-- ] );
+	return ;
+}
+int n,m,mid;
+int a[10001],b[10001],c[10001],ans[10001];
+priority_queue &lt;int, vector&lt;int&gt; &gt; pq;
+int main() {
+	read(n);
+	read(m);
+	for(register int i=1; i&lt;=n; i++) {
+		read(a[i]);
+		read(b[i]);
+		read(c[i]);
+		for(register int j=1; j&lt;=m; j++) {
+			if(pq.size()&lt;m) {
+				pq.push((a[i]*j*j+b[i]*j+c[i]));
+			} else {
+				if(pq.top()&gt;(a[i]*j*j+b[i]*j+c[i])) {
+					pq.pop();
+					pq.push((a[i]*j*j+b[i]*j+c[i]));
+				}else{
+					break;//这一步很重要，因为是单调的，所以直接跳出。
+				}
+			}
+		}
+	}
+	for(register int i=m; i&gt;=1; i--) {
+		ans[i]=pq.top();
+		pq.pop();
+	}
+	for(register int i=1; i&lt;=m; i++) {
+		write(ans[i]);
+		putchar(' ');
+	}
+	return 0;
+}
+</code></pre>
 
               </div>
               <div class="post-footer">
@@ -321,7 +610,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/" title="新博客通知">新博客通知</a>
+      <a href="https://GMH2003.github.io/post/2019-04-19-题解-洛谷-P2085最小函数值.markd/" title="题解 洛谷 P2085 最小函数值">题解 洛谷 P2085 最小函数值</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -330,15 +619,21 @@
   </ul>
   <div class="tags">
     
+      <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/"># 题解</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="题解 洛谷 P1604 B进制星球" href="https://GMH2003.github.io/post/2019-04-21-题解-P1604-B进制星球.markd/">题解 洛谷 P1604 B进制星球</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="题解 洛谷 P1604 B进制星球" href="https://GMH2003.github.io/post/2019-04-21-题解-P1604-B进制星球.markd/">上一篇</a>
+      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习</a>
-        <a class="nav-mobile-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">下一篇</a>
+        <a class="nav-pc-next" title="题解 UVA10237 【Bishops】" href="https://GMH2003.github.io/post/2019-04-03-题解-UVA10237-Bishops.markd/">题解 UVA10237 【Bishops】</a>
+        <a class="nav-mobile-next" title="题解 UVA10237 【Bishops】" href="https://GMH2003.github.io/post/2019-04-03-题解-UVA10237-Bishops.markd/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

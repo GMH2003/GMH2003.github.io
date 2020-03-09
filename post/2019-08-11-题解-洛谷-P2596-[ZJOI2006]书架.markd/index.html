@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>新博客通知 | G_M_H博客</title>
+<title>题解 洛谷 P2596 [ZJOI2006]书架 | G_M_H博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1583727318341">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="新博客通知" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="题解 洛谷 P2596 [ZJOI2006]书架" />
+    <meta name="keywords" content="题解" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -146,7 +146,8 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://GMH2003.github.io/images/avatar.png"/>
@@ -197,6 +198,181 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E7%94%A8vectoro2%E6%B0%B4%E8%BF%87">用vector+O2水过。。。</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -284,8 +460,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">
-      新博客通知
+    <a class="post-title-link" href="https://GMH2003.github.io/post/2019-08-11-题解-洛谷-P2596-[ZJOI2006]书架.markd/">
+      题解 洛谷 P2596 [ZJOI2006]书架
     </a>
   </h1>
   <div class="post-meta">
@@ -293,24 +469,96 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-09</span>
+      <span>2019-08-12</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/">
+              <span>题解</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
+    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>11<span class="pc-show">字数</span></span>
+      <span>266<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p>原来那个博客被我扔了，逃</p>
+                <h2 id="用vectoro2水过">用vector+O2水过。。。</h2>
+<pre><code class="language-cpp">// luogu-judger-enable-o2
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+vector&lt;int&gt; v;
+template&lt;typename T&gt;
+inline void read(T&amp; p) {
+	char c;
+	p=0;
+	bool f=0;
+	for(c=getchar(); c&lt;'0'||c&gt;'9'; c=getchar())if(c=='-')f=true;
+	for(; c&gt;='0'&amp;&amp;c&lt;='9'; c=getchar()) p=(p&lt;&lt;3)+(p&lt;&lt;1)+c-'0';
+	if(f)p=-p;
+}
+template&lt;typename T,typename... Args&gt;
+inline void read(T&amp; x,Args&amp;... args) {
+	read(x);
+	read(args...);
+}
+int n,m;
+int main() {
+	read(n,m);
+	for(register int i=1,mid; i&lt;=n; i++) {
+		read(mid);
+		v.push_back(mid);
+	}
+	char op[100];
+	for(register int i=1,x,y,tmp; i&lt;=m; i++) {
+		scanf(&quot;%s&quot;,op);
+		if(op[0]=='T') {
+			read(x);
+			v.erase(find(v.begin(),v.end(),x));
+			v.insert(v.begin(),x);
+		} else if(op[0]=='B') {
+			read(x);
+			v.erase(find(v.begin(),v.end(),x));
+			v.insert(v.end(),x);
+		} else if(op[0]=='I') {
+			read(x,y);
+			if(y!=0) {
+				tmp=find(v.begin(),v.end(),x)-v.begin();
+				v.erase(tmp+v.begin());
+				tmp+=y;
+				v.insert(v.begin()+tmp,x);
+			}
+		} else if(op[0]=='A') {
+			read(x);
+			tmp=find(v.begin(),v.end(),x)-v.begin();
+			printf(&quot;%d\n&quot;,tmp);
+		} else if(op[0]=='Q') {
+			read(x);
+			printf(&quot;%d\n&quot;,v[x-1]);
+		}
+	}
+	return 0;
+}
+</code></pre>
 
               </div>
               <div class="post-footer">
@@ -321,7 +569,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/" title="新博客通知">新博客通知</a>
+      <a href="https://GMH2003.github.io/post/2019-08-11-题解-洛谷-P2596-[ZJOI2006]书架.markd/" title="题解 洛谷 P2596 [ZJOI2006]书架">题解 洛谷 P2596 [ZJOI2006]书架</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -330,15 +578,21 @@
   </ul>
   <div class="tags">
     
+      <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/"># 题解</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="题解 codeforces CF1200C Round Corridor" href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/">题解 codeforces CF1200C Round Corridor</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="题解 codeforces CF1200C Round Corridor" href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/">上一篇</a>
+      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习</a>
-        <a class="nav-mobile-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">下一篇</a>
+        <a class="nav-pc-next" title="题解 codeforces CF1196B Odd Sum Segments" href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196B.markd/">题解 codeforces CF1196B Odd Sum Segments</a>
+        <a class="nav-mobile-next" title="题解 codeforces CF1196B Odd Sum Segments" href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196B.markd/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>

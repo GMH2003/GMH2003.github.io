@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>新博客通知 | G_M_H博客</title>
+<title>题解 codeforces CF1196A Three Piles of Candies | G_M_H博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1583727318341">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="新博客通知" />
-    <meta name="keywords" content="" />
+    <meta name="description" content="题解 codeforces CF1196A Three Piles of Candies" />
+    <meta name="keywords" content="题解" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -146,7 +146,8 @@
       <div class="sidebar-body pisces" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="https://GMH2003.github.io/images/avatar.png"/>
@@ -197,6 +198,201 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto" id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%A2%98%E7%9B%AE%E9%93%BE%E6%8E%A5">题目链接</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE">题目</a></li>
+<li><a href="#a-three-piles-of-candies">A. Three Piles of Candies</a>
+<ul>
+<li><a href="#input">Input</a></li>
+<li><a href="#output">Output</a></li>
+<li><a href="#example">Example</a>
+<ul>
+<li><a href="#input-2">input</a></li>
+<li><a href="#output-2">output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%88%86%E6%9E%90%E5%8F%8A%E9%A2%98%E8%A7%A3">分析及题解</a>
+<ul>
+<li><a href="#%E5%81%9A%E9%A2%98%E7%BB%8F%E5%8E%86">做题经历</a></li>
+<li><a href="#%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90">题目分析</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E9%99%84%E4%B8%8A">代码附上</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1; 
+let active = 'active-show', activeClass = 'active-current';
+let tocWrapper = document.querySelector('#toc_wrapper');
+let tocContent = tocWrapper.children[0];
+let autoNumber = tocWrapper&&tocWrapper.classList.contains('auto-number');
+
+function addTocNumber(elem, deep) {
+  if (!elem) {
+    return;
+  }
+  let prop = elem.__proto__;
+
+  if (prop === HTMLUListElement.prototype) {
+    for (let i = 0; i < elem.children.length; i++) {
+      addTocNumber(elem.children[i], deep + (i + 1) + '.');
+    }
+  } else if (prop === HTMLLIElement.prototype) {
+    // 保存li元素
+    lList.push(elem);
+    for (let i = 0; i < elem.children.length; i++) {
+      let cur = elem.children[i];
+      if (cur.__proto__ === HTMLAnchorElement.prototype) {
+        if (autoNumber) {
+          cur.text =  deep + ' ' + cur.text;
+        }
+      } else if (cur.__proto__ === HTMLUListElement.prototype) {
+        addTocNumber(cur, deep);
+      }
+    }
+  }
+}
+
+
+document.addEventListener('scroll', function(e) {
+  if (lList.length <= 0) {
+    return;
+  }
+  let scrollTop = document.scrollingElement.scrollTop + 10;
+  let dir;
+
+  if (lastTop - scrollTop > 0) {
+    dir = 'up';
+  } else {
+    dir = 'down';
+  }
+
+  lastTop = scrollTop;
+  if (scrollTop <= 0) {
+    if (lastIndex >= 0 && lastIndex < hList.length) {
+      lList[lastIndex].classList.remove(activeClass);
+    }
+    return;
+  }
+
+  let current = 0, hasFind = false;
+  for (let i = 0; i < hList.length; i++) {
+    if (hList[i].offsetTop > scrollTop) {
+      current = i;
+      hasFind = true;
+      break;
+    }
+  }
+  if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+    current = hList.length - 1;
+  } else {
+    current--;
+  }
+  if (dir === 'down') {
+    if (current > lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex) 
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  } else {
+    if (current < lastIndex) {
+      addActiveClass(current);
+      removeActiveClass(lastIndex);
+      lastIndex = current;
+      removeParentActiveClass();
+      lList[current] && addActiveLiElemment(lList[current].parentElement,tocContent);
+    }
+  }
+});
+
+function removeParentActiveClass() {
+  let parents = tocContent.querySelectorAll('.'+active)
+  parents.forEach(function(elem) {
+    elem.classList.remove(active);
+  });
+}
+
+function addActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.add(activeClass);
+  }
+}
+
+function removeActiveClass(index) {
+  if (index >= 0 && index < hList.length) {
+    lList[index].classList.remove(activeClass);
+  }
+}
+
+function addActiveLiElemment(elem, parent) {
+  if (!elem || elem === parent) {
+    return;
+  } else {
+    if (elem.__proto__ === HTMLLIElement.prototype) {
+      elem.classList.add(active);
+    }
+    addActiveLiElemment(elem.parentElement, parent);
+  }
+}
+
+function showToc() {
+  if (tocWrapper) {
+    postBody = document.querySelector('#post_body');
+    for (let i = 0; i < postBody.children.length; i++) {
+      if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+        hList.push(postBody.children[i]);
+      }
+    }
+    if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+    } else if (tocWrapper.classList.contains('no_compress')){
+      tocContent.classList.add('expanded');
+    } else {
+      if (hList.length > 10) {
+        active = 'active-hidden'
+        tocContent.classList.add('closed');
+      } else {
+        tocContent.classList.add('expanded');
+      }
+    }
+  }
+}
+addTocNumber(tocContent, '');
+
+window.addEventListener('load', function() {
+  showToc();
+  document.querySelector('#sidebar').style='display: block;';
+  tocWrapper.classList.add('toc-active');
+  setTimeout(function() {
+    if ("createEvent" in document) {
+      let evt = document.createEvent("HTMLEvents");
+      evt.initEvent("scroll", false, true);
+      document.dispatchEvent(evt);
+    }
+    else {
+      document.fireEvent("scroll");
+    }
+  }, 500)
+})
+
+</script>
+            </div>
           
         
       </div>
@@ -284,8 +480,8 @@
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">
-      新博客通知
+    <a class="post-title-link" href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/">
+      题解 codeforces CF1196A Three Piles of Candies
     </a>
   </h1>
   <div class="post-meta">
@@ -293,24 +489,99 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2020-03-09</span>
+      <span>2019-07-26</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
+      <span class="meta-item">
+        <i class="fa fa-folder-o"></i>
+        <span class="pc-show">分类于</span>
+        
+          
+            <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/">
+              <span>题解</span>
+            </a>
+          
+        
+      </span>
+      <span class="post-meta-divider">|</span>
+    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1分钟</span>
+      <span>4分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>11<span class="pc-show">字数</span></span>
+      <span>625<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <p>原来那个博客被我扔了，逃</p>
+                <h2 id="题目链接"><a href="http://codeforces.com/problemset/problem/1196/A">题目链接</a></h2>
+<h2 id="题目">题目</h2>
+<h2 id="a-three-piles-of-candies">A. Three Piles of Candies</h2>
+<ul>
+<li>time limit per test1 second</li>
+<li>memory limit per test256 megabytes</li>
+<li>inputstandard input</li>
+<li>outputstandard output</li>
+</ul>
+<p>Alice and Bob have received three big piles of candies as a gift. Now they want to divide these candies as fair as possible. To do this, Alice takes one pile of candies, then Bob takes one of the other two piles. The last pile is split between Alice and Bob as they want: for example, it is possible that Alice takes the whole pile, and Bob gets nothing from it.</p>
+<p>After taking the candies from the piles, if Alice has more candies than Bob, she discards some candies so that the number of candies she has is equal to the number of candies Bob has. Of course, Bob does the same if he has more candies.</p>
+<p>Alice and Bob want to have as many candies as possible, and they plan the process of dividing candies accordingly. Please calculate the maximum number of candies Alice can have after this division process (of course, Bob will have the same number of candies).</p>
+<p>You have to answer q independent queries.</p>
+<p>Let's see the following example: [1,3,4]. Then Alice can choose the third pile, Bob can take the second pile, and then the only candy from the first pile goes to Bob — then Alice has 4 candies, and Bob has 4 candies.</p>
+<p>Another example is [1,10,100]. Then Alice can choose the second pile, Bob can choose the first pile, and candies from the third pile can be divided in such a way that Bob takes 54 candies, and Alice takes 46 candies. Now Bob has 55 candies, and Alice has 56 candies, so she has to discard one candy — and after that, she has 55 candies too.</p>
+<h3 id="input">Input</h3>
+<p>The first line of the input contains one integer q (1≤q≤1000) — the number of queries. Then q queries follow.</p>
+<p>The only line of the query contains three integers a,b and c (1≤a,b,c≤1016) — the number of candies in the first, second and third piles correspondingly.</p>
+<h3 id="output">Output</h3>
+<p>Print q lines. The i-th line should contain the answer for the i-th query — the maximum number of candies Alice can have after the division, if both Alice and Bob act optimally (of course, Bob will have the same number of candies).</p>
+<h3 id="example">Example</h3>
+<h4 id="input-2">input</h4>
+<pre><code>4
+1 3 4
+1 10 100
+10000000000000000 10000000000000000 10000000000000000
+23 34 45
+</code></pre>
+<h4 id="output-2">output</h4>
+<pre><code>4
+55
+15000000000000000
+51
+</code></pre>
+<h2 id="分析及题解">分析及题解</h2>
+<h3 id="做题经历">做题经历</h3>
+<p>大半夜的看到Alice and Bob，我顿时就懵了。。。。<br>
+读完题发现这是一道<s>毒瘤</s>水题。</p>
+<h3 id="题目分析">题目分析</h3>
+<p>Alice和Bob先把较小的两堆取走，然后去取第三堆，使两人尽可能相等。</p>
+<p>综上所述，当三堆加起来为偶数时，除以2输出。当三堆加起来为奇数时，多拿的的那个人(可以是Alice也可以是Bob)要丢掉1，因此也是除以2，输出。</p>
+<h3 id="代码附上">代码附上</h3>
+<pre><code class="language-cpp">/*by G_M_H*/
+#include&lt;cmath&gt;
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+#include&lt;cstring&gt;
+#include&lt;utility&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#define LL long long
+using namespace std;
+int n;
+int main(){
+	scanf(&quot;%d&quot;,&amp;n);
+	while(n--){
+		LL a,b,c;
+		scanf(&quot;%lld%lld%lld&quot;,&amp;a,&amp;b,&amp;c);
+		printf(&quot;%lld\n&quot;,(a+b+c)/2);
+	}
+	return 0;
+}
+</code></pre>
 
               </div>
               <div class="post-footer">
@@ -321,7 +592,7 @@
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/" title="新博客通知">新博客通知</a>
+      <a href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/" title="题解 codeforces CF1196A Three Piles of Candies">题解 codeforces CF1196A Three Piles of Candies</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -330,15 +601,21 @@
   </ul>
   <div class="tags">
     
+      <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/"># 题解</a>
+    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
+        <i class="fa fa-chevron-left"></i>
+        <a class="nav-pc-next" title="题解 codeforces CF1196B Odd Sum Segments" href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196B.markd/">题解 codeforces CF1196B Odd Sum Segments</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="题解 codeforces CF1196B Odd Sum Segments" href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196B.markd/">上一篇</a>
+      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习</a>
-        <a class="nav-mobile-next" title="题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">下一篇</a>
+        <a class="nav-pc-next" title="题解 洛谷 P1134 阶乘问题" href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/">题解 洛谷 P1134 阶乘问题</a>
+        <a class="nav-mobile-next" title="题解 洛谷 P1134 阶乘问题" href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
