@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://gmh2003.github.io</id>
+    <title>G_M_H博客</title>
+    <updated>2020-03-09T01:46:11.347Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://gmh2003.github.io"/>
+    <link rel="self" href="https://gmh2003.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://gmh2003.github.io/images/avatar.png</logo>
+    <icon>https://gmh2003.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2020, G_M_H博客</rights>
+    <entry>
+        <title type="html"><![CDATA[新博客通知]]></title>
+        <id>https://gmh2003.github.io/post/xin-bo-ke-tong-zhi/</id>
+        <link href="https://gmh2003.github.io/post/xin-bo-ke-tong-zhi/">
+        </link>
+        <updated>2020-03-09T01:37:15.000Z</updated>
+        <content type="html"><![CDATA[<p>原来那个博客被我扔了，逃</p>
+]]></content>
+    </entry>
+</feed>
