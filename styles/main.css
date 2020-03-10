@@ -1990,7 +1990,7 @@ body {
       color: #fc6423;
       border-bottom-color: #fc6423;
     }.site-nav, .sidebar-wrapper, .section-box, .sidebar-box, .site-nav, .blog-header {
-        opacity: 0.75;
+        opacity: 0.8;
       }
       .site-meta {
         background: #7950f2 !important;
