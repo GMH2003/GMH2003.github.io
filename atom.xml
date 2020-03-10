@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://GMH2003.github.io</id>
     <title>G_M_H博客</title>
-    <updated>2020-03-10T03:38:57.070Z</updated>
+    <updated>2020-03-10T07:26:26.901Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://GMH2003.github.io"/>
     <link rel="self" href="https://GMH2003.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>末日时在做什么？有没有空？可以来拯救吗？</subtitle>
     <logo>https://GMH2003.github.io/images/avatar.png</logo>
     <icon>https://GMH2003.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, G_M_H博客</rights>
@@ -16,7 +16,7 @@
         <link href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">
         </link>
         <updated>2020-03-09T01:37:15.000Z</updated>
-        <content type="html"><![CDATA[<p>原来那个博客被我扔了，<a href="blog.gmh-home.cf/oldblog">逃</a></p>
+        <content type="html"><![CDATA[<p>原来那个博客被我扔了，逃。</p>
 ]]></content>
     </entry>
     <entry>
