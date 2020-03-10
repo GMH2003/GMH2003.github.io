@@ -4,103 +4,95 @@
     <meta charset="utf-8" >
 
 <title>文章归档 | G_M_H博客</title>
+<meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://GMH2003.github.io/favicon.ico?v=1583801965059">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://GMH2003.github.io/favicon.ico?v=1583801204056">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://GMH2003.github.io/styles/main.css">
 
 
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
-
-    <meta name="description" content="温故而知新">
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://GMH2003.github.io">
-        <img src="https://GMH2003.github.io/images/avatar.png?v=1583801204056" class="site-logo">
-        <h1 class="site-title">G_M_H博客</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://GMH2003.github.io">G_M_H博客</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-          <a href="/" class="site-nav">
-            首页
-          </a>
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
         
-      
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
         
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
         
-      
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
         
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
+      </ul>
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      遵循CC-BY-NC-SA 4.0协议 make by © 2020 <a href="https://www.gmh-home.cf" target="_blank">G_M_H</a> | <a class="rss" href="https://GMH2003.github.io/atom.xml" target="_blank">RSS</a>
-    </div>
-  </div>
-</div>
+</nav>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
+    
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
           
 
           <h2 class="archives-title">文章归档</h2>
           <div class="archives-container">
             
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2020</h2>
+              <h3 class="year" data-aos-delay="500">2020</h3>
               
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         新博客通知
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -140,16 +132,16 @@
                 
               
             
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2019</h2>
+              <h3 class="year" data-aos-delay="500">2019</h3>
               
                 
               
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-10-11-排序总结.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         排序总结
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -157,9 +149,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -167,9 +159,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 codeforces CF1200C Round Corridor
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -177,9 +169,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-08-11-题解-洛谷-P2596-[ZJOI2006]书架.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 洛谷 P2596 [ZJOI2006]书架
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -187,9 +179,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196B.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 codeforces CF1196B Odd Sum Segments
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -197,9 +189,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 codeforces CF1196A Three Piles of Candies
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -207,9 +199,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-07-20-并查集学习笔记.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         并查集学习笔记
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -217,9 +209,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 洛谷 P1134 阶乘问题
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -227,9 +219,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1439-模板-最长公共子序列.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 洛谷 P1439 【模板】最长公共子序列
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -237,9 +229,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-05-18-题解-XJOI-3287-离散化.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 XJOI 3287 离散化
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -247,9 +239,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-05-06-题解-洛谷-P2068-统计和.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 洛谷 P2068 统计和
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -257,9 +249,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-05-03-题解-洛谷-P1908-逆序对.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 洛谷 P1908 逆序对
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -267,9 +259,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-04-30-题解-P1022-计算器的改良.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 P1022 计算器的改良
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -277,9 +269,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-04-21-题解-P1604-B进制星球.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 洛谷 P1604 B进制星球
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -287,9 +279,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-04-19-题解-洛谷-P2085最小函数值.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 洛谷 P2085 最小函数值
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -297,9 +289,9 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/2019-04-03-题解-UVA10237-Bishops.markd/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         题解 UVA10237 【Bishops】
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
@@ -307,7 +299,7 @@
                 
               
             
-              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2018</h2>
+              <h3 class="year" data-aos-delay="500">2018</h3>
               
                 
               
@@ -346,45 +338,163 @@
                 
                   <article class="post">
                     <a href="https://GMH2003.github.io/post/cc0/">
-                      <h2 class="post-title">
+                      <h4 class="post-title">
                         cc0协议
-                      </h2>
+                      </h4>
                     </a>
                   </article>
                 
               
             
           </div>
-
-          <div class="pagination-container">
+        </div>
+        <div class="row flex-edges">
   
   
 </div>
 
-        </div>
       </div>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://GMH2003.github.io/images/avatar.png?v=1583801965059" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">新博客通知</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/2019-10-11-排序总结.markd/">排序总结</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/">题解 洛谷 P2365 任务安排&amp;&amp;斜率优化学习</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/">题解 codeforces CF1200C Round Corridor</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/2019-08-11-题解-洛谷-P2596-[ZJOI2006]书架.markd/">题解 洛谷 P2596 [ZJOI2006]书架</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196B.markd/">题解 codeforces CF1196B Odd Sum Segments</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/">题解 codeforces CF1196A Three Piles of Candies</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/2019-07-20-并查集学习笔记.markd/">并查集学习笔记</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/">题解 洛谷 P1134 阶乘问题</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1439-模板-最长公共子序列.markd/">题解 洛谷 P1439 【模板】最长公共子序列</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://GMH2003.github.io/tag/JUfRrOFqF/" class="badge success">
+          学习笔记
+        </a>
+      
+        <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/" class="badge ">
+          题解
+        </a>
+      
+        <a href="https://GMH2003.github.io/tag/7wYuLg5X0/" class="badge secondary">
+          其他
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    遵循CC-BY-NC-SA 4.0协议 make by © 2020 <a href="https://www.gmh-home.cf" target="_blank">G_M_H</a> | <a class="rss" href="https://GMH2003.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
 <script type="application/javascript">
 
 AOS.init();
 
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
+hljs.initHighlightingOnLoad()
 
 </script>
-
-
-  <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>
-    hljs.initHighlightingOnLoad()
-  </script>
-
 
 
 
