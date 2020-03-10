@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="温故而知新">
 <meta name="theme-color" content="#000">
-<title>题解 洛谷 P2068 统计和 | G_M_H博客</title>
+<title>并查集学习笔记 | G_M_H博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1583800123473">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -25,8 +25,8 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 
-    <meta name="description" content="题解 洛谷 P2068 统计和" />
-    <meta name="keywords" content="题解" />
+    <meta name="description" content="并查集学习笔记" />
+    <meta name="keywords" content="学习笔记" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -230,7 +230,22 @@
               <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li><a href="#code">code:</a></li>
+<li>
+<ul>
+<li>
+<ul>
+<li><a href="#%E5%B9%B6%E6%9F%A5%E9%9B%86">并查集</a></li>
+<li><a href="#%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9">路径压缩</a></li>
+<li><a href="#%E4%BE%8B%E9%A2%98">例题</a>
+<ul>
+<li><a href="#%E6%9D%BF%E5%AD%90">板子</a></li>
+<li><a href="#%E5%B8%A6%E6%9D%83%E5%B9%B6%E6%9F%A5%E9%9B%86">带权并查集</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
   </div>
@@ -483,8 +498,8 @@ window.addEventListener('load', function() {
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://GMH2003.github.io/post/2019-05-06-题解-洛谷-P2068-统计和.markd/">
-      题解 洛谷 P2068 统计和
+    <a class="post-title-link" href="https://GMH2003.github.io/post/2019-07-20-并查集学习笔记.markd/">
+      并查集学习笔记
     </a>
   </h1>
   <div class="post-meta">
@@ -492,7 +507,7 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2019-05-07</span>
+      <span>2019-07-21</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
@@ -501,8 +516,8 @@ window.addEventListener('load', function() {
         <span class="pc-show">分类于</span>
         
           
-            <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/">
-              <span>题解</span>
+            <a href="https://GMH2003.github.io/tag/JUfRrOFqF/">
+              <span>学习笔记</span>
             </a>
           
         
@@ -511,91 +526,33 @@ window.addEventListener('load', function() {
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>2分钟</span>
+      <span>1分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>259<span class="pc-show">字数</span></span>
+      <span>45<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <h1 id="code">code:</h1>
-<pre><code class="language-cpp">#include&lt;cmath&gt;
-#include&lt;cstdio&gt;
-#include&lt;cctype&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdlib&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#define LL long long
-using namespace std;
-template&lt;class T&gt; inline void read(T &amp;p) {
-	p=0;
-	T f=1;
-	char c;
-	for(c=getchar(); !isdigit(c); c=getchar())
-		if(c=='-')
-			f=-1;
-	for(; isdigit(c); c=getchar())
-		p=(p&lt;&lt;3)+(p&lt;&lt;1)+(c-'0');
-	p*=f;
-	return ;
-}
-template&lt;class T&gt; inline void write(T x) {
-	T k = 0,lx = x;
-	char put[40];
-	if (lx ==0) putchar('0');
-	if (lx &lt; 0) putchar('-'),lx = -lx;
-	while (lx)  put[++k] = (lx % 10) + '0',lx /= 10;
-	while (k)   putchar( put[ k-- ] );
-	return ;
-}
-int N,W;
-LL a[100001];
-LL b[100001];
-LL low_bit(LL shichi) {
-	return shichi&amp;(-shichi);
-}
-void add_num(LL poster,LL num) {
-	LL pos=poster;
-	while(pos&lt;=N) {
-		b[pos]+=num;
-		pos+=low_bit(pos);
+                <h3 id="并查集">并查集</h3>
+<h3 id="路径压缩">路径压缩</h3>
+<pre><code class="language-cpp">int get(int x) {
+	int i,j=x;
+	while(x!=fa[x]) x=fa[x];
+	while(j!=fa[j]) {
+		i=j;
+		j=fa[j];
+		fa[i]=x;
 	}
-	a[poster]+=num;
+	return x;
 }
-LL sum_num(LL pos) {
-	if(pos&lt;=0) return 0;
-	LL ans=0;
-	while(pos&gt;0) {
-		ans+=b[pos];
-		pos-=low_bit(pos);
-	}
-	return ans;
-}
-int main(){
-	read(N);
-	read(W);
-	register char c[3];
-	register LL x,y;
-	for(register LL i=1;i&lt;=W;i++){
-		scanf(&quot;%s&quot;,c)/*神坑之处，不要读入单个字符！！！！*/;
-		read(x);
-		read(y);
-		if(c[0]=='x'){
-			add_num(x,y);
-		}else if(c[0]=='y'){
-			write(sum_num(y)-sum_num(x-1));
-			putchar('\n');
-		}
-	}
-	return 0;
-}
-
 </code></pre>
+<h3 id="例题">例题</h3>
+<h4 id="板子">板子</h4>
+<h4 id="带权并查集">带权并查集</h4>
 
               </div>
               <div class="post-footer">
@@ -606,7 +563,7 @@ int main(){
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://GMH2003.github.io/post/2019-05-06-题解-洛谷-P2068-统计和.markd/" title="题解 洛谷 P2068 统计和">题解 洛谷 P2068 统计和</a>
+      <a href="https://GMH2003.github.io/post/2019-07-20-并查集学习笔记.markd/" title="并查集学习笔记">并查集学习笔记</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -615,21 +572,21 @@ int main(){
   </ul>
   <div class="tags">
     
-      <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/"># 题解</a>
+      <a href="https://GMH2003.github.io/tag/JUfRrOFqF/"># 学习笔记</a>
     
   </div>
   <div class="nav">
     <div class="nav-prev">
       
         <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="题解 XJOI 3287 离散化" href="https://GMH2003.github.io/post/2019-05-18-题解-XJOI-3287-离散化.markd/">题解 XJOI 3287 离散化</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="题解 XJOI 3287 离散化" href="https://GMH2003.github.io/post/2019-05-18-题解-XJOI-3287-离散化.markd/">上一篇</a>
+        <a class="nav-pc-next" title="题解 codeforces CF1196A Three Piles of Candies" href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/">题解 codeforces CF1196A Three Piles of Candies</a class="nav-pc-next">
+        <a class="nav-mobile-prev" title="题解 codeforces CF1196A Three Piles of Candies" href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/">上一篇</a>
       
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="题解 洛谷 P1908 逆序对" href="https://GMH2003.github.io/post/2019-05-03-题解-洛谷-P1908-逆序对.markd/">题解 洛谷 P1908 逆序对</a>
-        <a class="nav-mobile-next" title="题解 洛谷 P1908 逆序对" href="https://GMH2003.github.io/post/2019-05-03-题解-洛谷-P1908-逆序对.markd/">下一篇</a>
+        <a class="nav-pc-next" title="题解 洛谷 P1134 阶乘问题" href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/">题解 洛谷 P1134 阶乘问题</a>
+        <a class="nav-mobile-next" title="题解 洛谷 P1134 阶乘问题" href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
