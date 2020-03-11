@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://GMH2003.github.io</id>
     <title>G_M_H博客</title>
-    <updated>2020-03-10T07:26:26.901Z</updated>
+    <updated>2020-03-11T04:43:08.471Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://GMH2003.github.io"/>
     <link rel="self" href="https://GMH2003.github.io/atom.xml"/>
@@ -17,6 +17,164 @@
         </link>
         <updated>2020-03-09T01:37:15.000Z</updated>
         <content type="html"><![CDATA[<p>原来那个博客被我扔了，逃。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[ Chtholly_tree]]></title>
+        <id>https://GMH2003.github.io/post/chtholly_tree/</id>
+        <link href="https://GMH2003.github.io/post/chtholly_tree/">
+        </link>
+        <updated>2019-11-12T04:39:35.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="神仙数据结构-chtholly_treeodt">神仙数据结构 Chtholly_tree（ODT）</h2>
+<figure data-type="image" tabindex="1"><img src="https://pic.gmh-home.cf/pic/%E7%8F%82%E6%9C%B5%E8%8E%894.jpg" alt="" loading="lazy"></figure>
+<h3 id="我永远喜欢珂朵莉">我永远喜欢珂朵莉</h3>
+<h3 id="chtholly_tree简介">Chtholly_tree简介</h3>
+<p>这是一种很暴力的数据结构（只是暴力，但不黄），基于<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="monospace">STLset</mtext></mrow><annotation encoding="application/x-tex">\texttt{STLset}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61111em;vertical-align:0em;"></span><span class="mord text"><span class="mord texttt">STLset</span></span></span></span></span><br>
+主要用于骗分，可以很好地适应随机数据。<br>
+有时可以碾压分块和线段树。</p>
+<h4 id="代码集合">代码集合</h4>
+<pre><code class="language-cpp">#include&lt;set&gt;
+#include&lt;vector&gt;
+#include&lt;cstdio&gt;
+#include&lt;utility&gt;
+#include&lt;algorithm&gt;
+
+#define ODT Chtholly_tree
+
+#define LL long long
+
+using namespace std;
+
+struct Chtholly_tree {
+	int ll,rr;
+	mutable LL val;
+	Chtholly_tree(int L,int R=-1,LL V=0): ll(L), rr(R), val(V) {}
+	bool operator &lt; (const Chtholly_tree&amp; tt)const {
+		return ll&lt;tt.ll;
+	}
+};
+
+set&lt;ODT&gt; odt;
+set&lt;ODT&gt;::iterator split(int pos) {
+	set&lt;ODT&gt;::iterator it=odt.lower_bound(ODT(pos));
+	if (it!=odt.end()&amp;&amp;it-&gt;ll==pos) return it;
+	--it;
+	ODT tmp=*it;
+	odt.erase(it);
+	odt.insert(ODT(tmp.ll,pos-1,tmp.val));
+	return odt.insert(ODT(pos, tmp.rr, tmp.val)).first;
+}
+void assign(int l,int r,LL val) {
+	set&lt;ODT&gt;::iterator itr=split(r+1), itl=split(l);
+	odt.erase(itl,itr);
+	odt.insert(ODT(l,r,val));
+}
+void add(int l,int r,LL val) {
+	set&lt;ODT&gt;::iterator itr=split(r+1),itl=split(l);
+	for(set&lt;ODT&gt;::iterator it=itl; it!=itr; it++) it-&gt;val+=val;
+}
+LL sum(int l, int r) {
+	set&lt;ODT&gt;::iterator itr=split(r + 1),itl=split(l);
+	LL res=0;
+	for(set&lt;ODT&gt;::iterator it=itl; it!=itr;it++) res+=(it-&gt;rr-it-&gt;ll+1)*it-&gt;val;
+	return res;
+}
+LL rank(int l, int r, int k){
+    vector&lt;pair&lt;LL, int&gt; &gt;vec(0);
+    set&lt;ODT&gt;::iterator itr=split(r+1),itl=split(l);
+    for(set&lt;ODT&gt;::iterator it=itl;it!=itr;it++)vec.push_back(make_pair(it-&gt;val,it-&gt;rr-it-&gt;ll+1));
+    sort(vec.begin(),vec.end());
+    for (vector&lt;pair&lt;LL,int&gt; &gt;::iterator it=vec.begin();it!=vec.end();it++) if((k-=it-&gt;second)&lt;=0) return it-&gt;first;
+    return -1; //note:if there are negative numbers, return another impossible number.
+}
+int main() {
+}
+
+</code></pre>
+<h4 id="例题">例题：</h4>
+<p><a href="https://www.luogu.org/problemnew/show/CF896C">CF896C Willem, Chtholly and Seniorious</a><br>
+<a href="https://www.luogu.org/problem/CF915E">CF915E Physical Education Lessons</a><br>
+<a href="https://www.luogu.org/problem/P2787">P2787 语文1（chin1）- 理理思维</a></p>
+<h4 id="标程">标程：</h4>
+<p>CF915E</p>
+<pre><code class="language-cpp">//by     G_M_H      2019 11 12
+//优化常数，将sum加到assign中，组成assign_new
+#include&lt;set&gt;
+#include&lt;vector&gt;
+#include&lt;cstdio&gt;
+#include&lt;utility&gt;
+#include&lt;algorithm&gt;
+
+#define ODT Chtholly_tree
+
+#define LL long long
+
+using namespace std;
+
+struct Chtholly_tree {
+	int ll,rr;
+	mutable LL val;
+	Chtholly_tree(int L,int R=-1,LL V=0): ll(L), rr(R), val(V) {}
+	bool operator &lt; (const Chtholly_tree&amp; tt)const {
+		return ll&lt;tt.ll;
+	}
+};
+
+set&lt;ODT&gt; odt;
+LL ans=0;
+set&lt;ODT&gt;::iterator split(int pos) {
+	set&lt;ODT&gt;::iterator it=odt.lower_bound(ODT(pos));
+	if (it!=odt.end()&amp;&amp;it-&gt;ll==pos) return it;
+	--it;
+	ODT tmp=*it;
+	odt.erase(it);
+	odt.insert(ODT(tmp.ll,pos-1,tmp.val));
+	return odt.insert(ODT(pos, tmp.rr, tmp.val)).first;
+}
+void assign(int l,int r,LL val) {
+	set&lt;ODT&gt;::iterator itr=split(r+1), itl=split(l);
+	odt.erase(itl,itr);
+	odt.insert(ODT(l,r,val));
+}
+void assign_new(int l,int r,LL val) {
+	set&lt;ODT&gt;::iterator itr=split(r+1), itl=split(l);
+	for(set&lt;ODT&gt;::iterator it=itl;it!=itr;it++) ans-=it-&gt;val*(it-&gt;rr-it-&gt;ll+1);
+	odt.erase(itl,itr);
+	odt.insert(ODT(l,r,val));
+	ans+=val*(r-l+1);
+}
+void add(int l,int r,LL val) {
+	set&lt;ODT&gt;::iterator itr=split(r+1),itl=split(l);
+	for(set&lt;ODT&gt;::iterator it=itl; it!=itr; it++) it-&gt;val+=val;
+}
+LL sum(int l,int r) {
+	set&lt;ODT&gt;::iterator itr=split(r+1),itl=split(l);
+	LL res=0;
+	for(set&lt;ODT&gt;::iterator it=itl; it!=itr;it++) res+=(it-&gt;rr-it-&gt;ll+1)*it-&gt;val;
+	return res;
+}
+LL rank(int l, int r, int k){
+    vector&lt;pair&lt;LL, int&gt; &gt;vec(0);
+    set&lt;ODT&gt;::iterator itr=split(r+1),itl=split(l);
+    for(set&lt;ODT&gt;::iterator it=itl;it!=itr;it++)vec.push_back(make_pair(it-&gt;val,it-&gt;rr-it-&gt;ll+1));
+    sort(vec.begin(),vec.end());
+    for (vector&lt;pair&lt;LL,int&gt; &gt;::iterator it=vec.begin();it!=vec.end();it++) if((k-=it-&gt;second)&lt;=0) return it-&gt;first;
+    return -1; //note:if there are negative numbers, return another impossible number.
+}
+int n,m,l,r,op;
+int main() {
+	scanf(&quot;%d%d&quot;,&amp;n,&amp;m);
+	odt.insert(ODT(1,n,1));
+	ans=n;
+	while(m--) {
+		scanf(&quot;%d%d%d&quot;,&amp;l,&amp;r,&amp;op);
+		if(op==1) assign_new(l,r,0);
+		else assign_new(l,r,1);
+		printf(&quot;%d\n&quot;,ans);
+	}
+	return 0;
+}
+</code></pre>
 ]]></content>
     </entry>
     <entry>
@@ -624,82 +782,6 @@ int main(){
 <h3 id="例题">例题</h3>
 <h4 id="板子">板子</h4>
 <h4 id="带权并查集">带权并查集</h4>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 洛谷 P1134 阶乘问题]]></title>
-        <id>https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/</id>
-        <link href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/">
-        </link>
-        <updated>2019-05-29T20:28:04.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="题目链接"><a href="https://www.luogu.org/problemnew/show/P1134">题目链接</a></h2>
-<h2 id="题目描述">题目描述</h2>
-<p>也许你早就知道阶乘的含义，N阶乘是由1到N相乘而产生，如：</p>
-<p>12!= 1×2×3×4×5×6×7×8×9×10×11×12=479001600<br>
-12的阶乘最右边的非零位为66。</p>
-<p>写一个程序，计算N(1≤N≤50000000)阶乘的最右边的非零位的值。</p>
-<p>注意:10000000!有2499999个零。</p>
-<h2 id="输入输出格式">输入输出格式</h2>
-<h3 id="输入格式">输入格式：</h3>
-<p>仅一行包含一个正整数N。</p>
-<h3 id="输出格式">输出格式：</h3>
-<p>一个整数，表示最右边的非零位的值。</p>
-<h2 id="输入输出样例">输入输出样例</h2>
-<h3 id="输入样例1">输入样例#1：</h3>
-<p>12</p>
-<h3 id="输出样例1">输出样例#1：</h3>
-<p>6</p>
-<h2 id="说明">说明</h2>
-<p>USACO Training Section 3.2</p>
-<h2 id="思路">思路</h2>
-<p>实话说，这道题<s>很水</s>还是有点思维含量的，首先，暴力算法（边乘边去末尾零再某10||100||1000······这一定会WA，因为乘的时候会发现最后只剩下一个0，不信你自己试试），正解是把2和5与其他数分开来考虑。</p>
-<h2 id="code">Code</h2>
-<pre><code class="language-cpp">#include&lt;iostream&gt;
-using namespace std;
-long long p;
-long long n;
-int main(){
-	long long f=0,t=0;
-	long long mid;
-	cin&gt;&gt;n;
-	p=1;
-	for(register long long i=1;i&lt;=n;i++){
-		mid=i;
-		while(mid%5==0){
-			mid/=5;
-			f++;
-		}
-		while(mid%2==0){
-			mid/=2;
-			t++;
-		}
-		if(f&gt;t){
-			f=f-t;
-			t=0;
-		}else{
-			t=t-f;
-			f=0;
-		}
-		p*=mid;
-		p%=10;
-	}
-	if(t==f){
-		cout&lt;&lt;p;
-	}else{
-		if(t&gt;f){
-			switch(t%4){
-				case 0: cout&lt;&lt;(p*6)%10;break;
-				case 1: cout&lt;&lt;(p*2)%10;break;
-				case 2: cout&lt;&lt;(p*4)%10;break;
-				case 3: cout&lt;&lt;(p*8)%10;break;
-			}
-		}else{
-			cout&lt;&lt;(p*5)%10;
-		}
-	}
-	return 0;
-}
-</code></pre>
 ]]></content>
     </entry>
 </feed>
