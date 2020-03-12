@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://GMH2003.github.io</id>
     <title>G_M_H博客</title>
-    <updated>2020-03-11T04:44:40.054Z</updated>
+    <updated>2020-03-12T10:36:02.189Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://GMH2003.github.io"/>
     <link rel="self" href="https://GMH2003.github.io/atom.xml"/>
@@ -10,6 +10,31 @@
     <logo>https://GMH2003.github.io/images/avatar.png</logo>
     <icon>https://GMH2003.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, G_M_H博客</rights>
+    <entry>
+        <title type="html"><![CDATA[G_M_H是如何看待227事件的]]></title>
+        <id>https://GMH2003.github.io/post/g_m_h-shi-ru-he-kan-dai-227-shi-jian-de/</id>
+        <link href="https://GMH2003.github.io/post/g_m_h-shi-ru-he-kan-dai-227-shi-jian-de/">
+        </link>
+        <updated>2020-03-12T09:31:00.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="227事件是什么">227事件是什么</h1>
+<h2 id="来自维基百科的客观评价">来自维基百科的<s>客观</s>评价</h2>
+<ul>
+<li>以下摘自维基百科</li>
+</ul>
+<blockquote>
+<p>肖战粉丝举报事件是于2020年2月下旬起，引发中国大陆舆论关注的一个网络事件。事情相信最早发生于2月24日，部分中国大陆明星肖战粉丝发现AO3作品库平台收录的、肖战CP粉创作的一篇关于肖战的同人小说《下坠》，认为这部作品有意侮辱肖战，遂以文章在AO3平台的链接作为证据向中国政府网监部门实名举报作者涉黄等行为，引发一连串的风波[1][2][3]。由于事件进一步发酵的关键时间节点大致在2月27日，又称227事件，抵制肖战一方的网友称为227大团结。</p>
+</blockquote>
+<blockquote>
+<p>2月29日，中国大陆防火长城屏蔽AO3作品库。中国大陆舆论指是肖战粉丝的举报直接导致外网AO3作品库被屏蔽，并逐步引发网民针对肖战的网络论战及抵制。面对抵制舆论，肖战代言的品牌反应不一。3月1日，肖战工作室回应外界对粉丝不理智追星的争议。11日《检察日报》以肖战事件为名，集中发文，外界认为这是中国官方对事件性质定调[4][5]。《检察日报》对事件中肖战和其所属团队，以及肖战粉丝的批评，引发肖战粉丝的群体反击[5]</p>
+</blockquote>
+<ul>
+<li>以上摘自维基百科<br>
+<a href="https://www.bilibili.com/video/av94200375">来自哔哩哔哩的评价</a></li>
+</ul>
+<h1 id="g_m_h是如何看待的">G_M_H是如何看待的</h1>
+<h2 id=""></h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[新博客通知]]></title>
         <id>https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/</id>
@@ -758,30 +783,6 @@ int main(){
 	return 0;
 }
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[并查集学习笔记]]></title>
-        <id>https://GMH2003.github.io/post/2019-07-20-并查集学习笔记.markd/</id>
-        <link href="https://GMH2003.github.io/post/2019-07-20-并查集学习笔记.markd/">
-        </link>
-        <updated>2019-07-20T21:03:34.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="并查集">并查集</h3>
-<h3 id="路径压缩">路径压缩</h3>
-<pre><code class="language-cpp">int get(int x) {
-	int i,j=x;
-	while(x!=fa[x]) x=fa[x];
-	while(j!=fa[j]) {
-		i=j;
-		j=fa[j];
-		fa[i]=x;
-	}
-	return x;
-}
-</code></pre>
-<h3 id="例题">例题</h3>
-<h4 id="板子">板子</h4>
-<h4 id="带权并查集">带权并查集</h4>
 ]]></content>
     </entry>
 </feed>

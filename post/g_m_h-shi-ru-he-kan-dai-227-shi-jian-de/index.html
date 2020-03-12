@@ -7,7 +7,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="末日时在做什么？有没有空？可以来拯救吗？">
 <meta name="theme-color" content="#7950f2">
-<title>题解 洛谷 P1908 逆序对 | G_M_H博客</title>
+<title>G_M_H是如何看待227事件的 | G_M_H博客</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1584009341225">
 <link rel="stylesheet" href="/styles/main.css">
 <link rel="stylesheet" href="/media/css/pisces.css">
@@ -27,8 +27,8 @@
 
 
 
-    <meta name="description" content="题解 洛谷 P1908 逆序对" />
-    <meta name="keywords" content="题解" />
+    <meta name="description" content="G_M_H是如何看待227事件的" />
+    <meta name="keywords" content="" />
   </head>
   <body>
     <div class="head-top-line"></div>
@@ -241,30 +241,13 @@
               <div class="toc-box right-motion">
   <div class="toc-wrapper auto-number auto" id="toc_wrapper">
     <ul class="markdownIt-TOC">
-<li>
+<li><a href="#227%E4%BA%8B%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88">227事件是什么</a>
 <ul>
-<li><a href="#%E9%A2%98%E7%9B%AE%E9%93%BE%E6%8E%A5">题目链接</a></li>
-<li><a href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0">题目描述</a></li>
-<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输入输出格式</a>
-<ul>
-<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F">输入格式：</a></li>
-<li><a href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">输出格式：</a></li>
+<li><a href="#%E6%9D%A5%E8%87%AA%E7%BB%B4%E5%9F%BA%E7%99%BE%E7%A7%91%E7%9A%84%E5%AE%A2%E8%A7%82%E8%AF%84%E4%BB%B7">来自维基百科的<s>客观</s>评价</a></li>
 </ul>
 </li>
-<li><a href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B">输入输出样例</a>
-<ul>
-<li><a href="#%E8%BE%93%E5%85%A5%E6%A0%B7%E4%BE%8B1">输入样例#1：</a></li>
-</ul>
-</li>
-<li><a href="#code">code</a>
-<ul>
-<li><a href="#%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84">树状数组</a></li>
-<li><a href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</a></li>
-</ul>
-</li>
-<li><a href="#end">END</a></li>
-</ul>
-</li>
+<li><a href="#g_m_h%E6%98%AF%E5%A6%82%E4%BD%95%E7%9C%8B%E5%BE%85%E7%9A%84">G_M_H是如何看待的</a><br>
+*</li>
 </ul>
 
   </div>
@@ -517,8 +500,8 @@ window.addEventListener('load', function() {
             <div class="section bg-color post post-page">
               <header class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://GMH2003.github.io/post/2019-05-03-题解-洛谷-P1908-逆序对.markd/">
-      题解 洛谷 P1908 逆序对
+    <a class="post-title-link" href="https://GMH2003.github.io/post/g_m_h-shi-ru-he-kan-dai-227-shi-jian-de/">
+      G_M_H是如何看待227事件的
     </a>
   </h1>
   <div class="post-meta">
@@ -526,201 +509,40 @@ window.addEventListener('load', function() {
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span>发布于</span>
-      <span>2019-05-04</span>
+      <span>2020-03-12</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
-      <span class="meta-item">
-        <i class="fa fa-folder-o"></i>
-        <span class="pc-show">分类于</span>
-        
-          
-            <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/">
-              <span>题解</span>
-            </a>
-          
-        
-      </span>
-      <span class="post-meta-divider">|</span>
-    
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>5分钟</span>
+      <span>2分钟</span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>785<span class="pc-show">字数</span></span>
+      <span>414<span class="pc-show">字数</span></span>
     </span>
     
   </div>
 </header>
               <div class="post-body next-md-body" id="post_body">
-                <h2 id="题目链接"><a href="https://www.luogu.org/problemnew/show/P1908">题目链接</a></h2>
-<h2 id="题目描述">题目描述</h2>
-<p>猫猫TOM和小老鼠JERRY最近又较量上了，但是毕竟都是成年人，他们已经不喜欢再玩那种你追我赶的游戏，现在他们喜欢玩统计。最近，TOM老猫查阅到一个人类称之为“逆序对”的东西，这东西是这样定义的：对于给定的一段正整数序列，逆序对就是序列中ai&gt;aj且i&lt;j的有序对。知道这概念后，他们就比赛谁先算出给定的一段正整数序列中逆序对的数目。<br>
-<strong>Update</strong>:数据已加强。</p>
-<h2 id="输入输出格式">输入输出格式</h2>
-<h3 id="输入格式">输入格式：</h3>
-<p>第一行，一个数n，表示序列中有n个数。</p>
-<p>第二行n个数，表示给定的序列。序列中每个数字不超过10^910<br>
-9</p>
-<h3 id="输出格式">输出格式：</h3>
-<p>给定序列中逆序对的数目。</p>
-<h2 id="输入输出样例">输入输出样例</h2>
-<h3 id="输入样例1">输入样例#1：</h3>
-<pre><code>6
-5 4 2 6 3 1
-</code></pre>
-<p>###　输出样例#1：</p>
-<pre><code>11
-</code></pre>
-<p>说明<br>
-对于25%的数据，n \leq 2500n≤2500<br>
-对于50%的数据，n \leq 4 \times 10^4n≤4×10<br>
-4<br>
-。</p>
-<p>对于所有数据，n \leq 5 \times 10^5n≤5×10<br>
-5</p>
-<p>请使用较快的输入输出</p>
-<p>应该不会n方过50万吧 by chen_zhe</p>
-<h2 id="code">code</h2>
-<h3 id="树状数组">树状数组</h3>
-<pre><code class="language-cpp">#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#define LL long long
-using namespace std;
-template&lt;class T&gt; inline void read(T &amp;p) {
-    p=0;
-    int f=1;
-    char c;
-    for(c=getchar(); !(c&lt;='9'&amp;&amp;c&gt;='0'); c=getchar()) {
-        if(c=='-') f=-1;
-    }
-    for(; (c&lt;='9'&amp;&amp;c&gt;='0'); c=getchar()) {
-        p=(p&lt;&lt;3)+(p&lt;&lt;1)+c-'0';
-    }
-    p*=f;
-    return ;
-}
-template&lt;class T&gt; inline void write(T x) {
-    T k = 0,lx = x;
-    char put[40];
-    if (lx ==0) putchar('0');
-    if (lx &lt; 0) putchar('-'),lx = -lx;
-    while (lx)  put[++k] = (lx % 10) + '0',lx /= 10;
-    while (k)   putchar( put[ k-- ] );
-    return ;
-}
-struct br {
-    LL m,n;
-};
-br a[500001];
-struct cmp {
-    bool operator ()(const br &amp;x,const br &amp;y) {
-        if(x.m!=y.m) return x.m&gt;y.m;
-        else return x.n&gt;y.n;
-    }
-};
-int N;
-LL ans;
-LL b[500001];
-int low_bit(int x) {
-    return x&amp;(-x);
-}
-void add_num(int poster) {
-    int pos=poster;
-    while(pos&lt;=N) {
-        b[pos]+=1;
-        pos+=low_bit(pos);
-    }
-}
-LL sum_num(int pos) {
-    if(pos&lt;=0) return 0;
-    LL ans=0;
-    while(pos&gt;0) {
-        ans+=b[pos];
-        pos-=low_bit(pos);
-    }
-    return ans;
-}
-int main() {
-    register LL mid;
-    read(N);
-    for(register int i=1; i&lt;=N; i++) {
-        read(a[i].m);
-        a[i].n=i;
-    }
-    sort(a+1,a+1+N,cmp());
-    for(register int i=1; i&lt;=N; i++) {
-        add_num(a[i].n);
-        ans+=sum_num(a[i].n-1);
-    }
-    write(ans);
-    return 0;
-}
-</code></pre>
-<h3 id="归并排序">归并排序</h3>
-<pre><code class="language-cpp">#include&lt;cmath&gt;
-#include&lt;cstdio&gt;
-#include&lt;cctype&gt;
-#include&lt;cstring&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#define ll long long
-
-using namespace std;
-
-int n,a[500010],c[500010];
-long long ans;
-
-inline void read(int &amp;p) {
-    p=0;
-    int f=1;
-    char c;
-    for(c=getchar(); !isdigit(c); c=getchar())
-        if(c=='-')
-            f=-1;
-    for(; isdigit(c); c=getchar())
-        p=(p&lt;&lt;3)+(p&lt;&lt;1)+(c-'0');
-    p*=f;
-    return ;
-}
-
-void merge_sort(int l,int r)
-{
-    if(l==r)  
-        return;
-    int mid=(l+r)/2,i=l,j=mid+1,k=l;
-    merge_sort(l,mid),merge_sort(mid+1,r);
-    while(i&lt;=mid&amp;&amp;j&lt;=r){
-    	if(a[i]&lt;=a[j])
-            c[k++]=a[i++];
-        else
-            c[k++]=a[j++],ans+=mid-i+1;
-    }        
-    while(i&lt;=mid){
-    	c[k++]=a[i++];
-    }    
-    while(j&lt;=r){
-    	c[k++]=a[j++];
-    }
-    for(int z=l;z&lt;=r;z++){
-    	a[z]=c[z];
-    }      
-} 
-
-int main()
-{
-    read(n);
-    for(int i=1;i&lt;=n;i++) read(a[i]);
-    merge_sort(1,n);
-    cout&lt;&lt;ans;
-    return 0;
-}
-</code></pre>
-<h2 id="end">END</h2>
+                <h1 id="227事件是什么">227事件是什么</h1>
+<h2 id="来自维基百科的客观评价">来自维基百科的<s>客观</s>评价</h2>
+<ul>
+<li>以下摘自维基百科</li>
+</ul>
+<blockquote>
+<p>肖战粉丝举报事件是于2020年2月下旬起，引发中国大陆舆论关注的一个网络事件。事情相信最早发生于2月24日，部分中国大陆明星肖战粉丝发现AO3作品库平台收录的、肖战CP粉创作的一篇关于肖战的同人小说《下坠》，认为这部作品有意侮辱肖战，遂以文章在AO3平台的链接作为证据向中国政府网监部门实名举报作者涉黄等行为，引发一连串的风波[1][2][3]。由于事件进一步发酵的关键时间节点大致在2月27日，又称227事件，抵制肖战一方的网友称为227大团结。</p>
+</blockquote>
+<blockquote>
+<p>2月29日，中国大陆防火长城屏蔽AO3作品库。中国大陆舆论指是肖战粉丝的举报直接导致外网AO3作品库被屏蔽，并逐步引发网民针对肖战的网络论战及抵制。面对抵制舆论，肖战代言的品牌反应不一。3月1日，肖战工作室回应外界对粉丝不理智追星的争议。11日《检察日报》以肖战事件为名，集中发文，外界认为这是中国官方对事件性质定调[4][5]。《检察日报》对事件中肖战和其所属团队，以及肖战粉丝的批评，引发肖战粉丝的群体反击[5]</p>
+</blockquote>
+<ul>
+<li>以上摘自维基百科<br>
+<a href="https://www.bilibili.com/video/av94200375">来自哔哩哔哩的评价</a></li>
+</ul>
+<h1 id="g_m_h是如何看待的">G_M_H是如何看待的</h1>
+<h2 id=""></h2>
 
               </div>
               <div class="post-footer">
@@ -731,7 +553,7 @@ int main()
     </li>
     <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://GMH2003.github.io/post/2019-05-03-题解-洛谷-P1908-逆序对.markd/" title="题解 洛谷 P1908 逆序对">题解 洛谷 P1908 逆序对</a>
+      <a href="https://GMH2003.github.io/post/g_m_h-shi-ru-he-kan-dai-227-shi-jian-de/" title="G_M_H是如何看待227事件的">G_M_H是如何看待227事件的</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明： </strong>
@@ -740,21 +562,15 @@ int main()
   </ul>
   <div class="tags">
     
-      <a href="https://GMH2003.github.io/tag/Pd_DkRdiR/"># 题解</a>
-    
   </div>
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="题解 洛谷 P2068 统计和" href="https://GMH2003.github.io/post/2019-05-06-题解-洛谷-P2068-统计和.markd/">题解 洛谷 P2068 统计和</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="题解 洛谷 P2068 统计和" href="https://GMH2003.github.io/post/2019-05-06-题解-洛谷-P2068-统计和.markd/">上一篇</a>
-      
     </div>
     <div class="nav-next">
       
-        <a class="nav-pc-next" title="题解 P1022 计算器的改良" href="https://GMH2003.github.io/post/2019-04-30-题解-P1022-计算器的改良.markd/">题解 P1022 计算器的改良</a>
-        <a class="nav-mobile-next" title="题解 P1022 计算器的改良" href="https://GMH2003.github.io/post/2019-04-30-题解-P1022-计算器的改良.markd/">下一篇</a>
+        <a class="nav-pc-next" title="新博客通知" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">新博客通知</a>
+        <a class="nav-mobile-next" title="新博客通知" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/">下一篇</a>
         <i class="fa fa-chevron-right"></i>
       
     </div>
