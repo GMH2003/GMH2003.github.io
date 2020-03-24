@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://GMH2003.github.io</id>
     <title>G_M_H博客</title>
-    <updated>2020-03-13T08:25:26.287Z</updated>
+    <updated>2020-03-24T01:42:55.686Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://GMH2003.github.io"/>
     <link rel="self" href="https://GMH2003.github.io/atom.xml"/>
@@ -10,6 +10,49 @@
     <logo>https://GMH2003.github.io/images/avatar.png</logo>
     <icon>https://GMH2003.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, G_M_H博客</rights>
+    <entry>
+        <title type="html"><![CDATA[Linux的故事]]></title>
+        <id>https://GMH2003.github.io/post/linux-de-gu-shi/</id>
+        <link href="https://GMH2003.github.io/post/linux-de-gu-shi/">
+        </link>
+        <updated>2020-03-24T01:30:05.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="什么是linux">什么是Linux</h1>
+<p>Linux是一种自由和开放源码的类UNIX操作系统。该操作系统的内核由林纳斯·托瓦兹在1991年10月5日首次发布，在加上用户空间的应用程序之后，成为Linux操作系统。Linux也是自由软件和开放源代码软件发展中最著名的例子。只要遵循GNU 通用公共许可证（GPL），任何个人和机构都可以自由地使用Linux的所有底层源代码，也可以自由地修改和再发布。大多数Linux系统还包括像提供GUI的X Window之类的程序。除了一部分专家之外，大多数人都是直接使用Linux 发行版，而不是自己选择每一样组件或自行设置。</p>
+<p>Linux严格来说是单指操作系统的内核，因操作系统中包含了许多用户图形接口和其他实用工具。如今Linux常用来指基于Linux的完整操作系统，内核则改以Linux内核称之。由于这些支持用户空间的系统工具和库主要由理查德·斯托曼于1983年发起的GNU计划提供，自由软件基金会提议将其组合系统命名为GNU/Linux，但Linux不属于GNU计划，这个名称并没有得到社群的一致认同。</p>
+<p>Linux最初是作为支持英特尔x86架构的个人电脑的一个自由操作系统。当前Linux已经被移植到更多的计算机硬件平台，远远超出其他任何操作系统。Linux可以运行在服务器和其他大型平台之上，如大型计算机和超级计算机。世界上500个最快的超级计算机已100％运行Linux发行版或变种[9]。Linux也广泛应用在嵌入式系统上，如手机（Mobile Phone）、平板电脑（Tablet）、路由器（Router）、电视（TV）和电子游戏机等。在移动设备上广泛使用的Android操作系统就是创建在Linux内核之上。</p>
+<p>通常情况下，Linux被打包成供个人计算机和服务器使用的Linux发行版，一些流行的主流Linux发布版，包括Debian（及其派生版本Ubuntu、Linux Mint）、Fedora（及其相关版本Red Hat Enterprise Linux、CentOS）和openSUSE等。Linux发行版包含Linux内核和支撑内核的实用程序和库，通常还带有大量可以满足各类需求的应用程序。个人计算机使用的Linux发行版通常包含X Window和一个相应的桌面环境，如GNOME或KDE。桌面Linux操作系统常用的应用程序，包括Firefox网页浏览器、LibreOffice办公软件、GIMP图像处理工具等。由于Linux是自由软件，任何人都可以创建一个符合自己需求的Linux发行版。<br>
+PS:因为Linux是个开源项目，因此有很多人去维护，衍生出很多版本以及各种开源免费软件，有些甚至比付费软件的功能还要强大</p>
+<h1 id="科普unix">科普UNIX</h1>
+<p>UNIX操作系统（英语：UNIX），是美国AT&amp;T公司贝尔实验室于1969年完成的操作系统。最早由肯·汤普逊（Ken Thompson），丹尼斯·里奇（Dennis Ritchie），道格拉斯·麦克罗伊（Douglas McIlroy），和乔伊·欧桑纳于1969年在AT&amp;T贝尔实验室开发。于1971年首次发布，最初是完全用汇编语言编写。后来，在1973年用一个重要的开拓性的方法，Unix被丹尼斯·里奇用编程语言C（内核和I/O例外）重新编写。高级语言编写的操作系统具有更佳的兼容性，能更容易地移植到不同的计算机平台。<br>
+MacOS就是一种UNIX操作系统</p>
+<h1 id="linux的崛起">Linux的崛起</h1>
+<blockquote>
+<p>我是你可怕的恶梦<br>
+------------Eric Raymond</p>
+</blockquote>
+<p>Eric Raymond，黑客，他写了一篇论文《大教堂与市集》，也写过一本书叫《unix编程艺术》。于是整个世界都改变了。<br>
+纪录片《Revolution OS》描述，一次开发者大会，他遇到一个微软工程师，看见衣服上Microsoft的标志便询问对方：“你为微软工作？”当那位西装革履的工程师带有嘲讽和鄙视看着这个衣着普通的黑客回复：“是啊，你呢？”Raymond送去了一个微笑：我是你们可怕的恶梦。。。<br>
+黑客是Microsoft的恶梦？不，不仅仅是，黑客是一切不自由的恶梦。电脑和网络，已经成为现代社会和文明不可或缺的产品。很多人电脑使用Microsoft的windows系统，而这些机器所访问的web页面。其背后的服务器系统却是Windows的死敌---Linux。相比Windows成为家喻户晓并家家都在使用的操作系统。Linux很少被普通人知道，但是这并不妨碍它的伟大。他们分别在桌面和服务器两个环境，各自称霸着世界。<br>
+谈到Linux的起源，这个故事平凡却扣人心弦。1991那年，对于芬兰人绝对是一个有意思的一年。世界上首次全球通对话在诺基亚的Radiolinja网络中完成，诺基亚征服世界的脚步已经无法遏制。<br>
+与此同时，阳光明媚的芬兰赫尔辛基大学的校园里，一个少年正好拥有了一台完全属于自己的电脑，不必再忍受学校机房漫长的等待。他当时对安德鲁·塔南鲍姆（Andrew Tanenbaum）的著作《操作系统：设计与实现》——一本Minix操作指南深深着迷。<br>
+由于AT&amp;T对于Unix商业化，而后将Unix进行了闭源。Andrew所教授的课程《操作系统》却没有了“操作系统”。对此Andrew一咬牙，狠狠心，写出了一个兼容Unix的操作系统。人家就是厉害，你不给我使用，我自己写一个出来用。尽管Andrew的成果很简单，但是还是具备了Unix的基本功能，当然比较mini，因此命名为Minix。Minix作为Unix的变种，彼时的Minix正凭借低廉的价格和简易的操作在大学大行其道。<br>
+Minix由于过于短小精悍，只能运行这一种机器，其他机器没有驱动。Andrew的学生就写了好多好用驱动来扩展Minix。可是，教授Andrew却觉得自己的操作系统要保持纯洁，不能有其他的代码来源。于是学生们就很郁闷，其中就有个叫Linus的同学。<br>
+拥有自己的PC的Linus却不能将Minix运行在自己的电脑上。Linus也不得不走上了他无数前辈的道路，不让用，不给用，那就自己写一个操作系统来用。仅仅两个月后，一个“千疮百孔但却碰巧可以使用”的磁盘驱动程序和一个小到不能再小的文件系统就诞生了，这就是第0.01版的Linux。随后Linus将操作系统上传至FTP，并公布了全部源代码。在USENET讨论区，Linus阐述其初衷：在新操作系统中，“人们可以自己编写驱动程序，可以随意修改操作系统以适应不同需求，可以尝试在Minix上运行所有程序，这是Minix从未有过的美好一天。”<br>
+美好的日子渐渐来临，Unix生态还是老样子，在商业的争斗中裹足不前。Microsoft和Apple的争斗也逐渐明朗，Microsoft靠卖软件大发特发。这让一个黑客很不满。<br>
+理查德·斯托曼（Richard Stallman）登场，他认为所有软件都是人类智慧和思想的结晶。软件应该自由的让人们使用。1983年，Stallman发起了“GNU（GNU’s Not Unix的递归缩写）”计划，目的是创建一套完全自由的操作系统，以“重现软件界合作互助的团结精神”。他以“著佐权”（copyleft）标准为范本拟定了一份通用公用版权协议(General Public License，GPL)。与强调个人版权但限制自由传播的著作权（copyright）不同，GPL更强调公共版权和鼓励自由传播，它允许修改程序、复制软件和销售获利。但前提是公布修改后的全部源代码，必须保证自由思想的传递。GNU计划激发了软件界极大的热情，世界各地的软件奇才们纷纷参与其中。并且开发出包括文字编辑器Emacs、C语言编译器，gcc以及大部分UNIX系统程序库和工具在内的绝大多数软件，很多免费软件的水平甚至都已经超过了相应的付费版本。<br>
+可是问题又来了，GNU编写了很多自由免费的软件，可是这些免费软件却运行在不自由的Unix上，这真是一个巨大的讽刺。Stallman承诺大家要两年内重新写一个操作系统，可是五年过去了，依然看不清成功的那一天。<br>
+与前面很多故事一样，事情总是环环相扣，可是谁也不知道这环将会扣向哪一环。Stallman苦于没有操作系统，芬兰的那边，Linus只有一个操作系统内核而没有应用软件。<br>
+于是，他们在各自的领域奋斗多年之后，命运终于安排他们走到了一起，Linus率领Linux加盟Stallman的GNU计划，上帝说要有光，于是牛顿出生了；人类需要自由，于是Linux与GUN结婚。这一“联姻”堪称是软件界的天作之合。<br>
+1992年，在Linux Kernel平台上工作的开发者只有100位，平台中的核心代码只有几万行。如今，在平台上工作的开发者已经多达1000人，人员的背景也从最初的黑客扩散至更多的行业，平台中的核心代码则已经超过千万行。<br>
+1998年，全球前500台超级计算机中还只有1台运行Linux。今天在全球前500台超级计算机中，有413台选用Linux。这些计算机遍布世界各地的多个行业，共同主宰着这个智慧的地球。<br>
+大到航天科技，小到IC卡芯片，无不存在Linux的影子。在移动领域，Android来势汹汹，已经逾越IOS成为移动的王者，完成了对windows的完美复仇。<br>
+Linux“可自由扩散”并不等同于“缺乏支持”和“业余水平”，恰恰相反，正是起开发的政策，让无数天才黑客参与进来，这是自由的胜利。<br>
+就连商业软件公司也参与进来，这些公司技术雄厚又善于市场运作，开创了新的商业模式----销售服务而不是软件。使Linux从网络黑客和业余爱好者自娱自乐的工具，变成了一个具有全球影响力的软件帝国。<br>
+98年的奥斯卡颁奖典礼上，当卡梅隆手握“最佳导演奖”的小金人，模仿《泰坦尼克》中的男主角Jack发出“我是世界之王”的宣言时，全世界无不为之倾倒。影片中那被重新描绘过的“唯美”海难，使人们惊叹于卡氏的神奇。但完美的电影也使人们忽略了另一个伟大事实：电影史上崭新的技术时代悄然来临。而这一时代，是由Linux开启的。<br>
+从那时开始，梦工厂、迪斯尼、皮克斯等公司都逐渐将各自的工作平台转向Linux，无数伟大的银幕经典因此横空出世。从《魔戒》到《金刚》，从《哈利波特》到《霍比特人》，再从《指环王》到《阿凡达》，Linux几乎以一己之力缔造了无数人梦中的玄幻王国。也是从那时开始，Linux终将埋葬Microsoft就开始成为江湖中著名的传说之一。<br>
+悠悠苍天，传来一股由弱变强的声音----- 我是你可怕的恶梦！！！</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[G_M_H是如何看待227事件的]]></title>
         <id>https://GMH2003.github.io/post/g_m_h-shi-ru-he-kan-dai-227-shi-jian-de/</id>
@@ -713,77 +756,6 @@ int main() {
 			}
 			printf(&quot;%d\n&quot;,n);
 		}
-	}
-	return 0;
-}
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[题解 codeforces CF1196A Three Piles of Candies]]></title>
-        <id>https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/</id>
-        <link href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/">
-        </link>
-        <updated>2019-07-25T22:02:03.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="题目链接"><a href="http://codeforces.com/problemset/problem/1196/A">题目链接</a></h2>
-<h2 id="题目">题目</h2>
-<h2 id="a-three-piles-of-candies">A. Three Piles of Candies</h2>
-<ul>
-<li>time limit per test1 second</li>
-<li>memory limit per test256 megabytes</li>
-<li>inputstandard input</li>
-<li>outputstandard output</li>
-</ul>
-<p>Alice and Bob have received three big piles of candies as a gift. Now they want to divide these candies as fair as possible. To do this, Alice takes one pile of candies, then Bob takes one of the other two piles. The last pile is split between Alice and Bob as they want: for example, it is possible that Alice takes the whole pile, and Bob gets nothing from it.</p>
-<p>After taking the candies from the piles, if Alice has more candies than Bob, she discards some candies so that the number of candies she has is equal to the number of candies Bob has. Of course, Bob does the same if he has more candies.</p>
-<p>Alice and Bob want to have as many candies as possible, and they plan the process of dividing candies accordingly. Please calculate the maximum number of candies Alice can have after this division process (of course, Bob will have the same number of candies).</p>
-<p>You have to answer q independent queries.</p>
-<p>Let's see the following example: [1,3,4]. Then Alice can choose the third pile, Bob can take the second pile, and then the only candy from the first pile goes to Bob — then Alice has 4 candies, and Bob has 4 candies.</p>
-<p>Another example is [1,10,100]. Then Alice can choose the second pile, Bob can choose the first pile, and candies from the third pile can be divided in such a way that Bob takes 54 candies, and Alice takes 46 candies. Now Bob has 55 candies, and Alice has 56 candies, so she has to discard one candy — and after that, she has 55 candies too.</p>
-<h3 id="input">Input</h3>
-<p>The first line of the input contains one integer q (1≤q≤1000) — the number of queries. Then q queries follow.</p>
-<p>The only line of the query contains three integers a,b and c (1≤a,b,c≤1016) — the number of candies in the first, second and third piles correspondingly.</p>
-<h3 id="output">Output</h3>
-<p>Print q lines. The i-th line should contain the answer for the i-th query — the maximum number of candies Alice can have after the division, if both Alice and Bob act optimally (of course, Bob will have the same number of candies).</p>
-<h3 id="example">Example</h3>
-<h4 id="input-2">input</h4>
-<pre><code>4
-1 3 4
-1 10 100
-10000000000000000 10000000000000000 10000000000000000
-23 34 45
-</code></pre>
-<h4 id="output-2">output</h4>
-<pre><code>4
-55
-15000000000000000
-51
-</code></pre>
-<h2 id="分析及题解">分析及题解</h2>
-<h3 id="做题经历">做题经历</h3>
-<p>大半夜的看到Alice and Bob，我顿时就懵了。。。。<br>
-读完题发现这是一道<s>毒瘤</s>水题。</p>
-<h3 id="题目分析">题目分析</h3>
-<p>Alice和Bob先把较小的两堆取走，然后去取第三堆，使两人尽可能相等。</p>
-<p>综上所述，当三堆加起来为偶数时，除以2输出。当三堆加起来为奇数时，多拿的的那个人(可以是Alice也可以是Bob)要丢掉1，因此也是除以2，输出。</p>
-<h3 id="代码附上">代码附上</h3>
-<pre><code class="language-cpp">/*by G_M_H*/
-#include&lt;cmath&gt;
-#include&lt;cstdio&gt;
-#include&lt;vector&gt;
-#include&lt;cstring&gt;
-#include&lt;utility&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#define LL long long
-using namespace std;
-int n;
-int main(){
-	scanf(&quot;%d&quot;,&amp;n);
-	while(n--){
-		LL a,b,c;
-		scanf(&quot;%lld%lld%lld&quot;,&amp;a,&amp;b,&amp;c);
-		printf(&quot;%lld\n&quot;,(a+b+c)/2);
 	}
 	return 0;
 }
