@@ -219,7 +219,6 @@
 .mist .right-motion {
   opacity: 0;
 }
-
 .mist .sidebar-item-box + .sidebar-item-box {
   border-left: 1px solid #333;
 }
@@ -402,6 +401,10 @@
   left: 0;
 }
 
+.mist .post {
+  margin: 40px 0;
+}
+
 .mist .post-button {
   text-align: left;
   padding: 0;
@@ -524,6 +527,10 @@
 
 @media (max-width: 767px) {
 
+  .mist .post {
+    margin: 0;
+  }
+  
   .main-continer {
     width: auto;
   }

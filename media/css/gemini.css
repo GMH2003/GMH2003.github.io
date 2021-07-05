@@ -110,6 +110,10 @@
   width: 240px;
 }
 
+.sidebar-body .sidebar-wrapper {
+  width: auto;
+}
+
 .site-author-image {
   display: block;
   margin: 0 auto;
@@ -117,11 +121,6 @@
   height: auto;
   background-color: #FFF;
   border: 1px solid #eee;
-}
-
-
-.gemini {
-  
 }
 
 .gemini .post-page {
@@ -179,7 +178,6 @@
   top: 0;
   padding: 0;
   width: 240px;
-  border-radius: initial;
   z-index: 9999;
 }
 
@@ -277,6 +275,10 @@
 
 @media (max-width: 991px) and (min-width: 768px) {
 
+  .gemini .post {
+    margin-bottom: 1px;
+  }
+
   .main-continer {
     width: auto !important;
   }
@@ -306,11 +308,6 @@
 
   .gemini .section-layout-wrapper {
     width: auto;
-    margin: 10px;
-  }
-
-  .gemini .post {
-    padding: 20px;
   }
 
   .gemini .brand {
@@ -323,10 +320,11 @@
   .main-continer {
     width: auto;
   }
-
+  .gemini .post {
+    margin-bottom: 1px;
+  }
   .gemini .section-layout-wrapper {
     width: auto;
-    margin: 10px;
   }
 
   .gemini .nav-item-active a:after {
