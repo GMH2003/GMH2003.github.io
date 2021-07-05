@@ -9,7 +9,7 @@
 <meta name="description" content="末日时在做什么？有没有空？可以来拯救吗？">
 <meta name="theme-color" content="#7950f2">
 <title> Chtholly_tree | G_M_H博客</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1625448527667">
+<link rel="shortcut icon" href="/favicon.ico?v=1625448881399">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -76,6 +76,8 @@
           
             
             
+              
+            
             <li class="nav-item ">
               
               
@@ -86,6 +88,8 @@
             </li>
           
             
+            
+              
             
             <li class="nav-item ">
               
@@ -98,6 +102,8 @@
           
             
             
+              
+            
             <li class="nav-item ">
               
               
@@ -108,6 +114,8 @@
             </li>
           
             
+            
+              
             
             <li class="nav-item ">
               
@@ -120,6 +128,8 @@
           
             
             
+              
+            
             <li class="nav-item ">
               
               
@@ -130,6 +140,22 @@
             </li>
           
           
+            
+              <li class="nav-item ">
+                <a href="/friends/" target="_self">
+                  
+                    <i class="fa fa-address-book"></i> link
+                  
+                </a>
+              </li>
+            
+          
+          
+            <li id="fa_search" class="nav-item">
+              <a href="javascript:void(0);">
+                <i class="fa fa-search"></i> <span class="language" data-lan="search">搜索</span>
+              </a>
+            </li>
           
         </ul>
       </nav>
@@ -185,7 +211,7 @@
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
-    <p class="site-author-name"></p>
+    <p class="site-author-name">我是谁</p>
     
   </div>
   <div class="sidebar-item side-item-stat right-motion">
@@ -230,29 +256,6 @@
             </a>
           
         
-        
-      </div>
-    </div>
-  
-
-  
-    <div class="sidebar-item right-motion sidebar-item-friends">
-      
-        <p class="friends-title"><i class="fa fa-ship"></i> link</p>
-      
-      <div class="friends-box">
-        
-          <p>
-            <a href="https://wyctstf.github.io/">WYCTSTF</a>
-          </p>
-        
-          <p>
-            <a href="https://www.luogu.org/blog/user53410/">XY_cpp</a>
-          </p>
-        
-          <p>
-            <a href="https://www.luogu.org/blog/zrzluck99/">zrzluck99</a>
-          </p>
         
       </div>
     </div>
@@ -745,7 +748,7 @@ int main() {
   <ul class="post-copyright">
     <li class="post-copyright-author">
       <strong class="language" data-lan="author">本文作者：</strong>
-      
+      我是谁
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
@@ -822,7 +825,7 @@ int main() {
     placeholder: '',
     pageSize: '',
     lang: 'zh-cn',
-    enableQQ: 'true' === '',
+    enableQQ: 'true' === 'false',
     visitor: 'true' === 'false',
     highlight: 'true' === 'true',
     avatarForce: 'true' === 'false',
@@ -860,7 +863,7 @@ int main() {
   
   
   <div class="bg-img">
-    <img src="\media\images\custom-bgImg.jpg" />
+    <img src="/media/images/custom-bgImg.jpg" />
   </div>
   
   
@@ -868,9 +871,39 @@ int main() {
   
 <link rel="stylesheet" href="/media/live2d/css/live2d.css" />
 <div class="box-scale">
-  <div id="landlord" style="left: 5px;bottom: undefinedpx;"
+  <div id="landlord" style="left: 5px;bottom: px;"
     data-key="">
     <canvas id="live2d" width="500" height="560" class="live2d"></canvas>
+    
+
+      <div class="message" style="opacity:0"></div>
+      <div class="live_talk_input_body">
+        <div class="live_talk_input_name_body">
+          <input name="name" type="text" class="live_talk_name white_input" id="AIuserName" autocomplete="off"
+            placeholder="你的名字" />
+        </div>
+        <div class="live_talk_input_text_body">
+          <input name="talk" type="text" class="live_talk_talk white_input" id="AIuserText" autocomplete="off"
+            placeholder="要和我聊什么呀？" />
+          <button type="button" class="live_talk_send_btn" id="talk_send">发送</button>
+        </div>
+      </div>
+      <input name="live_talk" id="live_talk" value="1" type="hidden" />
+      <div class="live_ico_box">
+        <div class="live_ico_item type_info" id="showInfoBtn"></div>
+        <div class="live_ico_item type_talk" id="showTalkBtn"></div>
+        
+        <div class="live_ico_item type_music" id="musicButton"></div>
+        
+        <div class="live_ico_item type_youdu" id="youduButton"></div>
+        <div class="live_ico_item type_quit" id="hideButton"></div>
+        <input name="live_statu_val" id="live_statu_val" value="0" type="hidden" />
+        <audio src="" style="display:none;" id="live2d_bgm" data-bgm="0" preload="none"></audio>
+        <input id="duType" value="douqilai" type="hidden">
+        
+        <input name="live2dBGM" value="" type="hidden">
+        
+      </div>
     
   </div>
 </div>
@@ -1320,7 +1353,7 @@ int main() {
 		}
 		$(document).ready(function () {
 			var AIimgSrc = [];
-			let chooseLive2d = ''
+			let chooseLive2d = 'auto'
 			if (chooseLive2d === 'histoire') {
 				AIimgSrc.push(message_Path + "model/histoire/histoire.1024/texture_00.png");
 				AIimgSrc.push(message_Path + "model/histoire/histoire.1024/texture_01.png");
@@ -1507,7 +1540,7 @@ int main() {
   }
 
   // 链接跳转
-  let newWindow = ''
+  let newWindow = 'false'
   if (newWindow === 'true') {
     let links = document.querySelectorAll('.post-body a')
     links.forEach(item => {
@@ -1572,8 +1605,8 @@ int main() {
           
         </div>
       </div>
-      <p class="reward-word"></p>
-      <p class="reward-tip"></p>
+      <p class="reward-word">扫码打赏，你说多少就多少</p>
+      <p class="reward-tip">打开微信扫一扫，即可进行扫码打赏哦</p>
     </div>
     <div class="bottom">
       
@@ -1780,6 +1813,1859 @@ int main() {
   </div>
 </body>
 
+<div class="search-mask" id="search_mask" style="display: none;">
+  <div class="search-box">
+    <div class="search-title">
+      <i class="fa fa-search"></i>
+      <div class="input-box">
+        <input id="search" type="text" class="language" data-lan="search" placeholder="搜索">
+      </div>
+      <i id="close" class="fa fa-times-circle"></i>
+    </div>
+    <div class="stat-box">
+      <span id="stat_count">0</span><span class="language" data-lan="stat">条相关条目，使用了</span><span id="stat_times">0</span><span class="language" data-lan="stat-time">毫秒</span>
+      <hr>
+    </div>
+    <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/linux-de-gu-shi/"" data-c="
+          &lt;h1 id=&#34;什么是linux&#34;&gt;什么是Linux&lt;/h1&gt;
+&lt;p&gt;Linux是一种自由和开放源码的类UNIX操作系统。该操作系统的内核由林纳斯·托瓦兹在1991年10月5日首次发布，在加上用户空间的应用程序之后，成为Linux操作系统。Linux也是自由软件和开放源代码软件发展中最著名的例子。只要遵循GNU 通用公共许可证（GPL），任何个人和机构都可以自由地使用Linux的所有底层源代码，也可以自由地修改和再发布。大多数Linux系统还包括像提供GUI的X Window之类的程序。除了一部分专家之外，大多数人都是直接使用Linux 发行版，而不是自己选择每一样组件或自行设置。&lt;/p&gt;
+&lt;p&gt;Linux严格来说是单指操作系统的内核，因操作系统中包含了许多用户图形接口和其他实用工具。如今Linux常用来指基于Linux的完整操作系统，内核则改以Linux内核称之。由于这些支持用户空间的系统工具和库主要由理查德·斯托曼于1983年发起的GNU计划提供，自由软件基金会提议将其组合系统命名为GNU/Linux，但Linux不属于GNU计划，这个名称并没有得到社群的一致认同。&lt;/p&gt;
+&lt;p&gt;Linux最初是作为支持英特尔x86架构的个人电脑的一个自由操作系统。当前Linux已经被移植到更多的计算机硬件平台，远远超出其他任何操作系统。Linux可以运行在服务器和其他大型平台之上，如大型计算机和超级计算机。世界上500个最快的超级计算机已100％运行Linux发行版或变种[9]。Linux也广泛应用在嵌入式系统上，如手机（Mobile Phone）、平板电脑（Tablet）、路由器（Router）、电视（TV）和电子游戏机等。在移动设备上广泛使用的Android操作系统就是创建在Linux内核之上。&lt;/p&gt;
+&lt;p&gt;通常情况下，Linux被打包成供个人计算机和服务器使用的Linux发行版，一些流行的主流Linux发布版，包括Debian（及其派生版本Ubuntu、Linux Mint）、Fedora（及其相关版本Red Hat Enterprise Linux、CentOS）和openSUSE等。Linux发行版包含Linux内核和支撑内核的实用程序和库，通常还带有大量可以满足各类需求的应用程序。个人计算机使用的Linux发行版通常包含X Window和一个相应的桌面环境，如GNOME或KDE。桌面Linux操作系统常用的应用程序，包括Firefox网页浏览器、LibreOffice办公软件、GIMP图像处理工具等。由于Linux是自由软件，任何人都可以创建一个符合自己需求的Linux发行版。&lt;br&gt;
+PS:因为Linux是个开源项目，因此有很多人去维护，衍生出很多版本以及各种开源免费软件，有些甚至比付费软件的功能还要强大&lt;/p&gt;
+&lt;h1 id=&#34;科普unix&#34;&gt;科普UNIX&lt;/h1&gt;
+&lt;p&gt;UNIX操作系统（英语：UNIX），是美国AT&amp;amp;T公司贝尔实验室于1969年完成的操作系统。最早由肯·汤普逊（Ken Thompson），丹尼斯·里奇（Dennis Ritchie），道格拉斯·麦克罗伊（Douglas McIlroy），和乔伊·欧桑纳于1969年在AT&amp;amp;T贝尔实验室开发。于1971年首次发布，最初是完全用汇编语言编写。后来，在1973年用一个重要的开拓性的方法，Unix被丹尼斯·里奇用编程语言C（内核和I/O例外）重新编写。高级语言编写的操作系统具有更佳的兼容性，能更容易地移植到不同的计算机平台。&lt;br&gt;
+MacOS就是一种UNIX操作系统&lt;/p&gt;
+&lt;h1 id=&#34;linux的崛起&#34;&gt;Linux的崛起&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我是你可怕的恶梦&lt;br&gt;
+------------Eric Raymond&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Eric Raymond，黑客，他写了一篇论文《大教堂与市集》，也写过一本书叫《unix编程艺术》。于是整个世界都改变了。&lt;br&gt;
+纪录片《Revolution OS》描述，一次开发者大会，他遇到一个微软工程师，看见衣服上Microsoft的标志便询问对方：“你为微软工作？”当那位西装革履的工程师带有嘲讽和鄙视看着这个衣着普通的黑客回复：“是啊，你呢？”Raymond送去了一个微笑：我是你们可怕的恶梦。。。&lt;br&gt;
+黑客是Microsoft的恶梦？不，不仅仅是，黑客是一切不自由的恶梦。电脑和网络，已经成为现代社会和文明不可或缺的产品。很多人电脑使用Microsoft的windows系统，而这些机器所访问的web页面。其背后的服务器系统却是Windows的死敌---Linux。相比Windows成为家喻户晓并家家都在使用的操作系统。Linux很少被普通人知道，但是这并不妨碍它的伟大。他们分别在桌面和服务器两个环境，各自称霸着世界。&lt;br&gt;
+谈到Linux的起源，这个故事平凡却扣人心弦。1991那年，对于芬兰人绝对是一个有意思的一年。世界上首次全球通对话在诺基亚的Radiolinja网络中完成，诺基亚征服世界的脚步已经无法遏制。&lt;br&gt;
+与此同时，阳光明媚的芬兰赫尔辛基大学的校园里，一个少年正好拥有了一台完全属于自己的电脑，不必再忍受学校机房漫长的等待。他当时对安德鲁·塔南鲍姆（Andrew Tanenbaum）的著作《操作系统：设计与实现》——一本Minix操作指南深深着迷。&lt;br&gt;
+由于AT&amp;amp;T对于Unix商业化，而后将Unix进行了闭源。Andrew所教授的课程《操作系统》却没有了“操作系统”。对此Andrew一咬牙，狠狠心，写出了一个兼容Unix的操作系统。人家就是厉害，你不给我使用，我自己写一个出来用。尽管Andrew的成果很简单，但是还是具备了Unix的基本功能，当然比较mini，因此命名为Minix。Minix作为Unix的变种，彼时的Minix正凭借低廉的价格和简易的操作在大学大行其道。&lt;br&gt;
+Minix由于过于短小精悍，只能运行这一种机器，其他机器没有驱动。Andrew的学生就写了好多好用驱动来扩展Minix。可是，教授Andrew却觉得自己的操作系统要保持纯洁，不能有其他的代码来源。于是学生们就很郁闷，其中就有个叫Linus的同学。&lt;br&gt;
+拥有自己的PC的Linus却不能将Minix运行在自己的电脑上。Linus也不得不走上了他无数前辈的道路，不让用，不给用，那就自己写一个操作系统来用。仅仅两个月后，一个“千疮百孔但却碰巧可以使用”的磁盘驱动程序和一个小到不能再小的文件系统就诞生了，这就是第0.01版的Linux。随后Linus将操作系统上传至FTP，并公布了全部源代码。在USENET讨论区，Linus阐述其初衷：在新操作系统中，“人们可以自己编写驱动程序，可以随意修改操作系统以适应不同需求，可以尝试在Minix上运行所有程序，这是Minix从未有过的美好一天。”&lt;br&gt;
+美好的日子渐渐来临，Unix生态还是老样子，在商业的争斗中裹足不前。Microsoft和Apple的争斗也逐渐明朗，Microsoft靠卖软件大发特发。这让一个黑客很不满。&lt;br&gt;
+理查德·斯托曼（Richard Stallman）登场，他认为所有软件都是人类智慧和思想的结晶。软件应该自由的让人们使用。1983年，Stallman发起了“GNU（GNU’s Not Unix的递归缩写）”计划，目的是创建一套完全自由的操作系统，以“重现软件界合作互助的团结精神”。他以“著佐权”（copyleft）标准为范本拟定了一份通用公用版权协议(General Public License，GPL)。与强调个人版权但限制自由传播的著作权（copyright）不同，GPL更强调公共版权和鼓励自由传播，它允许修改程序、复制软件和销售获利。但前提是公布修改后的全部源代码，必须保证自由思想的传递。GNU计划激发了软件界极大的热情，世界各地的软件奇才们纷纷参与其中。并且开发出包括文字编辑器Emacs、C语言编译器，gcc以及大部分UNIX系统程序库和工具在内的绝大多数软件，很多免费软件的水平甚至都已经超过了相应的付费版本。&lt;br&gt;
+可是问题又来了，GNU编写了很多自由免费的软件，可是这些免费软件却运行在不自由的Unix上，这真是一个巨大的讽刺。Stallman承诺大家要两年内重新写一个操作系统，可是五年过去了，依然看不清成功的那一天。&lt;br&gt;
+与前面很多故事一样，事情总是环环相扣，可是谁也不知道这环将会扣向哪一环。Stallman苦于没有操作系统，芬兰的那边，Linus只有一个操作系统内核而没有应用软件。&lt;br&gt;
+于是，他们在各自的领域奋斗多年之后，命运终于安排他们走到了一起，Linus率领Linux加盟Stallman的GNU计划，上帝说要有光，于是牛顿出生了；人类需要自由，于是Linux与GUN结婚。这一“联姻”堪称是软件界的天作之合。&lt;br&gt;
+1992年，在Linux Kernel平台上工作的开发者只有100位，平台中的核心代码只有几万行。如今，在平台上工作的开发者已经多达1000人，人员的背景也从最初的黑客扩散至更多的行业，平台中的核心代码则已经超过千万行。&lt;br&gt;
+1998年，全球前500台超级计算机中还只有1台运行Linux。今天在全球前500台超级计算机中，有413台选用Linux。这些计算机遍布世界各地的多个行业，共同主宰着这个智慧的地球。&lt;br&gt;
+大到航天科技，小到IC卡芯片，无不存在Linux的影子。在移动领域，Android来势汹汹，已经逾越IOS成为移动的王者，完成了对windows的完美复仇。&lt;br&gt;
+Linux“可自由扩散”并不等同于“缺乏支持”和“业余水平”，恰恰相反，正是起开发的政策，让无数天才黑客参与进来，这是自由的胜利。&lt;br&gt;
+就连商业软件公司也参与进来，这些公司技术雄厚又善于市场运作，开创了新的商业模式----销售服务而不是软件。使Linux从网络黑客和业余爱好者自娱自乐的工具，变成了一个具有全球影响力的软件帝国。&lt;br&gt;
+98年的奥斯卡颁奖典礼上，当卡梅隆手握“最佳导演奖”的小金人，模仿《泰坦尼克》中的男主角Jack发出“我是世界之王”的宣言时，全世界无不为之倾倒。影片中那被重新描绘过的“唯美”海难，使人们惊叹于卡氏的神奇。但完美的电影也使人们忽略了另一个伟大事实：电影史上崭新的技术时代悄然来临。而这一时代，是由Linux开启的。&lt;br&gt;
+从那时开始，梦工厂、迪斯尼、皮克斯等公司都逐渐将各自的工作平台转向Linux，无数伟大的银幕经典因此横空出世。从《魔戒》到《金刚》，从《哈利波特》到《霍比特人》，再从《指环王》到《阿凡达》，Linux几乎以一己之力缔造了无数人梦中的玄幻王国。也是从那时开始，Linux终将埋葬Microsoft就开始成为江湖中著名的传说之一。&lt;br&gt;
+悠悠苍天，传来一股由弱变强的声音----- 我是你可怕的恶梦！！！&lt;/p&gt;
+">Linux的故事</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/xin-bo-ke-tong-zhi/"" data-c="
+          &lt;p&gt;原来那个博客被我扔了，逃。&lt;/p&gt;
+">新博客通知</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/chtholly_tree/"" data-c="
+          &lt;h2 id=&#34;神仙数据结构-chtholly_treeodt&#34;&gt;神仙数据结构 Chtholly_tree（ODT）&lt;/h2&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;https://pic.gmh-home.cf/pic/%E7%8F%82%E6%9C%B5%E8%8E%894.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;我永远喜欢珂朵莉&#34;&gt;我永远喜欢珂朵莉&lt;/h3&gt;
+&lt;h3 id=&#34;chtholly_tree简介&#34;&gt;Chtholly_tree简介&lt;/h3&gt;
+&lt;p&gt;这是一种很暴力的数据结构（只是暴力，但不黄），基于&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mtext mathvariant=&#34;monospace&#34;&gt;STLset&lt;/mtext&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\texttt{STLset}&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:0.61111em;vertical-align:0em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord text&#34;&gt;&lt;span class=&#34;mord texttt&#34;&gt;STLset&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;
+主要用于骗分，可以很好地适应随机数据。&lt;br&gt;
+有时可以碾压分块和线段树。&lt;/p&gt;
+&lt;h4 id=&#34;代码集合&#34;&gt;代码集合&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;set&amp;gt;
+#include&amp;lt;vector&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;utility&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+
+#define ODT Chtholly_tree
+
+#define LL long long
+
+using namespace std;
+
+struct Chtholly_tree {
+	int ll,rr;
+	mutable LL val;
+	Chtholly_tree(int L,int R=-1,LL V=0): ll(L), rr(R), val(V) {}
+	bool operator &amp;lt; (const Chtholly_tree&amp;amp; tt)const {
+		return ll&amp;lt;tt.ll;
+	}
+};
+
+set&amp;lt;ODT&amp;gt; odt;
+set&amp;lt;ODT&amp;gt;::iterator split(int pos) {
+	set&amp;lt;ODT&amp;gt;::iterator it=odt.lower_bound(ODT(pos));
+	if (it!=odt.end()&amp;amp;&amp;amp;it-&amp;gt;ll==pos) return it;
+	--it;
+	ODT tmp=*it;
+	odt.erase(it);
+	odt.insert(ODT(tmp.ll,pos-1,tmp.val));
+	return odt.insert(ODT(pos, tmp.rr, tmp.val)).first;
+}
+void assign(int l,int r,LL val) {
+	set&amp;lt;ODT&amp;gt;::iterator itr=split(r+1), itl=split(l);
+	odt.erase(itl,itr);
+	odt.insert(ODT(l,r,val));
+}
+void add(int l,int r,LL val) {
+	set&amp;lt;ODT&amp;gt;::iterator itr=split(r+1),itl=split(l);
+	for(set&amp;lt;ODT&amp;gt;::iterator it=itl; it!=itr; it++) it-&amp;gt;val+=val;
+}
+LL sum(int l, int r) {
+	set&amp;lt;ODT&amp;gt;::iterator itr=split(r + 1),itl=split(l);
+	LL res=0;
+	for(set&amp;lt;ODT&amp;gt;::iterator it=itl; it!=itr;it++) res+=(it-&amp;gt;rr-it-&amp;gt;ll+1)*it-&amp;gt;val;
+	return res;
+}
+LL rank(int l, int r, int k){
+    vector&amp;lt;pair&amp;lt;LL, int&amp;gt; &amp;gt;vec(0);
+    set&amp;lt;ODT&amp;gt;::iterator itr=split(r+1),itl=split(l);
+    for(set&amp;lt;ODT&amp;gt;::iterator it=itl;it!=itr;it++)vec.push_back(make_pair(it-&amp;gt;val,it-&amp;gt;rr-it-&amp;gt;ll+1));
+    sort(vec.begin(),vec.end());
+    for (vector&amp;lt;pair&amp;lt;LL,int&amp;gt; &amp;gt;::iterator it=vec.begin();it!=vec.end();it++) if((k-=it-&amp;gt;second)&amp;lt;=0) return it-&amp;gt;first;
+    return -1; //note:if there are negative numbers, return another impossible number.
+}
+int main() {
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;例题&#34;&gt;例题：&lt;/h4&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.luogu.org/problemnew/show/CF896C&#34;&gt;CF896C Willem, Chtholly and Seniorious&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.luogu.org/problem/CF915E&#34;&gt;CF915E Physical Education Lessons&lt;/a&gt;&lt;br&gt;
+&lt;a href=&#34;https://www.luogu.org/problem/P2787&#34;&gt;P2787 语文1（chin1）- 理理思维&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;标程&#34;&gt;标程：&lt;/h4&gt;
+&lt;p&gt;CF915E&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;//by     G_M_H      2019 11 12
+//优化常数，将sum加到assign中，组成assign_new
+#include&amp;lt;set&amp;gt;
+#include&amp;lt;vector&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;utility&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+
+#define ODT Chtholly_tree
+
+#define LL long long
+
+using namespace std;
+
+struct Chtholly_tree {
+	int ll,rr;
+	mutable LL val;
+	Chtholly_tree(int L,int R=-1,LL V=0): ll(L), rr(R), val(V) {}
+	bool operator &amp;lt; (const Chtholly_tree&amp;amp; tt)const {
+		return ll&amp;lt;tt.ll;
+	}
+};
+
+set&amp;lt;ODT&amp;gt; odt;
+LL ans=0;
+set&amp;lt;ODT&amp;gt;::iterator split(int pos) {
+	set&amp;lt;ODT&amp;gt;::iterator it=odt.lower_bound(ODT(pos));
+	if (it!=odt.end()&amp;amp;&amp;amp;it-&amp;gt;ll==pos) return it;
+	--it;
+	ODT tmp=*it;
+	odt.erase(it);
+	odt.insert(ODT(tmp.ll,pos-1,tmp.val));
+	return odt.insert(ODT(pos, tmp.rr, tmp.val)).first;
+}
+void assign(int l,int r,LL val) {
+	set&amp;lt;ODT&amp;gt;::iterator itr=split(r+1), itl=split(l);
+	odt.erase(itl,itr);
+	odt.insert(ODT(l,r,val));
+}
+void assign_new(int l,int r,LL val) {
+	set&amp;lt;ODT&amp;gt;::iterator itr=split(r+1), itl=split(l);
+	for(set&amp;lt;ODT&amp;gt;::iterator it=itl;it!=itr;it++) ans-=it-&amp;gt;val*(it-&amp;gt;rr-it-&amp;gt;ll+1);
+	odt.erase(itl,itr);
+	odt.insert(ODT(l,r,val));
+	ans+=val*(r-l+1);
+}
+void add(int l,int r,LL val) {
+	set&amp;lt;ODT&amp;gt;::iterator itr=split(r+1),itl=split(l);
+	for(set&amp;lt;ODT&amp;gt;::iterator it=itl; it!=itr; it++) it-&amp;gt;val+=val;
+}
+LL sum(int l,int r) {
+	set&amp;lt;ODT&amp;gt;::iterator itr=split(r+1),itl=split(l);
+	LL res=0;
+	for(set&amp;lt;ODT&amp;gt;::iterator it=itl; it!=itr;it++) res+=(it-&amp;gt;rr-it-&amp;gt;ll+1)*it-&amp;gt;val;
+	return res;
+}
+LL rank(int l, int r, int k){
+    vector&amp;lt;pair&amp;lt;LL, int&amp;gt; &amp;gt;vec(0);
+    set&amp;lt;ODT&amp;gt;::iterator itr=split(r+1),itl=split(l);
+    for(set&amp;lt;ODT&amp;gt;::iterator it=itl;it!=itr;it++)vec.push_back(make_pair(it-&amp;gt;val,it-&amp;gt;rr-it-&amp;gt;ll+1));
+    sort(vec.begin(),vec.end());
+    for (vector&amp;lt;pair&amp;lt;LL,int&amp;gt; &amp;gt;::iterator it=vec.begin();it!=vec.end();it++) if((k-=it-&amp;gt;second)&amp;lt;=0) return it-&amp;gt;first;
+    return -1; //note:if there are negative numbers, return another impossible number.
+}
+int n,m,l,r,op;
+int main() {
+	scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;n,&amp;amp;m);
+	odt.insert(ODT(1,n,1));
+	ans=n;
+	while(m--) {
+		scanf(&amp;quot;%d%d%d&amp;quot;,&amp;amp;l,&amp;amp;r,&amp;amp;op);
+		if(op==1) assign_new(l,r,0);
+		else assign_new(l,r,1);
+		printf(&amp;quot;%d\n&amp;quot;,ans);
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+"> Chtholly_tree</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-10-25-csp爆炸记.markd/"" data-c="
+          &lt;h2 id=&#34;资料下载&#34;&gt;资料下载&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;/downloads/%E6%8F%90%E9%AB%98%E7%BB%84C++%EF%BC%88CSP2019-senior-C++-A%EF%BC%89.pdf&#34;&gt;试题&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;/downloads/CSP2019-senior-%E5%8F%82%E8%80%83%E7%AD%94%E6%A1%88-A.docx&#34;&gt;答案&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;谨以此纪念我的oi生涯。&lt;/p&gt;
+&lt;h2 id=&#34;day0&#34;&gt;day0&lt;/h2&gt;
+&lt;p&gt;晚上XY发表重要讲话，保送名额一个都没有。&lt;s&gt;预示要凉&lt;/s&gt;&lt;/p&gt;
+&lt;h2 id=&#34;day1&#34;&gt;day1&lt;/h2&gt;
+&lt;p&gt;早晨6:00起床，本以为在家会睡得好一点&lt;s&gt;确实好一点，在学校会有一堆延迟熄灯的人。。。&lt;/s&gt;，然而还是头晕。&lt;br&gt;
+准时到校，坐校车，我们被分到和西溪高三一起坐，我右前方是zzy和zrf，%%%，只见他们在打雀魂。。。果然是队爷、稳过。&lt;/p&gt;
+&lt;p&gt;大概9:00不到到了浙江工商大学。&lt;/p&gt;
+&lt;p&gt;9:30开始，不仅手机被收了，手表也被收了，看一眼试卷，40道选择题，除了最后一道博弈论，似乎都是SB题。开始做，很顺畅，写完两道阅读程序，感觉第三道有点毒瘤，先做完善程序，第一道拓扑排序，SB题，第二道状压博弈论，大概理解一下各种状态，瞎蒙一下，大概错个两道。做完后，悄悄的把答案搬运到准考证后面。11:30离场，监考收试卷收了老半天。&lt;/p&gt;
+&lt;p&gt;考完和wxh~~(不是王修涵)&lt;s&gt;讨论了一下，感觉要凉&lt;/s&gt;预示要凉~~，无路径压缩的并查集的时间复杂度想的太多，cin无法读空串。不管，反正还有86分；&lt;/p&gt;
+&lt;p&gt;晚上标准答案一出，和试题对比，应该有71.5~~(疯狂暗示填涂出错)~~。&lt;/p&gt;
+&lt;h2 id=&#34;day2&#34;&gt;day2&lt;/h2&gt;
+&lt;p&gt;下午回校，班级集体过生日，隔壁班的人过来唱《凉凉》，感觉我要凉。。。&lt;/p&gt;
+&lt;p&gt;晚上考物理啥都不会，下周还要期中考。&lt;/p&gt;
+&lt;h2 id=&#34;day3&#34;&gt;day3&lt;/h2&gt;
+&lt;p&gt;上了，一天课，晚上不敢去机房，生怕凉凉。。&lt;/p&gt;
+&lt;h2 id=&#34;day4&#34;&gt;day4&lt;/h2&gt;
+&lt;p&gt;上课&lt;/p&gt;
+&lt;h2 id=&#34;day5&#34;&gt;day5&lt;/h2&gt;
+&lt;p&gt;晚上溜去机房，教练让我好好准备期中考。洛谷上表示ZJ分数线可能会有79.5。&lt;/p&gt;
+&lt;h2 id=&#34;day6&#34;&gt;day6&lt;/h2&gt;
+&lt;p&gt;上课，等待。&lt;/p&gt;
+&lt;h2 id=&#34;day7&#34;&gt;day7&lt;/h2&gt;
+&lt;p&gt;分数出来62.5,同年级倒一，退役。。。。&lt;/p&gt;
+&lt;h2 id=&#34;退役小结&#34;&gt;退役小结&lt;/h2&gt;
+&lt;p&gt;经历三年初赛没过，一方面&lt;code&gt;此生无悔入OI，但悔身为浙江人&lt;/code&gt;，另一方面也是自己对初赛不够重视，客观方面确实有点发烧。&lt;/p&gt;
+&lt;p&gt;但我绝不后悔，&lt;/p&gt;
+&lt;p&gt;在以后的日子里，我会好好学习文化课，准备选考和高考，学习之前没学的数据结构，多打codeforces，为以后的ACM做准备，至于明年的CSP看情况吧。true&lt;/p&gt;
+">CSP2019爆零暨退役游记</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-10-11-排序总结.markd/"" data-c="
+          &lt;h2 id=&#34;排序大法总结&#34;&gt;排序大法总结&lt;/h2&gt;
+&lt;p&gt;这里的排序都是一些函数调用,默认为int类型,从小到大,第一个参数为头指针,第二个为数组长度.&lt;/p&gt;
+&lt;h3 id=&#34;直接选择排序&#34;&gt;直接选择排序&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic.gmh-home.cf/pic/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.gif&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+时间复杂度为 &lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(n^{2})&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.064108em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141079999999999em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;
+是不稳定排序.&lt;/p&gt;
+&lt;h4 id=&#34;思路&#34;&gt;思路:&lt;/h4&gt;
+&lt;p&gt;每次选出待排区间的最值,放在第一个.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void selection_sort(int num[],int len){
+	int minpos;
+	for(register int i=0;i&amp;lt;len;i++){
+		minpos=i;
+		for(register int j=i;j&amp;lt;len;j++){
+			if(num[minpos]&amp;gt;num[j]) minpos=j;
+		}
+		swap(num[minpos],num[i]);
+	}
+	return ;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;冒泡排序&#34;&gt;冒泡排序&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic.gmh-home.cf/pic/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.gif&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+时间复杂度在最坏以及平均情况下下为&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(n^{2})&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.064108em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141079999999999em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，最好情况下为&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(n)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，是稳定排序.&lt;/p&gt;
+&lt;h4 id=&#34;思路-2&#34;&gt;思路:&lt;/h4&gt;
+&lt;p&gt;不断冒泡&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void bubble_sort(int num[],int len){
+	for(register int i=0;i&amp;lt;len;i++){
+		for(register int j=0;j&amp;lt;len-i-1;j++){
+			if(num[j]&amp;gt;num[j+1]) swap(num[j],num[j+1]);
+		}
+	}
+	return ;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;直接插入排序&#34;&gt;直接插入排序&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic.gmh-home.cf/pic/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.gif&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+平均时间复杂度为&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(n^2)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.064108em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141079999999999em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void insert_sort(int num[],int len) {
+	int v,j;
+	for(register int i=1;i&amp;lt;len;i++) {
+		v=num[i];
+		j=i-1;
+		while(j&amp;gt;=0&amp;amp;&amp;amp;v&amp;lt;num[j]) {
+			num[j+1]=num[j];
+			j=j-1;
+		}
+		num[j+1]=v;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;希尔排序&#34;&gt;希尔排序&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic.gmh-home.cf/pic/%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F.gif&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+时间复杂度在平均情况下为&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mn&gt;1.3&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(n^{1.3})&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.064108em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141079999999999em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;mord mtight&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;mord mtight&#34;&gt;3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，在最好情况下为&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(n)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，在最坏情况下为&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(n^{2})&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.064108em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141079999999999em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，是不稳定排序&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void shell_sort(int num[],int len) {
+	int gap=len;
+	while(gap&amp;gt;1) {
+		gap=gap/3+1;
+		for(register int i=gap; i&amp;lt;len; i++) {
+			int temp=num[i];
+			int pos=i-gap;
+			while(pos&amp;gt;=0) {
+				if(temp&amp;lt;num[pos]) swap(num[pos],num[pos+gap]);
+				pos-=gap;
+			}
+		}
+	}
+	return ;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;快速排序&#34;&gt;快速排序&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic.gmh-home.cf/pic/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.gif&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+时间平均复杂度为&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(nlogn)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，但是在极端情况下会退化&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msup&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(n^{2})&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1.064108em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;msupsub&#34;&gt;&lt;span class=&#34;vlist-t&#34;&gt;&lt;span class=&#34;vlist-r&#34;&gt;&lt;span class=&#34;vlist&#34; style=&#34;height:0.8141079999999999em;&#34;&gt;&lt;span style=&#34;top:-3.063em;margin-right:0.05em;&#34;&gt;&lt;span class=&#34;pstrut&#34; style=&#34;height:2.7em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;sizing reset-size6 size3 mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;&lt;span class=&#34;mord mtight&#34;&gt;2&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，是不稳定排序。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void quick_sort(int num[],int len) {
+	int i=0,j=len-1;
+	int k=num[0];
+	if(i&amp;gt;=j) return;
+	while(i&amp;lt;j) {
+		while((i&amp;lt;j)&amp;amp;&amp;amp;num[j]&amp;gt;=k) j--;
+		swap(num[i],num[j]);
+		while((i&amp;lt;j)&amp;amp;&amp;amp;(num[i]&amp;lt;k)) i++;
+		swap(num[i],num[j]);
+	}
+	quick_sort(num,i-1);
+	quick_sort(num+i+1,len-i-1);
+	return;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;归并排序&#34;&gt;归并排序&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic.gmh-home.cf/pic/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F.gif&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+时间复杂度为&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(nlogn)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，是稳定排序。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void merge_sort(int num[],int len){
+	if(len==1) return ;
+	merge_sort(num,len&amp;gt;&amp;gt;1);
+	merge_sort(num+(len&amp;gt;&amp;gt;1),len-(len&amp;gt;&amp;gt;1));
+	int i=0,j=len&amp;gt;&amp;gt;1,pos=0,fuzhu[len];
+	while(i&amp;lt;(len&amp;gt;&amp;gt;1)&amp;amp;&amp;amp;j&amp;lt;len) fuzhu[pos++]=(num[i]&amp;lt;num[j])? num[i++]:num[j++];
+	while(i&amp;lt;(len&amp;gt;&amp;gt;1)) fuzhu[pos++]=num[i++];
+	while(j&amp;lt;len) fuzhu[pos++]=num[j++];
+	for(register int p=0;p&amp;lt;len;p++) num[p]=fuzhu[p];
+	return ;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;堆排序&#34;&gt;堆排序&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&#34;https://pic.gmh-home.cf/pic/%E5%A0%86%E6%8E%92%E5%BA%8F.gif&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+时间复杂度为&lt;span class=&#34;katex&#34;&gt;&lt;span class=&#34;katex-mathml&#34;&gt;&lt;math&gt;&lt;semantics&gt;&lt;mrow&gt;&lt;mi mathvariant=&#34;normal&#34;&gt;Θ&lt;/mi&gt;&lt;mo&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mi&gt;l&lt;/mi&gt;&lt;mi&gt;o&lt;/mi&gt;&lt;mi&gt;g&lt;/mi&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;)&lt;/mo&gt;&lt;/mrow&gt;&lt;annotation encoding=&#34;application/x-tex&#34;&gt;\Theta(nlogn)&lt;/annotation&gt;&lt;/semantics&gt;&lt;/math&gt;&lt;/span&gt;&lt;span class=&#34;katex-html&#34; aria-hidden=&#34;true&#34;&gt;&lt;span class=&#34;base&#34;&gt;&lt;span class=&#34;strut&#34; style=&#34;height:1em;vertical-align:-0.25em;&#34;&gt;&lt;/span&gt;&lt;span class=&#34;mord&#34;&gt;Θ&lt;/span&gt;&lt;span class=&#34;mopen&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.01968em;&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;o&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34; style=&#34;margin-right:0.03588em;&#34;&gt;g&lt;/span&gt;&lt;span class=&#34;mord mathdefault&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;mclose&#34;&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;，是不稳定排序。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void heap_sort(int num[],int len) {
+	int mid[len+1];
+	for(register int i=1,pos; i&amp;lt;=len; i++) {
+		mid[i]=num[i-1];
+		pos=i;
+		while(pos!=1) {
+			if(mid[pos]&amp;lt;mid[pos&amp;gt;&amp;gt;1]) swap(mid[pos],mid[pos&amp;gt;&amp;gt;1]);
+			else break;
+			pos&amp;gt;&amp;gt;=1;
+		}
+	}
+	for(register int i=1,pos,nex; i&amp;lt;=len; i++) {
+		num[i-1]=mid[1];
+		mid[1]=mid[len-i+1];
+		pos=1;
+		while(pos&amp;lt;&amp;lt;1&amp;lt;=len-i) {
+			nex=pos&amp;lt;&amp;lt;1;
+			if((mid[nex]&amp;gt;mid[nex|1]&amp;amp;&amp;amp;nex&amp;lt;len-i)) nex++;
+			if(mid[pos]&amp;lt;=mid[nex]) break;
+			swap(mid[pos],mid[nex]);
+			pos=nex;
+		}
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+">排序总结</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-08-28-题解-洛谷-P2365-任务安排.markd/"" data-c="
+          &lt;h2 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;https://www.luogu.org/problem/P2365&#34;&gt;题目链接&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;题目描述&#34;&gt;题目描述&lt;/h2&gt;
+&lt;p&gt;N个任务排成一个序列在一台机器上等待完成（顺序不得改变），这N个任务被分成若干批，每批包含相邻的若干任务。从时刻0开始，这些任务被分批加工，第i个任务单独完成所需的时间是Ti。在每批任务开始前，机器需要启动时间S，而完成这批任务所需的时间是各个任务需要时间的总和（同一批任务将在同一时刻完成）。每个任务的费用是它的完成时刻乘以一个费用系数Fi。请确定一个分组方案，使得总费用最小。&lt;/p&gt;
+&lt;p&gt;例如：S=1；T={1,3,4,2,1}；F={3,2,3,3,4}。如果分组方案是{1,2}、{3}、{4,5}，则完成时间分别为{5,5,10,14,14}，费用C={15,10,30,42,56}，总费用就是153。&lt;/p&gt;
+&lt;h2 id=&#34;输入格式&#34;&gt;输入格式&lt;/h2&gt;
+&lt;p&gt;第一行是N(1&amp;lt;=N&amp;lt;=5000)。&lt;/p&gt;
+&lt;p&gt;第二行是S(0&amp;lt;=S&amp;lt;=50)。&lt;/p&gt;
+&lt;p&gt;下面N行每行有一对数，分别为Ti和Fi，均为不大于100的正整数，表示第i个任务单独完成所需的时间是Ti及其费用系数Fi。&lt;/p&gt;
+&lt;h2 id=&#34;输出格式&#34;&gt;输出格式&lt;/h2&gt;
+&lt;p&gt;一个数，最小的总费用。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出样例&#34;&gt;输入输出样例&lt;/h2&gt;
+&lt;h3 id=&#34;输入&#34;&gt;输入&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;5
+1
+1 3
+3 2
+4 3
+2 3
+1 4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;输出&#34;&gt;输出&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;153
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#define LL long long
+#define ULL unsigned LL
+using namespace std;
+template&amp;lt;class T&amp;gt;
+inline void read(T&amp;amp; p) {
+	char c;
+	p=0;
+	bool f=0;
+	for(c=getchar(); c&amp;lt;&#39;0&#39;||c&amp;gt;&#39;9&#39;; c=getchar())if(c==&#39;-&#39;)f=true;
+	for(; c&amp;gt;=&#39;0&#39;&amp;amp;&amp;amp;c&amp;lt;=&#39;9&#39;; c=getchar()) p=(p&amp;lt;&amp;lt;3)+(p&amp;lt;&amp;lt;1)+c-&#39;0&#39;;
+	if(f)p=-p;
+}
+template&amp;lt;class T,class... Args&amp;gt;
+inline void read(T&amp;amp; x,Args&amp;amp;... args) {
+	read(x);
+	read(args...);
+}
+template&amp;lt;class T&amp;gt;
+inline void write(T x) {
+	if(x&amp;lt;0) putchar(&#39;-&#39;),x=-x;
+	if(x&amp;gt;9) write(x/10);
+	putchar(&#39;0&#39;+x%10);
+}
+template&amp;lt;class T,class... Args&amp;gt;
+inline void write(T x,Args... args) {
+	write(x);
+	putchar(&#39; &#39;);
+	write(args...);
+}
+template&amp;lt;class... Args&amp;gt;
+inline void writeln(Args... args) {
+	write(args...);
+	putchar(&#39;\n&#39;);
+}
+template&amp;lt;class T&amp;gt;
+inline T my_min(T a,T b){
+	return (a&amp;lt;b)? a:b;
+}
+const int N=5001;
+LL dp[N],sumt[N],sumc[N];
+int n,s;
+int main(){
+	read(n,s);
+	for(register int i=1,t,c;i&amp;lt;=n;i++){
+		read(t,c);
+		sumt[i]=sumt[i-1]+t;
+		sumc[i]=sumc[i-1]+c;
+		dp[i]=0x3f3f3f3f;
+	}
+	dp[0]=0;
+	for(register int i=1;i&amp;lt;=n;i++){
+		for(register int j=0;j&amp;lt;i;j++){
+			dp[i]=my_min(dp[i],dp[j]+sumt[i]*(sumc[i]-sumc[j])+s*(sumc[n]-sumc[j]));
+		}
+	}
+	write(dp[n]);
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 洛谷 P2365 任务安排&&斜率优化学习</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-08-14-题解-codeforces-CF1200C.markd/"" data-c="
+          &lt;h2 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;http://codeforces.com/problemset/problem/1200/C&#34;&gt;题目链接&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+&lt;h2 id=&#34;c-round-corridor&#34;&gt;C. Round Corridor&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;time limit per test1 second&lt;/li&gt;
+&lt;li&gt;memory limit per test256 megabytes&lt;/li&gt;
+&lt;li&gt;inputstandard input&lt;/li&gt;
+&lt;li&gt;outputstandard output&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Amugae is in a very large round corridor. The corridor consists of two areas. The inner area is equally divided by n sectors, and the outer area is equally divided by m sectors. A wall exists between each pair of sectors of same area (inner or outer), but there is no wall between the inner area and the outer area. A wall always exists at the 12 o&#39;clock position.&lt;/p&gt;
+&lt;figure data-type=&#34;image&#34; tabindex=&#34;1&#34;&gt;&lt;img src=&#34;http://codeforces.com/predownloaded/9e/12/9e12655e7ea9e6bff7c9bb3bb0e768a502ecba75.png&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;/figure&gt;
+&lt;p&gt;The inner area&#39;s sectors are denoted as (1,1),(1,2),…,(1,n) in clockwise direction. The outer area&#39;s sectors are denoted as (2,1),(2,2),…,(2,m) in the same manner. For a clear understanding, see the example image above.&lt;/p&gt;
+&lt;p&gt;Amugae wants to know if he can move from one sector to another sector. He has q questions.&lt;/p&gt;
+&lt;p&gt;For each question, check if he can move between two given sectors.&lt;/p&gt;
+&lt;h3 id=&#34;input&#34;&gt;Input&lt;/h3&gt;
+&lt;p&gt;The first line contains three integers n, m and q (1≤n,m≤1018, 1≤q≤104) — the number of sectors in the inner area, the number of sectors in the outer area and the number of questions.&lt;/p&gt;
+&lt;p&gt;Each of the next q lines contains four integers sx, sy, ex, ey (1≤sx,ex≤2; if sx=1, then 1≤sy≤n, otherwise 1≤sy≤m; constraints on ey are similar). Amague wants to know if it is possible to move from sector (sx,sy) to sector (ex,ey).&lt;/p&gt;
+&lt;h3 id=&#34;output&#34;&gt;Output&lt;/h3&gt;
+&lt;p&gt;For each question, print &amp;quot;YES&amp;quot; if Amugae can move from (sx,sy) to (ex,ey), and &amp;quot;NO&amp;quot; otherwise.&lt;/p&gt;
+&lt;p&gt;You can print each letter in any case (upper or lower).&lt;/p&gt;
+&lt;h3 id=&#34;example&#34;&gt;Example&lt;/h3&gt;
+&lt;h4 id=&#34;input-2&#34;&gt;input&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;4 6 3
+1 1 2 3
+2 6 1 2
+2 6 2 4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;output-2&#34;&gt;output&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;YES
+NO
+YES
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;note&#34;&gt;Note&lt;/h3&gt;
+&lt;p&gt;Example is shown on the picture in the statement.&lt;/p&gt;
+&lt;h2 id=&#34;做题经历&#34;&gt;做题经历&lt;/h2&gt;
+&lt;p&gt;我太蒟了，纯属瞎搞。&lt;/p&gt;
+&lt;h2 id=&#34;思路分析&#34;&gt;思路分析&lt;/h2&gt;
+&lt;p&gt;这是一道数学题；&lt;/p&gt;
+&lt;p&gt;用gcd求出有几个联通的区间，在求出起点和终点所在的区间。&lt;br&gt;
+判断起点和终点是否在同一个区间。&lt;/p&gt;
+&lt;h2 id=&#34;ac代码&#34;&gt;AC代码&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#define LL long long
+using namespace std;
+LL m,n,q;
+LL gcd(LL a,LL b) {
+	LL r;
+	while(b) {r=a%b;a=b;b=r;}
+	return a;
+}
+int main() {
+	scanf(&amp;quot;%lld%lld%lld&amp;quot;,&amp;amp;m,&amp;amp;n,&amp;amp;q);
+	LL br=gcd(m,n);
+	while(q--) {
+		LL f1,f2,t1,t2,q1,q2;
+		scanf(&amp;quot;%lld%lld%lld%lld&amp;quot;,&amp;amp;f1,&amp;amp;f2,&amp;amp;t1,&amp;amp;t2);
+		q1=(f1==1)? ((f2-1)/(m/br)):((f2-1)/(n/br));
+		q2=(t1==1)? ((t2-1)/(m/br)):((t2-1)/(n/br));
+		if(q1==q2)printf(&amp;quot;YES\n&amp;quot;);
+		else printf(&amp;quot;NO\n&amp;quot;);
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 codeforces CF1200C Round Corridor</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-08-11-题解-洛谷-P2596-[ZJOI2006]书架.markd/"" data-c="
+          &lt;h2 id=&#34;用vectoro2水过&#34;&gt;用vector+O2水过。。。&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;// luogu-judger-enable-o2
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;vector&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+using namespace std;
+vector&amp;lt;int&amp;gt; v;
+template&amp;lt;typename T&amp;gt;
+inline void read(T&amp;amp; p) {
+	char c;
+	p=0;
+	bool f=0;
+	for(c=getchar(); c&amp;lt;&#39;0&#39;||c&amp;gt;&#39;9&#39;; c=getchar())if(c==&#39;-&#39;)f=true;
+	for(; c&amp;gt;=&#39;0&#39;&amp;amp;&amp;amp;c&amp;lt;=&#39;9&#39;; c=getchar()) p=(p&amp;lt;&amp;lt;3)+(p&amp;lt;&amp;lt;1)+c-&#39;0&#39;;
+	if(f)p=-p;
+}
+template&amp;lt;typename T,typename... Args&amp;gt;
+inline void read(T&amp;amp; x,Args&amp;amp;... args) {
+	read(x);
+	read(args...);
+}
+int n,m;
+int main() {
+	read(n,m);
+	for(register int i=1,mid; i&amp;lt;=n; i++) {
+		read(mid);
+		v.push_back(mid);
+	}
+	char op[100];
+	for(register int i=1,x,y,tmp; i&amp;lt;=m; i++) {
+		scanf(&amp;quot;%s&amp;quot;,op);
+		if(op[0]==&#39;T&#39;) {
+			read(x);
+			v.erase(find(v.begin(),v.end(),x));
+			v.insert(v.begin(),x);
+		} else if(op[0]==&#39;B&#39;) {
+			read(x);
+			v.erase(find(v.begin(),v.end(),x));
+			v.insert(v.end(),x);
+		} else if(op[0]==&#39;I&#39;) {
+			read(x,y);
+			if(y!=0) {
+				tmp=find(v.begin(),v.end(),x)-v.begin();
+				v.erase(tmp+v.begin());
+				tmp+=y;
+				v.insert(v.begin()+tmp,x);
+			}
+		} else if(op[0]==&#39;A&#39;) {
+			read(x);
+			tmp=find(v.begin(),v.end(),x)-v.begin();
+			printf(&amp;quot;%d\n&amp;quot;,tmp);
+		} else if(op[0]==&#39;Q&#39;) {
+			read(x);
+			printf(&amp;quot;%d\n&amp;quot;,v[x-1]);
+		}
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 洛谷 P2596 [ZJOI2006]书架</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196B.markd/"" data-c="
+          &lt;h2 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;http://codeforces.com/problemset/problem/1196/B&#34;&gt;题目链接&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+&lt;h2 id=&#34;b-odd-sum-segments&#34;&gt;B. Odd Sum Segments&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;time limit per test3 seconds&lt;/li&gt;
+&lt;li&gt;memory limit per test256 megabytes&lt;/li&gt;
+&lt;li&gt;inputstandard input&lt;/li&gt;
+&lt;li&gt;outputstandard output&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;You are given an array a consisting of n integers a1,a2,…,an. You want to split it into exactly k non-empty non-intersecting subsegments such that each subsegment has odd sum (i. e. for each subsegment, the sum of all elements that belong to this subsegment is odd). It is impossible to rearrange (shuffle) the elements of a given array. Each of the n elements of the array a must belong to exactly one of the k subsegments.&lt;/p&gt;
+&lt;p&gt;Let&#39;s see some examples of dividing the array of length 5 into 3 subsegments (not necessarily with odd sums): [1,2,3,4,5] is the initial array, then all possible ways to divide it into 3 non-empty non-intersecting subsegments are described below:&lt;/p&gt;
+&lt;p&gt;[1],[2],[3,4,5];&lt;br&gt;
+[1],[2,3],[4,5];&lt;br&gt;
+[1],[2,3,4],[5];&lt;br&gt;
+[1,2],[3],[4,5];&lt;br&gt;
+[1,2],[3,4],[5];&lt;br&gt;
+[1,2,3],[4],[5].&lt;br&gt;
+Of course, it can be impossible to divide the initial array into exactly k subsegments in such a way that each of them will have odd sum of elements. In this case print &amp;quot;NO&amp;quot;. Otherwise, print &amp;quot;YES&amp;quot; and any possible division of the array. See the output format for the detailed explanation.&lt;/p&gt;
+&lt;p&gt;You have to answer q independent queries.&lt;/p&gt;
+&lt;h3 id=&#34;input&#34;&gt;Input&lt;/h3&gt;
+&lt;p&gt;The first line contains one integer q (1≤q≤2⋅105) — the number of queries. Then q queries follow.&lt;/p&gt;
+&lt;p&gt;The first line of the query contains two integers n and k (1≤k≤n≤2⋅105) — the number of elements in the array and the number of subsegments, respectively.&lt;/p&gt;
+&lt;p&gt;The second line of the query contains n integers a1,a2,…,an (1≤ai≤109), where ai is the i-th element of a.&lt;/p&gt;
+&lt;p&gt;It is guaranteed that the sum of n over all queries does not exceed 2⋅105 (∑n≤2⋅105).&lt;/p&gt;
+&lt;h3 id=&#34;output&#34;&gt;Output&lt;/h3&gt;
+&lt;p&gt;For each query, print the answer to it. If it is impossible to divide the initial array into exactly k subsegments in such a way that each of them will have odd sum of elements, print &amp;quot;NO&amp;quot; in the first line. Otherwise, print &amp;quot;YES&amp;quot; in the first line and any possible division of the array in the second line. The division can be represented as k integers r1, r2, ..., rk such that 1≤r1&amp;lt;r2&amp;lt;⋯&amp;lt;rk=n, where rj is the right border of the j-th segment (the index of the last element that belongs to the j-th segment), so the array is divided into subsegments [1;r1],[r1+1;r2],[r2+1,r3],…,[rk−1+1,n]. Note that rk is always n but you should print it anyway.&lt;/p&gt;
+&lt;h3 id=&#34;example&#34;&gt;Example&lt;/h3&gt;
+&lt;h4 id=&#34;input-2&#34;&gt;input&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;3
+5 3
+7 18 3 14 1
+5 4
+1 2 3 4 5
+6 2
+1 2 8 4 10 2
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;output-2&#34;&gt;output&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;YES
+1 3 5
+NO
+NO
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;分析及题解&#34;&gt;分析及题解&lt;/h2&gt;
+&lt;h3 id=&#34;做题经历&#34;&gt;做题经历&lt;/h3&gt;
+&lt;p&gt;第一眼看到题目，爆搜？？？！！！&lt;br&gt;
+第二眼看到题目，这是到大水题。&lt;/p&gt;
+&lt;h3 id=&#34;题目分析&#34;&gt;题目分析&lt;/h3&gt;
+&lt;p&gt;奇数+奇数=偶数；&lt;br&gt;
+奇数+偶数=奇数；&lt;/p&gt;
+&lt;p&gt;既然是分组，使每组的和为奇数，那么就和偶数没什么关系了，只要统计奇数就行了。&lt;/p&gt;
+&lt;p&gt;先统计奇数的个数，如果奇数的个数小于k，那么直接输出NO。&lt;br&gt;
+如果奇数的个数大于k，不妨把最后两个奇数合并成偶数（在同一组里）直到奇数的个数等于k，输出YES和解，否则也输出NO。&lt;/p&gt;
+&lt;p&gt;关于输出解，输出前k-1个奇数的位置，和n。&lt;/p&gt;
+&lt;h3 id=&#34;代码附上&#34;&gt;代码附上&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/*by G_M_H*/
+#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;vector&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;utility&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#define LL long long
+using namespace std;
+int line[200005];
+int n,k;
+int main() {
+	int q;
+	scanf(&amp;quot;%d&amp;quot;,&amp;amp;q);
+	while(q--){
+		scanf(&amp;quot;%d%d&amp;quot;,&amp;amp;n,&amp;amp;k);
+		int ans=0;
+		for(register int i=1;i&amp;lt;=n;i++){
+			scanf(&amp;quot;%d&amp;quot;,&amp;amp;line[i]);
+			if(line[i]%2) ans++;
+		}
+		if((ans&amp;lt;k)||(ans-k)%2){
+			printf(&amp;quot;NO\n&amp;quot;);
+		}else{
+			printf(&amp;quot;YES\n&amp;quot;);
+			int pos=1;
+			while(k&amp;gt;1){
+				if(line[pos]%2){
+					printf(&amp;quot;%d &amp;quot;,pos);
+					k--;
+				}
+				pos++;
+			}
+			printf(&amp;quot;%d\n&amp;quot;,n);
+		}
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 codeforces CF1196B Odd Sum Segments</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-07-25-题解-codeforces-CF1196A.markd/"" data-c="
+          &lt;h2 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;http://codeforces.com/problemset/problem/1196/A&#34;&gt;题目链接&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;题目&#34;&gt;题目&lt;/h2&gt;
+&lt;h2 id=&#34;a-three-piles-of-candies&#34;&gt;A. Three Piles of Candies&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;time limit per test1 second&lt;/li&gt;
+&lt;li&gt;memory limit per test256 megabytes&lt;/li&gt;
+&lt;li&gt;inputstandard input&lt;/li&gt;
+&lt;li&gt;outputstandard output&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Alice and Bob have received three big piles of candies as a gift. Now they want to divide these candies as fair as possible. To do this, Alice takes one pile of candies, then Bob takes one of the other two piles. The last pile is split between Alice and Bob as they want: for example, it is possible that Alice takes the whole pile, and Bob gets nothing from it.&lt;/p&gt;
+&lt;p&gt;After taking the candies from the piles, if Alice has more candies than Bob, she discards some candies so that the number of candies she has is equal to the number of candies Bob has. Of course, Bob does the same if he has more candies.&lt;/p&gt;
+&lt;p&gt;Alice and Bob want to have as many candies as possible, and they plan the process of dividing candies accordingly. Please calculate the maximum number of candies Alice can have after this division process (of course, Bob will have the same number of candies).&lt;/p&gt;
+&lt;p&gt;You have to answer q independent queries.&lt;/p&gt;
+&lt;p&gt;Let&#39;s see the following example: [1,3,4]. Then Alice can choose the third pile, Bob can take the second pile, and then the only candy from the first pile goes to Bob — then Alice has 4 candies, and Bob has 4 candies.&lt;/p&gt;
+&lt;p&gt;Another example is [1,10,100]. Then Alice can choose the second pile, Bob can choose the first pile, and candies from the third pile can be divided in such a way that Bob takes 54 candies, and Alice takes 46 candies. Now Bob has 55 candies, and Alice has 56 candies, so she has to discard one candy — and after that, she has 55 candies too.&lt;/p&gt;
+&lt;h3 id=&#34;input&#34;&gt;Input&lt;/h3&gt;
+&lt;p&gt;The first line of the input contains one integer q (1≤q≤1000) — the number of queries. Then q queries follow.&lt;/p&gt;
+&lt;p&gt;The only line of the query contains three integers a,b and c (1≤a,b,c≤1016) — the number of candies in the first, second and third piles correspondingly.&lt;/p&gt;
+&lt;h3 id=&#34;output&#34;&gt;Output&lt;/h3&gt;
+&lt;p&gt;Print q lines. The i-th line should contain the answer for the i-th query — the maximum number of candies Alice can have after the division, if both Alice and Bob act optimally (of course, Bob will have the same number of candies).&lt;/p&gt;
+&lt;h3 id=&#34;example&#34;&gt;Example&lt;/h3&gt;
+&lt;h4 id=&#34;input-2&#34;&gt;input&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;4
+1 3 4
+1 10 100
+10000000000000000 10000000000000000 10000000000000000
+23 34 45
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&#34;output-2&#34;&gt;output&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;4
+55
+15000000000000000
+51
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;分析及题解&#34;&gt;分析及题解&lt;/h2&gt;
+&lt;h3 id=&#34;做题经历&#34;&gt;做题经历&lt;/h3&gt;
+&lt;p&gt;大半夜的看到Alice and Bob，我顿时就懵了。。。。&lt;br&gt;
+读完题发现这是一道&lt;s&gt;毒瘤&lt;/s&gt;水题。&lt;/p&gt;
+&lt;h3 id=&#34;题目分析&#34;&gt;题目分析&lt;/h3&gt;
+&lt;p&gt;Alice和Bob先把较小的两堆取走，然后去取第三堆，使两人尽可能相等。&lt;/p&gt;
+&lt;p&gt;综上所述，当三堆加起来为偶数时，除以2输出。当三堆加起来为奇数时，多拿的的那个人(可以是Alice也可以是Bob)要丢掉1，因此也是除以2，输出。&lt;/p&gt;
+&lt;h3 id=&#34;代码附上&#34;&gt;代码附上&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;/*by G_M_H*/
+#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;vector&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;utility&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#define LL long long
+using namespace std;
+int n;
+int main(){
+	scanf(&amp;quot;%d&amp;quot;,&amp;amp;n);
+	while(n--){
+		LL a,b,c;
+		scanf(&amp;quot;%lld%lld%lld&amp;quot;,&amp;amp;a,&amp;amp;b,&amp;amp;c);
+		printf(&amp;quot;%lld\n&amp;quot;,(a+b+c)/2);
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 codeforces CF1196A Three Piles of Candies</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-07-20-并查集学习笔记.markd/"" data-c="
+          &lt;h3 id=&#34;并查集&#34;&gt;并查集&lt;/h3&gt;
+&lt;h3 id=&#34;路径压缩&#34;&gt;路径压缩&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;int get(int x) {
+	int i,j=x;
+	while(x!=fa[x]) x=fa[x];
+	while(j!=fa[j]) {
+		i=j;
+		j=fa[j];
+		fa[i]=x;
+	}
+	return x;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;例题&#34;&gt;例题&lt;/h3&gt;
+&lt;h4 id=&#34;板子&#34;&gt;板子&lt;/h4&gt;
+&lt;h4 id=&#34;带权并查集&#34;&gt;带权并查集&lt;/h4&gt;
+">并查集学习笔记</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1134-阶乘问题.markd/"" data-c="
+          &lt;h2 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;https://www.luogu.org/problemnew/show/P1134&#34;&gt;题目链接&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;题目描述&#34;&gt;题目描述&lt;/h2&gt;
+&lt;p&gt;也许你早就知道阶乘的含义，N阶乘是由1到N相乘而产生，如：&lt;/p&gt;
+&lt;p&gt;12!= 1×2×3×4×5×6×7×8×9×10×11×12=479001600&lt;br&gt;
+12的阶乘最右边的非零位为66。&lt;/p&gt;
+&lt;p&gt;写一个程序，计算N(1≤N≤50000000)阶乘的最右边的非零位的值。&lt;/p&gt;
+&lt;p&gt;注意:10000000!有2499999个零。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出格式&#34;&gt;输入输出格式&lt;/h2&gt;
+&lt;h3 id=&#34;输入格式&#34;&gt;输入格式：&lt;/h3&gt;
+&lt;p&gt;仅一行包含一个正整数N。&lt;/p&gt;
+&lt;h3 id=&#34;输出格式&#34;&gt;输出格式：&lt;/h3&gt;
+&lt;p&gt;一个整数，表示最右边的非零位的值。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出样例&#34;&gt;输入输出样例&lt;/h2&gt;
+&lt;h3 id=&#34;输入样例1&#34;&gt;输入样例#1：&lt;/h3&gt;
+&lt;p&gt;12&lt;/p&gt;
+&lt;h3 id=&#34;输出样例1&#34;&gt;输出样例#1：&lt;/h3&gt;
+&lt;p&gt;6&lt;/p&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+&lt;p&gt;USACO Training Section 3.2&lt;/p&gt;
+&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+&lt;p&gt;实话说，这道题&lt;s&gt;很水&lt;/s&gt;还是有点思维含量的，首先，暴力算法（边乘边去末尾零再某10||100||1000······这一定会WA，因为乘的时候会发现最后只剩下一个0，不信你自己试试），正解是把2和5与其他数分开来考虑。&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;iostream&amp;gt;
+using namespace std;
+long long p;
+long long n;
+int main(){
+	long long f=0,t=0;
+	long long mid;
+	cin&amp;gt;&amp;gt;n;
+	p=1;
+	for(register long long i=1;i&amp;lt;=n;i++){
+		mid=i;
+		while(mid%5==0){
+			mid/=5;
+			f++;
+		}
+		while(mid%2==0){
+			mid/=2;
+			t++;
+		}
+		if(f&amp;gt;t){
+			f=f-t;
+			t=0;
+		}else{
+			t=t-f;
+			f=0;
+		}
+		p*=mid;
+		p%=10;
+	}
+	if(t==f){
+		cout&amp;lt;&amp;lt;p;
+	}else{
+		if(t&amp;gt;f){
+			switch(t%4){
+				case 0: cout&amp;lt;&amp;lt;(p*6)%10;break;
+				case 1: cout&amp;lt;&amp;lt;(p*2)%10;break;
+				case 2: cout&amp;lt;&amp;lt;(p*4)%10;break;
+				case 3: cout&amp;lt;&amp;lt;(p*8)%10;break;
+			}
+		}else{
+			cout&amp;lt;&amp;lt;(p*5)%10;
+		}
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 洛谷 P1134 阶乘问题</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-05-29-题解-洛谷-P1439-模板-最长公共子序列.markd/"" data-c="
+          &lt;h2 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;https://www.luogu.org/problemnew/show/P1439&#34;&gt;题目链接&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;题目描述&#34;&gt;题目描述&lt;/h2&gt;
+&lt;p&gt;给出1-n的两个排列P1和P2，求它们的最长公共子序列。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出格式&#34;&gt;输入输出格式&lt;/h2&gt;
+&lt;h3 id=&#34;输入格式&#34;&gt;输入格式：&lt;/h3&gt;
+&lt;p&gt;第一行是一个数n，&lt;/p&gt;
+&lt;p&gt;接下来两行，每行为n个数，为自然数1-n的一个排列。&lt;/p&gt;
+&lt;h3 id=&#34;输出格式&#34;&gt;输出格式：&lt;/h3&gt;
+&lt;p&gt;一个数，即最长公共子序列的长度&lt;/p&gt;
+&lt;h2 id=&#34;输入输出样例&#34;&gt;输入输出样例&lt;/h2&gt;
+&lt;h3 id=&#34;输入样例1&#34;&gt;输入样例#1：&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;5 
+3 2 1 4 5
+1 2 3 4 5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;输出样例1&#34;&gt;输出样例#1：&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;3
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+&lt;p&gt;【数据规模】&lt;/p&gt;
+&lt;p&gt;对于50%的数据，n≤1000&lt;/p&gt;
+&lt;p&gt;对于100%的数据，n≤100000&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;cctype&amp;gt;
+#include&amp;lt;vector&amp;gt;
+#include&amp;lt;bitset&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;cstdlib&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+using namespace std;
+template&amp;lt;class T&amp;gt; inline void read(T &amp;amp;p) {
+	p=0;
+	T f=1;
+	char c;
+	for(c=getchar(); !isdigit(c); c=getchar())
+		if(c==&#39;-&#39;)
+			f=-1;
+	for(; isdigit(c); c=getchar())
+		p=(p&amp;lt;&amp;lt;3)+(p&amp;lt;&amp;lt;1)+(c-&#39;0&#39;);
+	p*=f;
+	return ;
+}
+template&amp;lt;class T&amp;gt; inline void write(T x) {
+	T k = 0,lx = x;
+	char put[40];
+	if (lx ==0) putchar(&#39;0&#39;);
+	if (lx &amp;lt; 0) putchar(&#39;-&#39;),lx = -lx;
+	while (lx)  put[++k] = (lx % 10) + &#39;0&#39;,lx /= 10;
+	while (k)   putchar( put[ k-- ] );
+	return ;
+}
+int n;
+int a[100001];
+int b[100001];
+int mapp[100001];
+int s[100001];
+int dp[100001];
+int len,pos;
+int find(int d) {
+	int l=1,r=len,mid,index=0x7ffffff;
+	while(l&amp;lt;=r) {
+		mid=(l+r)&amp;gt;&amp;gt;1;
+		if(dp[mid]&amp;gt;=d) {
+			index=(index&amp;lt;mid)? index:mid;
+			r=mid-1;
+		} else l=mid+1;
+	}
+	if(index==0x7ffffff)
+		return len+1;
+	return index;
+}
+int main() {
+	read(n);
+	for(register int i=1; i&amp;lt;=n; i++) {
+		read(a[i]);
+		mapp[a[i]]=i;
+	}
+	for(register int i=1; i&amp;lt;=n; i++) {
+		read(b[i]);
+		s[i]=mapp[b[i]];
+	}
+	len=1;
+	dp[1]=s[1];
+	for(register int i=2; i&amp;lt;=n; i++) {
+		if(s[i]&amp;gt;dp[len])
+			dp[++len]=s[i];
+		else {
+			pos=find(s[i]);
+			dp[pos]=s[i];
+		}
+	}
+	write(len);
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 洛谷 P1439 【模板】最长公共子序列</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-05-18-题解-XJOI-3287-离散化.markd/"" data-c="
+          &lt;h2 id=&#34;时间05s-空间32m&#34;&gt;时间：0.5s   空间：32M&lt;/h2&gt;
+&lt;h2 id=&#34;题目描述&#34;&gt;题目描述：&lt;/h2&gt;
+&lt;p&gt;给你n个数，输出这n个数离散化后的结果&lt;/p&gt;
+&lt;p&gt;比如&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;4 100 80 10000&lt;/code&gt; 离散化后为&lt;br&gt;
+&lt;code&gt;1 3 2 4&lt;/code&gt;&lt;br&gt;
+每个数的值为在原先数组中大小的排名,相同排名输出相同。&lt;br&gt;
+如&lt;code&gt;1 1000 100 100&lt;/code&gt;&lt;br&gt;
+输出&lt;code&gt;1 4 2 2&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;输入格式&#34;&gt;输入格式：&lt;/h2&gt;
+&lt;p&gt;第一行输入一个整数n&lt;br&gt;
+第二行输入n个整数ai&lt;/p&gt;
+&lt;h2 id=&#34;输出格式&#34;&gt;输出格式：&lt;/h2&gt;
+&lt;p&gt;输出一行，包含n个正整数&lt;/p&gt;
+&lt;h2 id=&#34;样例输入&#34;&gt;样例输入：&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;4
+4 100 80 10000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;样例输出&#34;&gt;样例输出：&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;1 3 2 4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;约定&#34;&gt;约定：&lt;/h2&gt;
+&lt;p&gt;1&amp;lt;=n&amp;lt;=100000,1&amp;lt;=ai&amp;lt;=10^9&lt;/p&gt;
+&lt;p&gt;今天，心情不是很好，于是决定恶搞代码。&lt;br&gt;
+此题难度不大，sort两边就可以了。&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;ios&amp;gt;
+#include &amp;lt;map&amp;gt;
+#include &amp;lt;set&amp;gt;
+#include &amp;lt;list&amp;gt;
+#include &amp;lt;stack&amp;gt;
+#include &amp;lt;deque&amp;gt;
+#include &amp;lt;cmath&amp;gt;
+#include &amp;lt;queue&amp;gt;
+#include &amp;lt;cstdio&amp;gt;
+#include &amp;lt;cctype&amp;gt;
+#include &amp;lt;iosfwd&amp;gt;
+#include &amp;lt;bitset&amp;gt;
+#include &amp;lt;limits&amp;gt;
+#include &amp;lt;vector&amp;gt;
+#include &amp;lt;cwchar&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;cerrno&amp;gt;
+#include &amp;lt;utility&amp;gt;
+#include &amp;lt;clocale&amp;gt;
+#include &amp;lt;iomanip&amp;gt;
+#include &amp;lt;complex&amp;gt;
+#include &amp;lt;fstream&amp;gt;
+#include &amp;lt;cstdlib&amp;gt;
+#include &amp;lt;cstring&amp;gt;
+#include &amp;lt;ostream&amp;gt;
+#include &amp;lt;istream&amp;gt;
+#include &amp;lt;sstream&amp;gt;
+#include &amp;lt;cwctype&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;algorithm&amp;gt;
+#include &amp;lt;stdexcept&amp;gt;
+#include &amp;lt;streambuf&amp;gt;
+#include &amp;lt;exception&amp;gt;　
+#include &amp;lt;functional&amp;gt;
+#define LL long long
+#define reg register
+using namespace std;
+template&amp;lt;class T&amp;gt; inline void read(T &amp;amp;p) {p=0;T f=1;char c;for(c=getchar(); !(c&amp;lt;=&#39;9&#39;&amp;amp;&amp;amp;c&amp;gt;=&#39;0&#39;); c=getchar()) {if(c==&#39;-&#39;) f=-1;}for(; c&amp;lt;=&#39;9&#39;&amp;amp;&amp;amp;c&amp;gt;=&#39;0&#39;; c=getchar()) {p=(p&amp;lt;&amp;lt;3)+(p&amp;lt;&amp;lt;1)+c-&#39;0&#39;;}p*=f;}
+template&amp;lt;class T&amp;gt; inline void write(T p) {if(p&amp;lt;0){putchar(&#39;-&#39;);p=-p;}if(p/10){write(p/10);putchar(p%10+&#39;0&#39;);}else{putchar(p%10+&#39;0&#39;);}}
+struct br {LL a,b,c;};
+struct cmp1 {bool operator () (const br &amp;amp;x,const br &amp;amp;y) {return x.a&amp;lt;y.a;}};
+struct cmp2 {bool operator () (const br &amp;amp;x,const br &amp;amp;y) {return x.b&amp;lt;y.b;}};
+br myt[100001];LL n;
+int main() {read(n);for(reg LL i=1;i&amp;lt;=n;i++){read(myt[i].a);myt[i].b=i;}sort(myt+1,myt+1+n,cmp1());for(reg LL i=1;i&amp;lt;=n;i++){if(myt[i].a==myt[i-1].a){myt[i].c=myt[i-1].c;}else{myt[i].c=i;}}sort(myt+1,myt+1+n,cmp2());for(reg LL i=1;i&amp;lt;=n;i++){write(myt[i].c);putchar(&#39; &#39;);}return 0;}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 XJOI 3287 离散化</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-05-06-题解-洛谷-P2068-统计和.markd/"" data-c="
+          &lt;h1 id=&#34;code&#34;&gt;code:&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;cctype&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;cstdlib&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#define LL long long
+using namespace std;
+template&amp;lt;class T&amp;gt; inline void read(T &amp;amp;p) {
+	p=0;
+	T f=1;
+	char c;
+	for(c=getchar(); !isdigit(c); c=getchar())
+		if(c==&#39;-&#39;)
+			f=-1;
+	for(; isdigit(c); c=getchar())
+		p=(p&amp;lt;&amp;lt;3)+(p&amp;lt;&amp;lt;1)+(c-&#39;0&#39;);
+	p*=f;
+	return ;
+}
+template&amp;lt;class T&amp;gt; inline void write(T x) {
+	T k = 0,lx = x;
+	char put[40];
+	if (lx ==0) putchar(&#39;0&#39;);
+	if (lx &amp;lt; 0) putchar(&#39;-&#39;),lx = -lx;
+	while (lx)  put[++k] = (lx % 10) + &#39;0&#39;,lx /= 10;
+	while (k)   putchar( put[ k-- ] );
+	return ;
+}
+int N,W;
+LL a[100001];
+LL b[100001];
+LL low_bit(LL shichi) {
+	return shichi&amp;amp;(-shichi);
+}
+void add_num(LL poster,LL num) {
+	LL pos=poster;
+	while(pos&amp;lt;=N) {
+		b[pos]+=num;
+		pos+=low_bit(pos);
+	}
+	a[poster]+=num;
+}
+LL sum_num(LL pos) {
+	if(pos&amp;lt;=0) return 0;
+	LL ans=0;
+	while(pos&amp;gt;0) {
+		ans+=b[pos];
+		pos-=low_bit(pos);
+	}
+	return ans;
+}
+int main(){
+	read(N);
+	read(W);
+	register char c[3];
+	register LL x,y;
+	for(register LL i=1;i&amp;lt;=W;i++){
+		scanf(&amp;quot;%s&amp;quot;,c)/*神坑之处，不要读入单个字符！！！！*/;
+		read(x);
+		read(y);
+		if(c[0]==&#39;x&#39;){
+			add_num(x,y);
+		}else if(c[0]==&#39;y&#39;){
+			write(sum_num(y)-sum_num(x-1));
+			putchar(&#39;\n&#39;);
+		}
+	}
+	return 0;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+">题解 洛谷 P2068 统计和</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-05-03-题解-洛谷-P1908-逆序对.markd/"" data-c="
+          &lt;h2 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;https://www.luogu.org/problemnew/show/P1908&#34;&gt;题目链接&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;题目描述&#34;&gt;题目描述&lt;/h2&gt;
+&lt;p&gt;猫猫TOM和小老鼠JERRY最近又较量上了，但是毕竟都是成年人，他们已经不喜欢再玩那种你追我赶的游戏，现在他们喜欢玩统计。最近，TOM老猫查阅到一个人类称之为“逆序对”的东西，这东西是这样定义的：对于给定的一段正整数序列，逆序对就是序列中ai&amp;gt;aj且i&amp;lt;j的有序对。知道这概念后，他们就比赛谁先算出给定的一段正整数序列中逆序对的数目。&lt;br&gt;
+&lt;strong&gt;Update&lt;/strong&gt;:数据已加强。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出格式&#34;&gt;输入输出格式&lt;/h2&gt;
+&lt;h3 id=&#34;输入格式&#34;&gt;输入格式：&lt;/h3&gt;
+&lt;p&gt;第一行，一个数n，表示序列中有n个数。&lt;/p&gt;
+&lt;p&gt;第二行n个数，表示给定的序列。序列中每个数字不超过10^910&lt;br&gt;
+9&lt;/p&gt;
+&lt;h3 id=&#34;输出格式&#34;&gt;输出格式：&lt;/h3&gt;
+&lt;p&gt;给定序列中逆序对的数目。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出样例&#34;&gt;输入输出样例&lt;/h2&gt;
+&lt;h3 id=&#34;输入样例1&#34;&gt;输入样例#1：&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;6
+5 4 2 6 3 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;###　输出样例#1：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;11
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;说明&lt;br&gt;
+对于25%的数据，n \leq 2500n≤2500&lt;br&gt;
+对于50%的数据，n \leq 4 \times 10^4n≤4×10&lt;br&gt;
+4&lt;br&gt;
+。&lt;/p&gt;
+&lt;p&gt;对于所有数据，n \leq 5 \times 10^5n≤5×10&lt;br&gt;
+5&lt;/p&gt;
+&lt;p&gt;请使用较快的输入输出&lt;/p&gt;
+&lt;p&gt;应该不会n方过50万吧 by chen_zhe&lt;/p&gt;
+&lt;h2 id=&#34;code&#34;&gt;code&lt;/h2&gt;
+&lt;h3 id=&#34;树状数组&#34;&gt;树状数组&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#define LL long long
+using namespace std;
+template&amp;lt;class T&amp;gt; inline void read(T &amp;amp;p) {
+    p=0;
+    int f=1;
+    char c;
+    for(c=getchar(); !(c&amp;lt;=&#39;9&#39;&amp;amp;&amp;amp;c&amp;gt;=&#39;0&#39;); c=getchar()) {
+        if(c==&#39;-&#39;) f=-1;
+    }
+    for(; (c&amp;lt;=&#39;9&#39;&amp;amp;&amp;amp;c&amp;gt;=&#39;0&#39;); c=getchar()) {
+        p=(p&amp;lt;&amp;lt;3)+(p&amp;lt;&amp;lt;1)+c-&#39;0&#39;;
+    }
+    p*=f;
+    return ;
+}
+template&amp;lt;class T&amp;gt; inline void write(T x) {
+    T k = 0,lx = x;
+    char put[40];
+    if (lx ==0) putchar(&#39;0&#39;);
+    if (lx &amp;lt; 0) putchar(&#39;-&#39;),lx = -lx;
+    while (lx)  put[++k] = (lx % 10) + &#39;0&#39;,lx /= 10;
+    while (k)   putchar( put[ k-- ] );
+    return ;
+}
+struct br {
+    LL m,n;
+};
+br a[500001];
+struct cmp {
+    bool operator ()(const br &amp;amp;x,const br &amp;amp;y) {
+        if(x.m!=y.m) return x.m&amp;gt;y.m;
+        else return x.n&amp;gt;y.n;
+    }
+};
+int N;
+LL ans;
+LL b[500001];
+int low_bit(int x) {
+    return x&amp;amp;(-x);
+}
+void add_num(int poster) {
+    int pos=poster;
+    while(pos&amp;lt;=N) {
+        b[pos]+=1;
+        pos+=low_bit(pos);
+    }
+}
+LL sum_num(int pos) {
+    if(pos&amp;lt;=0) return 0;
+    LL ans=0;
+    while(pos&amp;gt;0) {
+        ans+=b[pos];
+        pos-=low_bit(pos);
+    }
+    return ans;
+}
+int main() {
+    register LL mid;
+    read(N);
+    for(register int i=1; i&amp;lt;=N; i++) {
+        read(a[i].m);
+        a[i].n=i;
+    }
+    sort(a+1,a+1+N,cmp());
+    for(register int i=1; i&amp;lt;=N; i++) {
+        add_num(a[i].n);
+        ans+=sum_num(a[i].n-1);
+    }
+    write(ans);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;归并排序&#34;&gt;归并排序&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;cctype&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#define ll long long
+
+using namespace std;
+
+int n,a[500010],c[500010];
+long long ans;
+
+inline void read(int &amp;amp;p) {
+    p=0;
+    int f=1;
+    char c;
+    for(c=getchar(); !isdigit(c); c=getchar())
+        if(c==&#39;-&#39;)
+            f=-1;
+    for(; isdigit(c); c=getchar())
+        p=(p&amp;lt;&amp;lt;3)+(p&amp;lt;&amp;lt;1)+(c-&#39;0&#39;);
+    p*=f;
+    return ;
+}
+
+void merge_sort(int l,int r)
+{
+    if(l==r)  
+        return;
+    int mid=(l+r)/2,i=l,j=mid+1,k=l;
+    merge_sort(l,mid),merge_sort(mid+1,r);
+    while(i&amp;lt;=mid&amp;amp;&amp;amp;j&amp;lt;=r){
+    	if(a[i]&amp;lt;=a[j])
+            c[k++]=a[i++];
+        else
+            c[k++]=a[j++],ans+=mid-i+1;
+    }        
+    while(i&amp;lt;=mid){
+    	c[k++]=a[i++];
+    }    
+    while(j&amp;lt;=r){
+    	c[k++]=a[j++];
+    }
+    for(int z=l;z&amp;lt;=r;z++){
+    	a[z]=c[z];
+    }      
+} 
+
+int main()
+{
+    read(n);
+    for(int i=1;i&amp;lt;=n;i++) read(a[i]);
+    merge_sort(1,n);
+    cout&amp;lt;&amp;lt;ans;
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;end&#34;&gt;END&lt;/h2&gt;
+">题解 洛谷 P1908 逆序对</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-04-30-题解-P1022-计算器的改良.markd/"" data-c="
+          &lt;h2 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;https://www.luogu.org/problemnew/show/P1022&#34;&gt;题目链接&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;题目背景&#34;&gt;题目背景&lt;/h2&gt;
+&lt;p&gt;NCL是一家专门从事计算器改良与升级的实验室，最近该实验室收到了某公司所委托的一个任务：需要在该公司某型号的计算器上加上解一元一次方程的功能。实验室将这个任务交给了一个刚进入的新手ZL先生。&lt;/p&gt;
+&lt;h2 id=&#34;题目描述&#34;&gt;题目描述&lt;/h2&gt;
+&lt;p&gt;为了很好的完成这个任务，ZL先生首先研究了一些一元一次方程的实例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;4+3x=84+3x=84+3x=8
+
+6a−5+1=2−2a6a-5+1=2-2a6a−5+1=2−2a
+
+−5+12y=0-5+12y=0−5+12y=0
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;ZL先生被主管告之，在计算器上键入的一个一元一次方程中，只包含整数、小写字母及+、-、=这三个数学符号（当然，符号“-”既可作减号，也可作负号）。方程中并没有括号，也没有除号，方程中的字母表示未知数。&lt;/p&gt;
+&lt;p&gt;你可假设对键入的方程的正确性的判断是由另一个程序员在做，或者说可认为键入的一元一次方程均为合法的，且有唯一实数解。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出格式&#34;&gt;输入输出格式&lt;/h2&gt;
+&lt;h3 id=&#34;输入格式&#34;&gt;输入格式：&lt;/h3&gt;
+&lt;p&gt;一个一元一次方程。&lt;/p&gt;
+&lt;h3 id=&#34;输出格式&#34;&gt;输出格式：&lt;/h3&gt;
+&lt;p&gt;解方程的结果(精确至小数点后三位)。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出样例&#34;&gt;输入输出样例&lt;/h2&gt;
+&lt;h3 id=&#34;输入样例1&#34;&gt;输入样例#1：&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;6a-5+1=2-2a
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;输出样例1&#34;&gt;输出样例#1：&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;a=0.750
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;code&#34;&gt;Code&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;cctype&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#define ll long long
+using namespace std;
+
+char c,p;
+char line[1001];
+int point=0;
+ll f;
+ll a,b,mid;
+bool flag;
+
+
+int main() {
+    cin&amp;gt;&amp;gt;line;
+    c=line[point++];
+    while(c!=&#39;=&#39;) {
+        f=1;
+        mid=0;
+        flag=false;
+        for(; c==&#39;+&#39;||c==&#39;-&#39;; c=line[point++]) {
+            if(c==&#39;-&#39;) f=-1;
+        }
+        for(; c&amp;gt;=&#39;0&#39;&amp;amp;&amp;amp;c&amp;lt;=&#39;9&#39;; c=line[point++]) {
+            mid=(mid&amp;lt;&amp;lt;3)+(mid&amp;lt;&amp;lt;1)+c-&#39;0&#39;;
+        }
+        for(; c&amp;gt;=&#39;a&#39;&amp;amp;&amp;amp;c&amp;lt;=&#39;z&#39;; c=line[point++]) {
+            if(mid==0) {
+                b+=f;
+            } else {
+                b+=f*mid;
+            }
+            p=c;
+            flag=true;
+        }
+        if(!flag) {
+            a+=f*mid;
+        }
+    }
+    c=line[point++];
+    while(c!=&#39;\n&#39;&amp;amp;&amp;amp;c!=&#39; &#39;&amp;amp;&amp;amp;c!=EOF&amp;amp;&amp;amp;c!=&#39;\0&#39;) {
+        f=1;
+        mid=0;
+        flag=false;
+        for(; c==&#39;+&#39;||c==&#39;-&#39;; c=line[point++]) {
+            if(c==&#39;-&#39;) f=-1;
+        }
+        for(; c&amp;gt;=&#39;0&#39;&amp;amp;&amp;amp;c&amp;lt;=&#39;9&#39;; c=line[point++]) {
+            mid=(mid&amp;lt;&amp;lt;3)+(mid&amp;lt;&amp;lt;1)+c-&#39;0&#39;;
+        }
+        for(; c&amp;gt;=&#39;a&#39;&amp;amp;&amp;amp;c&amp;lt;=&#39;z&#39;; c=line[point++]) {
+            if(mid==0) {
+                b-=f;
+            } else {
+                b-=f*mid;
+            }
+            p=c;
+            flag=true;
+        }
+        if(!flag) {
+            a-=f*mid;
+        }
+    }
+    if(!(-1.0*a/b))
+        printf(&amp;quot;%c=0.000&amp;quot;,p);
+    else
+        printf(&amp;quot;%c=%.3lf&amp;quot;,p,-1.0*a/b);//输出
+    return 0;
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+">题解 P1022 计算器的改良</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-04-21-题解-P1604-B进制星球.markd/"" data-c="
+          &lt;h1 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;https://www.luogu.org/problemnew/show/P1604&#34;&gt;题目链接&lt;/a&gt;&lt;/h1&gt;
+&lt;h1 id=&#34;题目背景&#34;&gt;题目背景&lt;/h1&gt;
+&lt;p&gt;进制题目，而且还是个计算器~~&lt;/p&gt;
+&lt;h1 id=&#34;题目描述&#34;&gt;题目描述&lt;/h1&gt;
+&lt;p&gt;话说有一天，小Z乘坐宇宙飞船，飞到一个美丽的星球。因为历史的原因，科技在这个美丽的星球上并不很发达，星球上人们普遍采用B（2&amp;lt;=B&amp;lt;=36）进制计数。星球上的人们用美味的食物招待了小Z，作为回报，小Z希望送一个能够完成B进制加法的计算器给他们。 现在小Z希望你可以帮助他，编写实现B进制加法的程序。&lt;/p&gt;
+&lt;h1 id=&#34;输入输出格式&#34;&gt;输入输出格式&lt;/h1&gt;
+&lt;h2 id=&#34;输入格式&#34;&gt;输入格式：&lt;/h2&gt;
+&lt;p&gt;共3行第1行：一个十进制的整数,表示进制B。第2-3行：每行一个B进制数正整数。数字的每一位属于{0，1，2，3，4，5，6，7，8，9，A，B……}，每个数字长度&amp;lt;=2000位。&lt;/p&gt;
+&lt;h2 id=&#34;输出格式&#34;&gt;输出格式：&lt;/h2&gt;
+&lt;p&gt;一个B进制数，表示输入的两个数的和。&lt;/p&gt;
+&lt;p&gt;3 输入输出样例&lt;/p&gt;
+&lt;h2 id=&#34;输入样例1&#34;&gt;输入样例#1：&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;4
+123
+321
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;输出样例1&#34;&gt;输出样例#1：&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;1110
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;思路&#34;&gt;思路&lt;/h1&gt;
+&lt;p&gt;看到这道题的第一眼就觉得这题有点坑，36进制是什么鬼，其实就是一个简单的高精度，超过B就进1，&lt;/p&gt;
+&lt;h1 id=&#34;ac代码&#34;&gt;AC代码&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;queue&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+using namespace std;
+void read(int *p) {
+	char q[2001];
+	scanf(&amp;quot;%s&amp;quot;,q);
+	p[0]=strlen(q);
+	for(register int i=0; i&amp;lt;p[0]; i++) {
+		if(q[i]&amp;gt;=&#39;A&#39;&amp;amp;&amp;amp;q[i]&amp;lt;=&#39;Z&#39;) {
+			p[p[0]-i]=q[i]-&#39;A&#39;+10;
+		} else {
+			p[p[0]-i]=q[i]-&#39;0&#39;;
+		}
+	}
+	return ;
+}
+void write(const int *p) {
+	bool ff=false;
+	for(register int i=p[0]; i&amp;gt;1; i--) {
+		if(p[i]) {
+			ff=true;
+		}
+		if(ff) {
+			if(p[i]&amp;gt;=10) {
+				printf(&amp;quot;%c&amp;quot;,p[i]-10+&#39;A&#39;);
+			} else {
+				printf(&amp;quot;%d&amp;quot;,p[i]);
+			}
+		}
+	}
+	if(p[1]&amp;gt;=10) {
+		printf(&amp;quot;%c&amp;quot;,p[1]-10+&#39;A&#39;);
+	} else {
+		printf(&amp;quot;%d&amp;quot;,p[1]);
+	}
+	return ;
+}
+int B;
+int a[2050],b[2050],c[2050];
+int main() {
+	scanf(&amp;quot;%d&amp;quot;,&amp;amp;B);
+	read(a);
+	read(b);
+	c[0]=max(a[0],b[0])+1;
+	for(register int i=1; i&amp;lt;=c[0]; i++) {
+		c[i]+=a[i]+b[i];
+		c[i+1]+=(int)c[i]/B;
+		c[i]%=B;
+	}
+	write(c);
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 洛谷 P1604 B进制星球</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-04-19-题解-洛谷-P2085最小函数值.markd/"" data-c="
+          &lt;h2 id=&#34;题目链接&#34;&gt;&lt;a href=&#34;https://www.luogu.org/problemnew/show/P2085&#34;&gt;题目链接&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&#34;题目描述&#34;&gt;题目描述&lt;/h2&gt;
+&lt;p&gt;有n个函数，分别为F1,F2,...,Fn。定义Fi(x)=Ai&lt;em&gt;x^2+Bi&lt;/em&gt;x+Ci (x∈N*)。给定这些Ai、Bi和Ci，请求出所有函数的所有函数值中最小的m个（如有重复的要输出多个）。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出格式&#34;&gt;输入输出格式&lt;/h2&gt;
+&lt;h3 id=&#34;输入格式&#34;&gt;输入格式：&lt;/h3&gt;
+&lt;p&gt;输入数据：第一行输入两个正整数n和m。以下n行每行三个正整数，其中第i行的三个数分别位Ai、Bi和Ci。Ai&amp;lt;=10，Bi&amp;lt;=100，Ci&amp;lt;=10 000。&lt;/p&gt;
+&lt;h3 id=&#34;输出格式&#34;&gt;输出格式：&lt;/h3&gt;
+&lt;p&gt;输出数据：输出将这n个函数所有可以生成的函数值排序后的前m个元素。这m个数应该输出到一行，用空格隔开。&lt;/p&gt;
+&lt;h2 id=&#34;输入输出样例&#34;&gt;输入输出样例&lt;/h2&gt;
+&lt;h3 id=&#34;输入样例1&#34;&gt;输入样例#1：&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;3 10
+4 5 3
+3 4 5
+1 7 1
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;输出样例1&#34;&gt;输出样例#1：&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;9 12 12 19 25 29 31 44 45 54
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;说明&#34;&gt;说明&lt;/h2&gt;
+&lt;p&gt;数据规模：n,m&amp;lt;=10000&lt;/p&gt;
+&lt;h2 id=&#34;思路&#34;&gt;思路&lt;/h2&gt;
+&lt;p&gt;这是一道很典型的堆操作题，Ai,Bi,Ci均大于零，则Fi一定是单调的。&lt;/p&gt;
+&lt;h2 id=&#34;代码附上&#34;&gt;代码附上&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;queue&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+using namespace std;
+template&amp;lt;class T&amp;gt; inline void read(T &amp;amp;p) {
+	p=0;
+	T f=1;
+	char c;
+	for(c=getchar(); !isdigit(c); c=getchar())
+		if(c==&#39;-&#39;)
+			f=-1;
+	for(; isdigit(c); c=getchar())
+		p=(p&amp;lt;&amp;lt;3)+(p&amp;lt;&amp;lt;1)+(c-&#39;0&#39;);
+	p*=f;
+	return ;
+}
+template&amp;lt;class T&amp;gt; inline void write(T x) {
+	T k = 0,lx = x;
+	char put[40];
+	if (lx ==0) putchar(&#39;0&#39;);
+	if (lx &amp;lt; 0) putchar(&#39;-&#39;),lx = -lx;
+	while (lx)  put[++k] = (lx % 10) + &#39;0&#39;,lx /= 10;
+	while (k)   putchar( put[ k-- ] );
+	return ;
+}
+int n,m,mid;
+int a[10001],b[10001],c[10001],ans[10001];
+priority_queue &amp;lt;int, vector&amp;lt;int&amp;gt; &amp;gt; pq;
+int main() {
+	read(n);
+	read(m);
+	for(register int i=1; i&amp;lt;=n; i++) {
+		read(a[i]);
+		read(b[i]);
+		read(c[i]);
+		for(register int j=1; j&amp;lt;=m; j++) {
+			if(pq.size()&amp;lt;m) {
+				pq.push((a[i]*j*j+b[i]*j+c[i]));
+			} else {
+				if(pq.top()&amp;gt;(a[i]*j*j+b[i]*j+c[i])) {
+					pq.pop();
+					pq.push((a[i]*j*j+b[i]*j+c[i]));
+				}else{
+					break;//这一步很重要，因为是单调的，所以直接跳出。
+				}
+			}
+		}
+	}
+	for(register int i=m; i&amp;gt;=1; i--) {
+		ans[i]=pq.top();
+		pq.pop();
+	}
+	for(register int i=1; i&amp;lt;=m; i++) {
+		write(ans[i]);
+		putchar(&#39; &#39;);
+	}
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+">题解 洛谷 P2085 最小函数值</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-04-03-题解-UVA10237-Bishops.markd/"" data-c="
+          &lt;h2 id=&#34;题目大意就是在一个nn的棋盘放k个互不攻击教士有多少组放法&#34;&gt;题目大意就是在一个n×n的棋盘，放k个互不攻击教士，有多少组放法；&lt;/h2&gt;
+&lt;p&gt;个人认为，这道题和&lt;a href=&#34;https://www.luogu.org/problemnew/show/P1240&#34;&gt;P1240 诸侯安置&lt;/a&gt;非常像，略微不同的地方就是教士是斜向攻击的，此时只要将棋盘旋转45°就基本与诸侯安置相同；&lt;/p&gt;
+&lt;p&gt;此时的注意点在于，相邻的两行（旋转过后），一定是无法互相攻击的，所以需要分开考虑。&lt;/p&gt;
+&lt;p&gt;分开之后，为了方便状态转移，不妨把棋盘（旋转过后）宽度从小到大排列；&lt;/p&gt;
+&lt;p&gt;动态转移方程为：&lt;code&gt;dp[i][j] = dp[i-1][j] + (l-j+1) * dp[i-1][j-1];\\i代表行，j代表已经放的教士数目，l代表该行的宽度。&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;下面是代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include&amp;lt;cmath&amp;gt;
+#include&amp;lt;cstdio&amp;gt;
+#include&amp;lt;cstring&amp;gt;
+#include&amp;lt;iostream&amp;gt;
+#include&amp;lt;algorithm&amp;gt;
+#define ll long long
+using namespace std;
+template&amp;lt;class T&amp;gt; inline void read(T &amp;amp;p) {//读入优化；
+	p=0;
+	T f=1;
+	char c;
+	for(c=getchar(); !isdigit(c); c=getchar())
+		if(c==&#39;-&#39;)
+			f=-1;
+	for(; isdigit(c); c=getchar())
+		p=(p&amp;lt;&amp;lt;3)+(p&amp;lt;&amp;lt;1)+(c-&#39;0&#39;);
+	p*=f;
+	return ;
+}
+template&amp;lt;class T&amp;gt; inline void write(T x) {//输出优化；
+	T k = 0,lx = x;
+	char put[40];
+	if (lx ==0) putchar(&#39;0&#39;);
+	if (lx &amp;lt; 0) putchar(&#39;-&#39;),lx = -lx;
+	while (lx)  put[++k] = (lx % 10) + &#39;0&#39;,lx /= 10;
+	while (k)   putchar( put[ k-- ] );
+	return ;
+}
+ll n, k;
+ll dp1[40][1600], dp2[40][1600];//dp1为奇数行，dp2为偶数行；
+ll l,ans;
+int main () {
+	while (1) {//多组测试数据；
+		read(n);
+		read(k);
+		if(k==0&amp;amp;&amp;amp;n==0) break;
+		memset(dp1, 0, sizeof(dp1));
+		memset(dp2, 0, sizeof(dp2));
+		dp1[0][0] = dp2[1][0] = 1;
+		for (register ll i = 1; i &amp;lt;= n; i++) {
+			dp1[i][0] = dp1[i-1][0];//不放教士的转移。
+			l = (i+1)/2 * 2 - 1;//一种数学归纳法。
+			for (register ll j = 1; j &amp;lt;= l &amp;amp;&amp;amp; j &amp;lt;= k; j++) {
+				dp1[i][j] = dp1[i-1][j] + (l-j+1) * dp1[i-1][j-1];//转移。
+			}
+		}
+		for (register ll i = 2; i &amp;lt;= n; i++) {
+			dp2[i][0] = dp2[i-1][0];//不放教士的转移+1。
+			l = i/2 * 2;//一种数学归纳法+1。
+			for (register ll j = 1; j &amp;lt;= l &amp;amp;&amp;amp; j &amp;lt;= k; j++) {
+				dp2[i][j] = dp2[i-1][j] + (l-j+1) * dp2[i-1][j-1];//转移+1。
+			}
+		}
+		ans = 0;
+		for (register ll i = 0; i &amp;lt;= k; i++) {
+			ans = ans + dp1[n][i] * dp2[n][k-i];//奇数行+偶数行=k的种数统计。
+		}
+		write(ans);
+		putchar(&#39;\n&#39;);
+	}
+	return 0;
+}
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;有兴趣可以做做&lt;br&gt;
+&lt;a href=&#34;https://www.luogu.org/problemnew/show/P1896&#34;&gt;P1896 ［SCOI2005］互不侵犯的King&lt;/a&gt;，&lt;a href=&#34;https://www.luogu.org/problemnew/show/P1219&#34;&gt;P1219 八皇后&lt;/a&gt;，国际象棋练习。。。。。&lt;/p&gt;
+">题解 UVA10237 【Bishops】</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/2019-03-18-HZNU-ACM.markd/"" data-c="
+          &lt;h2 id=&#34;资料下载&#34;&gt;资料下载&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;[下载热身赛PDF]({{ site.url }}/downloads/2019杭师大校赛热身赛题目.pdf)&lt;/li&gt;
+&lt;li&gt;[下载题解]({{ site.url }}/downloads/Editorial-public.pptx)&lt;/li&gt;
+&lt;/ul&gt;
+">HZNUACM游记</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/about/"" data-c="
+          &lt;blockquote&gt;
+&lt;p&gt;欢迎来到我的小站呀，很高兴遇见你！🤝&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;关于本站&#34;&gt;🏠 关于本站&lt;/h2&gt;
+&lt;p&gt;这是G_M_H的博客，部署在GitHub上。&lt;/p&gt;
+&lt;h2 id=&#34;博主是谁&#34;&gt;👨‍💻 博主是谁&lt;/h2&gt;
+&lt;p&gt;博主来自浙江，就读于浙江省杭州学军中学紫金港校区，是一名将要退役的高二OIer。&lt;/p&gt;
+&lt;h2 id=&#34;兴趣爱好&#34;&gt;⛹ 兴趣爱好&lt;/h2&gt;
+&lt;p&gt;科技/足球/睡觉&lt;/p&gt;
+&lt;h2 id=&#34;联系我呀&#34;&gt;📬 联系我呀&lt;/h2&gt;
+&lt;p&gt;欢迎交换友链。&lt;br&gt;
+可以通过我的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;QQmail：734109969@qq.com&lt;/li&gt;
+&lt;li&gt;Gmail：lygmh2003@gmail.com&lt;br&gt;
+联系我&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://GMH2003.github.io/post-images/1585023031435.jpg&#34; alt=&#34;&#34; loading=&#34;lazy&#34;&gt;&lt;br&gt;
+&lt;s&gt;&lt;strong&gt;赠人玫瑰，手有余香&lt;/strong&gt;&lt;/s&gt;&lt;/p&gt;
+">关于</a>
+      </div>
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="https://GMH2003.github.io/post/cc0/"" data-c="
+          &lt;h3 id=&#34;cc0协议是放弃版权的协议&#34;&gt;CC0协议是放弃版权的协议。&lt;/h3&gt;
+&lt;h3 id=&#34;在cc0协议的许可下您可以以任何方式使用文档包括商业用途无需取得作者的同意也无需标注来源&#34;&gt;在CC0协议的许可下，您可以以任何方式使用文档（包括商业用途），无需取得作者的同意，也无需标注来源。&lt;/h3&gt;
+&lt;h3 id=&#34;下面是简明文档&#34;&gt;下面是简明文档：&lt;/h3&gt;
+&lt;h4 id=&#34;放弃版权&#34;&gt;放弃版权&lt;/h4&gt;
+&lt;p&gt;若创作者选择以此条款发布自己的作品，则在法律许可的范围内，最大限度地放弃此作品依据著作权法享有的权利，包括所有与之相关的权利。&lt;/p&gt;
+&lt;p&gt;你可以复制、修改、分发或展示此作品，也可以将此作品用于商业用途，不需要征求作者的同意。下面是其他的信息。&lt;/p&gt;
+&lt;h4 id=&#34;其他信息&#34;&gt;其他信息&lt;/h4&gt;
+&lt;p&gt;CC0不影响任何人可能拥有的专利权或商标权，也不影响其他人可能拥有的对本作品本身的权利，或者决定本作品如何使用的权利，比如商品化权或隐私权。&lt;br&gt;
+除非另有声明，创作者不对此作品作任何担保；对此作品的使用也不承担责任。此免责声明在法律允许的范围内最大程度适用。&lt;br&gt;
+在使用或引用此作品时，你不能声明或暗示得到了创作者的许可。&lt;/p&gt;
+&lt;h4 id=&#34;下面是完整文档&#34;&gt;下面是完整文档：&lt;/h4&gt;
+&lt;p&gt;CC0协议 1.0通用&lt;br&gt;
+这一法律工具的官方翻译适用于其它语言。&lt;/p&gt;
+&lt;p&gt;知识共享组织（下称“本组织”）不是律师事务所，亦不提供法律服务。提供本许可文本并不在提供者与使用者之间产生“律师—客户” 的关系。本组织按其现状提供这些信息，但是本组织对于所提供的信息不承担任何担保责任，亦不对因使用该信息而造成的损失承担损害赔偿责任。&lt;/p&gt;
+&lt;p&gt;关于本许可文本目的的声明&lt;/p&gt;
+&lt;p&gt;全球大多数司法管辖领域的法律，自动将专属的著作权及其相关权利（定义见下文）赋予原始创作及资料库之创作者及之后的权利人（以下单称或统称“权利人”）。&lt;/p&gt;
+&lt;p&gt;部分想要永久放弃著作权的人，是为了把其作品贡献给一个创意、文化及科学著作的共享领域，在该领域中，社会公众能安心地、无惧地使用作品，并以绝对自由的方式、以任何目的（包括但不限于商业目的）去修改、再利用、向公众提供这些著作及将该著作收录于其他著作中，而不必担心其他人会主张其侵权。这些权利人之所以会将其作品贡献给本领域中，是为了发扬自由文化理想或进一步促进创意、文化及科学著作产生，或者借助他人的使用及努力赢得名声或使其作品传播的更广泛。&lt;/p&gt;
+&lt;p&gt;为了这些及/或其他目的和动机，且没有任何额外考量或补偿的预期下，携带其作品加入公共领域贡献宣告的著作权人（下称“宣告者”），在他/她是本著作的著作权及其相关权利的权利人的范围内，且在其了解到他/她对本著作的著作权及其相关权利和意义以及公共领域贡献宣告对那些权利将产生法律影响的情形下，自愿选择将公共领域贡献宣告适用在本著作上，且公开地依据公共领域贡献宣告的条款来传播本作品。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;著作权及其相关权利&lt;br&gt;
+本作品依据公共领域贡献宣告提供利用，可能受到著作权及其相关或邻接权利的保护。著作权及其相关权利包含但不限于下列权利： I、复制、改编、发行、表演、展示、广播及翻译本作品的权利； I、保留的原著作权人及/或表演人的著作权中的人格权； III、与本作品中描绘某人的形象或肖像有关的形象权或隐私权； IV、关于保护本作品免于受不正当竞争的权利，需受到以下第4(1)条的限制； V、保护摘录、传播、利用及再利用本作品中资料的权利； VI、资料库的权利（例如欧洲议会及理事会在1996年3月11日通过编号为96/9/EC的《欧体资料库法律保护指令》，及任何国家对此指令的实施，包含任何该指令的修 改或后续版本）； VII、其他遍及全球或基于相关法律或条约及任何国家对该等法律或条约的实施下之相似、相等或一致的权利。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;2.放弃&lt;br&gt;
+在被允许的最大范围且不违反相关法律的情况下，宣告者于此公开地、完全地、永久地、不可撤回地、无条件地放弃其对其作品所有的著作权及其他相关权利及相应的诉讼主张，不论现在已知或未知（包括现行及未来的诉讼主张），(i)在全球范围内，(ii)在相关法律及条约规定的最长存续期间（包括未来的延长期间），(iii)在任何现行或未来的媒介及任何数量的副本上，以及(iv)为了任何目的（包含但不限于商业、广告或促销之目的）的放弃。 宣告者放弃其著作权有利于社会公众的每一个人，但是会损害其继承者的利益。而宣告者完全了解且希望这样的放弃永远不会成为撤回、撤销、取消、终止或被其他任何法律认定为相关行为的客体，以免影响社会公众对其基于本协议第1条放弃行为产生误解。社会公众对于本作品的善意的使用，不会受到任何侵扰。&lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;
+&lt;p&gt;转换为对社会公众授权&lt;br&gt;
+若因为任何原因，宣告者“放弃权利”的任一部分依据某准据法被法院认定为无效，则该“放弃权利”在宣告者明示的前述“目的声明”中应在被允许的最大范围内被考量。此外，在“放弃权利”被这类裁定认定无效的范围内，宣告者在此授权每位受影响者免费的、不得移转的、不得再授权的、非专属的、不可撤回的及无条件来实施宣告者对本作品的著作权及其相关权利，(i)在遍及全球的领域，(ii)在相关法律及条约规定的最长期间（包含未来的延长期间），(iii)在任何现行或未来的媒介及任何数量的副本上，及(iv)为了任何目的（包含但不限于商业、广告或促销的目的）。该“授权”应被视为溯及自宣告者将公共领域贡献宣告适用于本著作之日起生效。若因为任何原因该“授权”的任一部分在相关法律框架下被法院认定为无效，不因该部分无效而使“授权”的其余部分无效，且在这种情况下，宣告者于此声明他/她将不会(i)行使任何他/她对本著作保留的著作权及其相关权利或(ii)提起任何与本著作有关的相关联诉讼主张，在前述(i)(ii)任一情形，此处的声明不会与宣告者所述“目的声明”相违背。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;限制及免除责任声明&lt;br&gt;
+1、宣告者所拥有的商标权或专利权，不会因为本文件，而被拋弃、放弃、授权或受到其他影响。 2、宣告者是根据现状提供其作品的，且未声明或提供关于其作品的任何保证，无论是明示、默示、或是否为法律所规定的（包含但不限于任何有关本著作权利之担保、商业性的、是否符合某特定之目的、未侵害他人权利、不具有潜在或其他之缺陷、正确性、或不论能否被发现之存在或欠缺的错误）。本项所有前述内容均在相关法律允许的最大范围内予以提供。 3、宣告者对排除他人可能对其作品主张的权利或任何对其作品的使用免责，包含但不限于任何人对其作品的著作权及其相关权利。此外，宣告者对取得任何必要的同意、允许或其他权利以使用本著作不承担责任。 4、宣告者已经明确知晓本组织并非本文件之当事人，且对于公共领域贡献宣告或利用宣告者作品的行为不承担任何责任或义务。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+">cc0协议</a>
+      </div>
+      
+    </div>
+    <div class="page">
+      <div id="page_ul"></div>
+    </div>
+  </div>
+</div>
+<script>
+  !function () {
+    let searchMask = document.querySelector('#search_mask');
+    let result = document.querySelector('#result');
+    let items = document.querySelectorAll('.item');
+    let searchBox = document.querySelector('#search');
+    let statCount = document.querySelector('#stat_count');
+    let statTimes = document.querySelector('#stat_times');
+    let pageUl = document.querySelector('#page_ul');
+    let close = document.querySelector('#close');
+    
+    close.addEventListener('click', function() {
+      searchMask.style = 'display: none;'
+    })
+
+    let finds = [];
+    let contents = [];
+    let pageSize = 10;
+    items.forEach(item => {
+      let a = item.querySelector('a');
+      contents.push({
+        title: a.innerText,
+        details: a.dataset.c,
+        link: a.href
+      })
+      item.remove();
+    })
+
+    function insertStr(soure, start, count) {
+      let newStr = soure.substr(start, count);
+      return soure.slice(0, start) + '<em>' + newStr + '</em>' + soure.slice(start + count);
+    }
+
+    pageUl.addEventListener('click', function(event) {
+      let target = event.target;
+      if (target.__proto__ === HTMLSpanElement.prototype) {
+        appendResults(parseInt(target.dataset.i));
+      }
+    })
+
+    function appendResults(index) {
+      let htmlResult = '';
+      let start = index || 0;
+      let end = Math.min(start + pageSize, finds.length);
+      for (let i = start; i < end; i++) {
+        const current = finds[i];
+        let html = current.title;
+        let sum = 0;
+        let positions = current.positions;
+        positions.forEach(position => {
+          html = insertStr(html, position.start + sum, position.count);
+          sum += 9;
+        })
+        htmlResult += `<div class="item"><a class="result-title" href="${current.link}">${html}</a></div>`;
+      }
+      result.innerHTML = htmlResult;
+      pageUl.innerHTML = '';
+      let count = finds.length / pageSize;
+      let lis = '';
+      if (start !== 0) {
+        lis += `<span class="fa fa-angle-left" data-i='${start - 1}'></span>`;
+      }
+      for (let i = 0; i < count; i++) {
+        lis += `<span class='${i === start?'current':''}' data-i='${i}'>${i+1}</span>`;     
+      }
+      if (start+1 < count) {
+        lis += `<span class="fa fa-angle-right" data-i='${start+1}'></span>`;  
+      }
+      pageUl.innerHTML = lis;
+    }
+
+    function search(delay) {
+      let timer = null
+      return function () {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+          let start = Date.now();
+          let segments = searchBox.value.split(' ').filter(c => c != '');
+          if (segments.length <= 0) {
+            return;
+          }
+          finds = [];
+          let htmlResult = '';
+          contents.forEach(content => {
+            let title = content.title;
+            let positions = [];
+            let find = false;
+            segments.forEach((segment) => {
+              if (content.title.includes(segment)) {
+                find = true;
+                positions.push({
+                  start: content.title.indexOf(segment),
+                  count: segment.length
+                })
+              } else if (content.details.includes(segment)) {
+                find = true;
+              }
+            });
+            if (find) {
+              finds.push({
+                title: content.title,
+                link: content.link,
+                positions
+              });
+            }
+          })
+          appendResults(0);
+          statCount.textContent = finds.length;
+          statTimes.textContent = Date.now() - start;
+        }, delay)
+      }
+    }
+    searchBox.addEventListener('input', search(200));
+  }()
+</script>
+
 <input hidden id="copy" />
 <script>
   !function () {
@@ -1952,5 +3838,8 @@ int main() {
 
 
 
+
+  <div class="snow-container"></div>
+  <script src="/media/js/bg/snow.js"></script>
 
 </html>
