@@ -2,14 +2,14 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://GMH2003.github.io</id>
     <title>G_M_H博客</title>
-    <updated>2021-07-07T12:32:17.853Z</updated>
+    <updated>2022-01-19T06:30:00.265Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://GMH2003.github.io"/>
     <link rel="self" href="https://GMH2003.github.io/atom.xml"/>
     <subtitle>末日时在做什么？有没有空？可以来拯救吗？</subtitle>
     <logo>https://GMH2003.github.io/images/avatar.png</logo>
     <icon>https://GMH2003.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2021, G_M_H博客</rights>
+    <rights>All rights reserved 2022, G_M_H博客</rights>
     <entry>
         <title type="html"><![CDATA[Linux的故事]]></title>
         <id>https://GMH2003.github.io/post/linux-de-gu-shi/</id>
