@@ -9,7 +9,7 @@
 <meta name="description" content="末日时在做什么？有没有空？可以来拯救吗？">
 <meta name="theme-color" content="#7950f2">
 <title>G_M_H博客</title>
-<link rel="shortcut icon" href="/favicon.ico?v=1642574130311">
+<link rel="shortcut icon" href="/favicon.ico?v=1642574904478">
 <link rel="stylesheet" href="/media/css/pisces.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
 <link
@@ -200,19 +200,19 @@
     <div class="sidebar-item-box">
       <a href="/archives/">
         
-        <span class="site-item-stat-count">21</span>
+        <span class="site-item-stat-count">22</span>
         <span class="site-item-stat-name language" data-lan="article">文章</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="">
-        <span class="site-item-stat-count">3</span>
+        <span class="site-item-stat-count">4</span>
         <span class="site-item-stat-name language" data-lan="category">分类</span>
       </a>
     </div>
     <div class="sidebar-item-box">
       <a href="/tags/">
-        <span class="site-item-stat-count">3</span>
+        <span class="site-item-stat-count">4</span>
         <span class="site-item-stat-name language" data-lan="tag">标签</span>
       </a>
     </div>
@@ -276,6 +276,10 @@
           <small class="language" data-lan="tag">标签</small>
         </h2>
       </div>
+      
+      
+      
+      
       
       
       
@@ -1165,6 +1169,56 @@
       <hr>
     </div>
     <div class="result" id="result">
+      
+      <div class="item">
+        <a class="result-title" style="opacity: 0;" href="http://GMH2003.github.io/post/arduino-lcd1602-shi-yan/"" data-c="
+          &lt;h1 id=&#34;前言&#34;&gt;前言&lt;/h1&gt;
+&lt;p&gt;寒假在家闲来无事，开始&lt;s&gt;学习&lt;/s&gt;玩Arduino&lt;/p&gt;
+&lt;h1 id=&#34;lcd1602简介&#34;&gt;LCD1602简介&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;显示容量：16×2个字符。&lt;/li&gt;
+&lt;li&gt;芯片工作电压：4.5~5.5V。&lt;/li&gt;
+&lt;li&gt;工作电流：2.0mA（5.0V）。&lt;/li&gt;
+&lt;li&gt;模块最佳的工作电压：5.0V。&lt;/li&gt;
+&lt;li&gt;字符尺寸：2.95mm×4.35mm（宽×高）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;连接方式&#34;&gt;连接方式&lt;/h1&gt;
+&lt;p&gt;LCD1602的SDA脚连接Arduino的A4脚&lt;br&gt;
+LCD1602的SCL脚连接Arduino的A5脚&lt;br&gt;
+#程序实现&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c&#34;&gt;#include&amp;lt;Wire.h&amp;gt;
+#include&amp;lt;LiquidCrystal_I2C.h&amp;gt;
+char array1[]=&amp;quot;Gu Minhao is             &amp;quot;;
+char array2[]=&amp;quot;a silly boy              &amp;quot;;
+int tim = 500;
+
+LiquidCrystal_I2C lcd(0x27,16,2);
+void setup() {
+  lcd.init();
+  lcd.backlight();
+}
+
+void loop() {
+  lcd.setCursor(15,0);
+  for(int positionCount1 =0;positionCount1&amp;lt;15;positionCount1++){
+    lcd.scrollDisplayLeft();
+    lcd.print(array1[positionCount1]);
+    delay(tim);
+  }
+  delay(1000);
+  lcd.clear();
+  lcd.setCursor(15,1);
+  for(int positionCounter = 0;positionCounter&amp;lt;15;positionCounter++){
+    lcd.scrollDisplayLeft();
+    lcd.print(array2[positionCounter]);
+    delay(tim);
+  }
+  delay(1000);
+  lcd.clear();
+}
+&lt;/code&gt;&lt;/pre&gt;
+">Arduino LCD1602 实验</a>
+      </div>
       
       <div class="item">
         <a class="result-title" style="opacity: 0;" href="http://GMH2003.github.io/post/linux-de-gu-shi/"" data-c="
